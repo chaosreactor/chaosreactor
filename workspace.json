@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "ui": "libs/ui",
+    "ui-e2e": "apps/ui-e2e",
     "voxable": "apps/voxable",
     "voxable-e2e": "apps/voxable-e2e"
   }
