@@ -1,0 +1,8 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "voxable": "apps/voxable",
+    "voxable-e2e": "apps/voxable-e2e"
+  }
+}
