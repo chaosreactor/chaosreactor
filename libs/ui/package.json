@@ -1,4 +1,14 @@
 {
   "name": "@voxable/ui",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "scripts": {
+    "stories:generate": "nx g @nrwl/react:stories --project ui --generateCypressSpecs --cypressProject voxable-e2e"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.4",
+    "@mui/system": "^5.10.4",
+    "@mui/x-data-grid": "^5.17.1"
+  }
 }

@@ -1,0 +1,50 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+  },
+  "terminal.integrated.profiles.osx": {
+    "bash": {
+      "path": "bash",
+      "args": [
+        "-l"
+      ],
+      "icon": "terminal-bash"
+    },
+    "zsh": {
+      "path": "zsh",
+      "args": [
+        "-l"
+      ]
+    },
+    "fish": {
+      "path": "fish",
+      "args": [
+        "-l"
+      ]
+    },
+    "tmux": {
+      "path": "tmux",
+      "icon": "terminal-tmux"
+    },
+    "pwsh": {
+      "path": "pwsh",
+      "icon": "terminal-powershell"
+    },
+    "Storybook": {
+      "id": "storybook",
+      "extensionIdentifier": "voxable.storybook",
+      "path": "zsh",
+      "args": ["-c", "nx storybook ui"],
+      "overrideName": true,
+      "source": "Storybook",
+      "focus": false,
+      "onlySingle": true,
+      "persistent": "storybook",
+      "command": "nx storybook ui",
+      "icon": "book",
+      "color": "terminal.ansiMagenta"
+    }
+  }
+}
