@@ -2,6 +2,7 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "ui": "libs/ui",
     "voxable": "apps/voxable",
     "voxable-e2e": "apps/voxable-e2e"
   }
