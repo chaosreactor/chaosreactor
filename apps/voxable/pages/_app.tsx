@@ -7,7 +7,6 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 
 import './styles.css';
-import { DocList } from '../components/DocList';
 import { Nav } from '@voxable/ui';
 
 function CustomApp({ Component, pageProps }: AppProps) {
@@ -18,7 +17,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
       </Head>
       <main className="app" {...pageProps}>
         <Nav title="Voxable">
-          <DocList {...pageProps} />
+          <Component {...pageProps} />
         </Nav>
       </main>
     </ApolloProvider>

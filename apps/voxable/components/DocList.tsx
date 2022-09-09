@@ -3,12 +3,7 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { Table } from '@voxable/ui';
 import { GridEditingApi, GridColDef, GridRowsProp } from '@mui/x-data-grid';
-
-export type Doc = {
-  _id: string;
-  name: string;
-  text: string;
-};
+import { Doc } from '../generated/graphql';
 
 const DOCS_QUERY = gql`
   query FindAllDocs {
@@ -16,13 +11,23 @@ const DOCS_QUERY = gql`
       data {
         _id
         name
-        text
+        _ts
       }
     }
   }
 `;
 
 export type TableProps = GridEditingApi;
+
+const dateToISO = (dateString: string) => {
+  if (!dateString) {
+    return null;
+  }
+  const p = dateString.toString().split(/\D/g);
+  /* It's up your date on input in this case come from DD-MM-YYYY
+    for MM-DD-YYY use: return [p[1], p[2], p[0]].join('-'); */
+  return [p[2], p[1], p[0]].join('-');
+};
 
 export const DocList: React.FC<TableProps> = (props: TableProps) => {
   const { data, loading, error } = useQuery(DOCS_QUERY);
@@ -32,15 +37,13 @@ export const DocList: React.FC<TableProps> = (props: TableProps) => {
   if (loading) return <div>Loading...</div>;
 
   const columns: GridColDef[] = [
-    { field: 'title', headerName: 'Prompt', width: 150 },
-    { field: 'date', headerName: 'Result', width: 150 },
+    { field: 'name', headerName: 'Name', width: 800 },
   ];
 
-  const rows: GridRowsProp = data.docs.data.map((doc: Doc) => {
+  const rows: GridRowsProp[] = data.docs.data.map((doc: Doc) => {
     return {
       id: doc._id,
-      title: doc.name,
-      date: doc.text,
+      name: doc.name,
     };
   });
 
