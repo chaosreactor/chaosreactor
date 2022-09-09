@@ -1,0 +1,102 @@
+directive @embedded on OBJECT
+
+directive @collection(name: String!) on OBJECT
+
+directive @index(name: String!) on FIELD_DEFINITION
+
+directive @resolver(
+  name: String
+  paginated: Boolean! = false
+) on FIELD_DEFINITION
+
+directive @relation(name: String) on FIELD_DEFINITION
+
+directive @unique(index: String) on FIELD_DEFINITION
+
+scalar Date
+
+# 'Doc' input values
+input DocInput {
+  name: String!
+  text: String!
+}
+
+type Mutation {
+  # Create a new document in the collection of 'Doc'
+  createDoc(
+    # 'Doc' input values
+    data: DocInput!
+  ): Doc!
+
+  # Update an existing document in the collection of 'Doc'
+  updateDoc(
+    # The 'Doc' document's ID
+    id: ID!
+
+    # 'Doc' input values
+    data: DocInput!
+  ): Doc
+
+  # Delete an existing document in the collection of 'Doc'
+  deleteDoc(
+    # The 'Doc' document's ID
+    id: ID!
+  ): Doc
+
+  # Partially updates an existing document in the collection of 'Doc'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'.
+  partialUpdateDoc(
+    # The 'Doc' document's ID
+    id: ID!
+
+    # 'Doc' input values
+    data: PartialUpdateDocInput!
+  ): Doc
+}
+
+# 'Doc' input values
+input PartialUpdateDocInput {
+  name: String
+  text: String
+}
+
+scalar Time
+
+type Doc {
+  # The document's ID.
+  _id: ID!
+
+  # The document's timestamp.
+  _ts: Long!
+  name: String!
+  text: String!
+}
+
+# The pagination object for elements of type 'Doc'.
+type DocPage {
+  # The elements of type 'Doc' in this page.
+  data: [Doc]!
+
+  # A cursor for elements coming after the current page.
+  after: String
+
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
+type Query {
+  # Find a document from the collection of 'Doc' by its id.
+  findDocByID(
+    # The 'Doc' document's ID
+    id: ID!
+  ): Doc
+  docs(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+  ): DocPage!
+}
+
+# The `Long` scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1.
+scalar Long

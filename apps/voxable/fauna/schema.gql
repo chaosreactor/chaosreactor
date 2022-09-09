@@ -1,16 +1,11 @@
-type Project {
-  name: String!
-  description: String!
-  docs: [Doc]! @relation
-  organizationID: String!
-}
+# This is our version of the schema, that is merged with the one on the server
+# (`server-schema.sql`).
 
 type Doc {
   name: String!
   text: String!
-  runs: Prompt! @relation
 }
 
 type Query {
-  projects: [Project]
+  docs: [Doc]
 }

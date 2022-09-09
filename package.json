@@ -1,12 +1,11 @@
 {
   "name": "voxable",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "ISC",
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test",
-    "fauna": "fgu"
+    "test": "nx test"
   },
   "private": true,
   "dependencies": {
@@ -16,7 +15,7 @@
     "@nrwl/next": "14.6.5",
     "clsx": "^1.1.1",
     "core-js": "^3.6.5",
-    "next": "^12.2.4",
+    "next": "^12.2.5",
     "prism-react-renderer": "^1.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
