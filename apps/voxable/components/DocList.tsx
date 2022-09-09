@@ -26,6 +26,7 @@ export interface TableProps {}
 export const DocList: React.FC<TableProps> = (props: TableProps) => {
   const { data, loading, error } = useQuery(DOCS_QUERY);
 
+  if (data) console.log('data', data);
   if (error) console.log('error', error);
   if (loading) return <div>Loading...</div>;
 

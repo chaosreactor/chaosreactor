@@ -13,6 +13,7 @@
   "devDependencies": {
     "@apollo/client": "^3.6.9",
     "@apollo/react-hooks": "^4.0.0",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.3",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6"
   }
