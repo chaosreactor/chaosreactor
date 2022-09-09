@@ -6,10 +6,14 @@ import { Box, ThemeProvider } from '@mui/system';
 import theme from './theme';
 
 // When using TypeScript 4.x and above
-import { DataGrid, GridColDef, GridRowsProp } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  GridColDef,
+  GridRowsProp,
+  GridEditingApi,
+} from '@mui/x-data-grid';
 
 /* eslint-disable-next-line */
-export interface TableProps {}
 
 const StyledTable = styled.div`
   color: pink;
@@ -29,13 +33,22 @@ declare module '@mui/material/styles' {
   }
 }
 
-const columns: GridColDef[] = [
-  { field: 'prompt', headerName: 'Prompt', width: 150 },
-  { field: 'result', headerName: 'Result', width: 150 },
-];
-
-export const Table: React.FC = (props: TableProps) => {
+export const Table: typeof DataGrid = (props) => {
   const [tableData, setTableData] = useState<Array<any>>([]);
+
+  const defaultRows: GridRowsProp[] = [];
+  const defaultColumns: GridColDef[] = [
+    { field: 'prompt', headerName: 'Prompt', width: 150 },
+    { field: 'result', headerName: 'Result', width: 150 },
+  ];
+
+  const rowsToShow = props.rows || defaultRows;
+  const columnsToShow = props.columns || defaultColumns;
+
+  const newProps = Object.assign({}, props, {
+    rows: rowsToShow,
+    columns: columnsToShow,
+  });
 
   // Fetch runs from the filesystem.
   // console.log('window.electron.storage', window.electron.storage);
@@ -47,7 +60,7 @@ export const Table: React.FC = (props: TableProps) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div style={{ height: 300, width: '100%' }}>
-        <DataGrid rows={[]} columns={columns} />
+        <DataGrid {...newProps} />
       </div>
     </ThemeProvider>
   );
