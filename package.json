@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "fauna": "fgu"
   },
   "private": true,
   "dependencies": {
@@ -15,7 +16,7 @@
     "@nrwl/next": "14.6.5",
     "clsx": "^1.1.1",
     "core-js": "^3.6.5",
-    "next": "12.2.5",
+    "next": "^12.2.4",
     "prism-react-renderer": "^1.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -66,6 +67,8 @@
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-react": "7.31.1",
     "eslint-plugin-react-hooks": "4.6.0",
+    "fauna-gql-upload": "^2.5.0",
+    "faunadb": "^4.6.0",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
     "nx": "14.6.5",

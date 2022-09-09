@@ -1,0 +1,21 @@
+import { query as q } from "faunadb";
+import onlyDeleteByOwner from "../predicates/onlyDeleteByOwner";
+
+export default {
+  name: "user",
+  privileges: [
+    {
+      resource: Collection("Docs"),
+      actions: {
+        read: true,
+        create: true,
+        delete: onlyDeleteByOwner
+      }
+    }
+  ],
+  membership: [
+    {
+      resource: q.Collection("User")
+    }
+  ]
+}

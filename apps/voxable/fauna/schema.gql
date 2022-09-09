@@ -1,0 +1,16 @@
+type Project {
+  name: String!
+  description: String!
+  docs: [Doc]! @relation
+  organizationID: String!
+}
+
+type Doc {
+  name: String!
+  text: String!
+  runs: Prompt! @relation
+}
+
+type Query {
+  projects: [Project]
+}

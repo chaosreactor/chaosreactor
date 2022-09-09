@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@voxable/web": ["apps/voxable/pages/index.tsx"],
       "@voxable/ui": ["libs/ui/src/index.ts"]
     }
   },
