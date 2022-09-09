@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { CssBaseline } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { Box, ThemeProvider } from '@mui/system';
-import theme from './theme';
+import theme from '../theme';
 
 // When using TypeScript 4.x and above
 import {

@@ -10,5 +10,8 @@
     "@mui/material": "^5.10.4",
     "@mui/system": "^5.10.4",
     "@mui/x-data-grid": "^5.17.1"
+  },
+  "devDependencies": {
+    "@mui/icons-material": "^5.10.3"
   }
 }
