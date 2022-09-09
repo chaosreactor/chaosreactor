@@ -45,7 +45,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
   },
 });
 
-const DrawerHeader = styled('div')(({ theme }) => ({
+const DrawerHeader = styled('div')(({ theme: any }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
@@ -93,9 +93,16 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-const NavBase: React.FunctionComponent = () => {
+export interface NavProps {
+  title?: string;
+  children?: JSX.Element;
+}
+
+const NavBase: React.FunctionComponent<NavProps> = (props) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  console.log('props', props);
+  const { title } = props;
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -123,7 +130,7 @@ const NavBase: React.FunctionComponent = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+            {title}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -190,38 +197,14 @@ const NavBase: React.FunctionComponent = () => {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        {props.children}
       </Box>
     </Box>
   );
+};
+
+NavBase.defaultProps = {
+  title: '',
 };
 
 declare module '@mui/material/styles' {
@@ -238,14 +221,16 @@ declare module '@mui/material/styles' {
   }
 }
 
-export function Nav(props: any) {
+export function Nav(props: NavProps) {
+  const { title, children } = props;
+
   return (
     // Setup theme and css baseline for the Material-UI app
     // https://mui.com/customization/theming/
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div style={{ height: 300, width: '100%' }}>
-        <NavBase />
+        <NavBase title={title}>{children}</NavBase>
       </div>
     </ThemeProvider>
   );
