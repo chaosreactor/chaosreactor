@@ -4,6 +4,12 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
   },
+  "terminal.integrated.profiles.linux": {
+    "zsh": {
+      "path": "zsh",
+      "args": ["-i"]
+    }
+  },
   "terminal.integrated.profiles.osx": {
     "bash": {
       "path": "bash",
