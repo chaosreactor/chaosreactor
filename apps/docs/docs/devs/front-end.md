@@ -13,7 +13,7 @@ We use [Nx](https://nx.dev/) to generate components. Nx is a set of tools for bu
 To generate a component, run the following command (or use the [Nx Console](https://nx.dev/latest/react/getting-started/nx-console):
 
 ```bash
-pnpm nx g @nrwl/next:component Table --project=ui --no-interactive
+npx g @nrwl/next:component Table --project=ui --no-interactive
 ```
 
 This will generate a component in `libs/ui/src/lib/table.tsx` and a test in `libs/ui/src/libs/table.test.tsx`.

@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
-import { Table } from '@voxable/ui';
+import { Table } from '@chaosreactoractor/ui';
 import { GridEditingApi, GridColDef, GridRowsProp } from '@mui/x-data-grid';
 import { Doc } from '../generated/graphql';
 

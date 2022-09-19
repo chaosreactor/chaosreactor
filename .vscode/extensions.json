@@ -1,9 +1,7 @@
 {
   "recommendations": [
     "nrwl.angular-console",
-    "esbenp.prettier-vscode",
     "firsttris.vscode-jest-runner",
-    "dbaeumer.vscode-eslint",
     "fabiospampinato.vscode-terminals",
     "rodrigovallades.es7-react-js-snippets",
     "pulkitgangwar.nextjs-snippets",

@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/voxable",
+  "sourceRoot": "apps/chaosreactor",
   "projectType": "application",
   "targets": {
     "build": {
@@ -8,12 +8,12 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "root": "apps/voxable",
-        "outputPath": "dist/apps/voxable"
+        "root": "apps/chaosreactor",
+        "outputPath": "dist/apps/chaosreactor"
       },
       "configurations": {
         "development": {
-          "outputPath": "apps/voxable"
+          "outputPath": "apps/chaosreactor"
         },
         "production": {}
       }
@@ -22,16 +22,16 @@
       "executor": "@nrwl/next:server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "voxable:build",
+        "buildTarget": "chaosreactor:build",
         "dev": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "voxable:build:development",
+          "buildTarget": "chaosreactor:build:development",
           "dev": true
         },
         "production": {
-          "buildTarget": "voxable:build:production",
+          "buildTarget": "chaosreactor:build:production",
           "dev": false
         }
       }
@@ -39,14 +39,14 @@
     "export": {
       "executor": "@nrwl/next:export",
       "options": {
-        "buildTarget": "voxable:build:production"
+        "buildTarget": "chaosreactor:build:production"
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/voxable"],
+      "outputs": ["coverage/apps/chaosreactor"],
       "options": {
-        "jestConfig": "apps/voxable/jest.config.ts",
+        "jestConfig": "apps/chaosreactor/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -54,7 +54,7 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/voxable/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/chaosreactor/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },

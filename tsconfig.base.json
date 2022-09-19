@@ -15,9 +15,18 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@voxable/ui": ["libs/ui/src/index.ts"],
-      "@voxable/web": ["apps/voxable/pages/index.tsx"]
+      "@chaosreactor/ui": ["libs/ui/src/index.ts"],
+      "@chaosreactor/web": ["apps/chaosreactor/pages/index.tsx"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "plugins": {
+    "compilerOptions": {
+      "plugins": [
+        {
+          "name": "typescript-tslint-plugin"
+        }
+      ]
+    }
+  }
 }

@@ -10,7 +10,7 @@
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
-        "@next/next/no-html-link-for-pages": ["error", "apps/voxable/pages"]
+        "@next/next/no-html-link-for-pages": ["error", "apps/chaosreactor/pages"]
       }
     },
     {

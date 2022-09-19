@@ -5,7 +5,7 @@
     "docs": "apps/docs",
     "ui": "libs/ui",
     "ui-e2e": "apps/ui-e2e",
-    "voxable": "apps/voxable",
-    "voxable-e2e": "apps/voxable-e2e"
+    "chaosreactor": "apps/chaosreactor",
+    "chaosreactor-e2e": "apps/chaosreactor-e2e"
   }
 }

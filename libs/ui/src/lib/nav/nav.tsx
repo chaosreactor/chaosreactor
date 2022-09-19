@@ -1,7 +1,7 @@
 // import styles from './nav.module.css';
 
-import React from 'react';
 import theme from '../theme';
+import React from 'react';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import { Box, ThemeProvider } from '@mui/system';
 import MuiDrawer from '@mui/material/Drawer';
@@ -59,7 +59,7 @@ interface AppBarProps extends MuiAppBarProps {
 }
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: (prop: string) => prop !== 'open',
 })<AppBarProps>(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {

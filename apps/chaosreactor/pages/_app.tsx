@@ -7,7 +7,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 
 import './styles.css';
-import { Nav } from '@voxable/ui';
+import { Nav } from '@chaosreactor/ui';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (

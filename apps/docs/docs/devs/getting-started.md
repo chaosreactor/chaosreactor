@@ -5,8 +5,7 @@ Let's get started developing your first new feature as a Voxable developer in *l
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/en/download/) (v18.8.0 or higher)
-- [pnpm](https://pnpm.io/installation) (v7.11.0 or higher)
-  - [asdf](https://asdf-vm.com/#/core-manage-asdf) is a great way to manage your Node.js and pnpm versions
+- [asdf](https://asdf-vm.com/#/core-manage-asdf) is a great way to manage your Node.js and npm versions
 - [Docker](https://docs.docker.com/get-docker/) (v20.10.8 or higher)
 - [Docker Compose](https://docs.docker.com/compose/install/) (v1.29.2 or higher)
 - [Git](https://git-scm.com/downloads) (v2.33.0 or higher)
@@ -22,13 +21,13 @@ Let's get started developing your first new feature as a Voxable developer in *l
 2. Install dependencies
 
     ```bash
-    pnpm install
+    npm install
     ```
 
 3. Start the development environment
 
     ```bash
-    pnpm nx serve
+    npx nx serve
     ```
 
 4. Open the app in your browser

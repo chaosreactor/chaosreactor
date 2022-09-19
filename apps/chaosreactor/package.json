@@ -1,5 +1,5 @@
 {
-  "name": "@voxable/web",
+  "name": "@chaosreactor/web",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,8 +8,6 @@
     "fauna": "fgu"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@apollo/client": "^3.6.9",
     "@apollo/react-hooks": "^4.0.0",

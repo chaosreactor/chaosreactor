@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "voxable",
+  "npmScope": "chaosreactor",
   "affected": {
     "defaultBase": "main"
   },
@@ -44,5 +44,5 @@
       }
     }
   },
-  "defaultProject": "voxable"
+  "defaultProject": "chaosreactor"
 }
