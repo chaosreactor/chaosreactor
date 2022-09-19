@@ -34,7 +34,13 @@
 				"ecmel.vscode-html-css",
 				"Zignd.html-css-class-completion",
 				"christian-kohler.npm-intellisense",
-				"christian-kohler.path-intellisense"
+				"christian-kohler.path-intellisense",
+				"esbenp.prettier-vscode",
+				"mikestead.dotenv",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"formulahendry.code-runner",
+				"IBM.output-colorizer",
+				"VisualStudioExptTeam.intellicode-api-usage-examples"
 			]
 		}
 	},
