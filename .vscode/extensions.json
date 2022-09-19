@@ -4,6 +4,11 @@
     "esbenp.prettier-vscode",
     "firsttris.vscode-jest-runner",
     "dbaeumer.vscode-eslint",
-    "fabiospampinato.vscode-terminals"
+    "fabiospampinato.vscode-terminals",
+    "rodrigovallades.es7-react-js-snippets",
+    "pulkitgangwar.nextjs-snippets",
+    "ijs.reactnextjssnippets",
+    "codestream.codestream",
+    "CodeStream.codestream"
   ]
 }
