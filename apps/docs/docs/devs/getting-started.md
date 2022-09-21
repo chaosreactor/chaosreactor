@@ -38,12 +38,12 @@ Let's get started developing your first new feature as a Voxable developer in *l
 
 ## Next Steps
 
-- [ ] [Learn about the project structure](/devs/project-structure)
-- [ ] [Learn about the development environment](/devs/development-environment)
-- [ ] [Learn about the database](/devs/database)
-- [ ] [Learn about the API](/devs/api)
-- [ ] [Learn about the frontend](/devs/frontend)
-- [ ] [Learn about the deployment process](/devs/deployment)
+- [ ] Learn about the project structure
+- [ ] Learn about the development environment
+- [ ] Learn about the database
+- [ ] Learn about the API
+- [ ] Learn about the frontend
+- [ ] Learn about the deployment process
 
 ## Resources
 

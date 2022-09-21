@@ -5,6 +5,7 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
+    "build:docs": "nx build docs",
     "test": "nx test",
     "preinstall": "npx --yes only-allow npm"
   },
