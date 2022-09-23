@@ -30,7 +30,14 @@ Let's get started developing your first new feature as a Voxable developer in *l
     npx nx serve
     ```
 
-4. Open the app in your browser
+4. Run NX console
+   
+   1. Navigate to the NX Sidebar
+   2. Select `run-many` from the list of common NX commands.
+   3. Select `serve`
+   4. Select and run `nx run-many --target=serve`
+
+5. Open the app in your browser
 
     ```bash
     open http://localhost:3000
