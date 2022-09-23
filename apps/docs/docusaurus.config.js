@@ -6,9 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'Chaos Reactor 🧪',
+  tagline: 'A program is just words.',
+  url: 'https://docs.chaosre.actor',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -43,9 +43,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: 'Chaos Reactor 🧪',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Chaos Reactor Logo (Noto Test Tube Emoji)',
           src: 'img/logo.svg',
         },
         items: [

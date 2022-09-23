@@ -13,11 +13,7 @@ export function Index(pageProps) {
    *
    * Note: The corresponding styles are in the ./index.styled-components file.
    */
-  return (
-    <StyledPage {...pageProps}>
-      <DocList {...pageProps} />
-    </StyledPage>
-  );
+  return <StyledPage {...pageProps}></StyledPage>;
 }
 
 export default Index;
