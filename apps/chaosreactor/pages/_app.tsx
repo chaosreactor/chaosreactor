@@ -1,10 +1,11 @@
 import { ApolloProvider } from '@apollo/client';
 import { client } from '../apollo/client';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+// import gql from 'graphql-tag';
+// import { useQuery } from '@apollo/react-hooks';
 import React from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { withBlitz } from '../blitz-client';
 
 import './styles.css';
 import { Nav } from '@chaosreactor/ui';
@@ -24,4 +25,4 @@ function CustomApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default CustomApp;
+export default withBlitz(CustomApp);

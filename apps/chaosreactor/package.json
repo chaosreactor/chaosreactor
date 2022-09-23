@@ -15,5 +15,9 @@
     "@mui/x-data-grid": "^5.17.1",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6"
+  },
+  "dependencies": {
+    "@blitzjs/next": "^2.0.0-beta.4",
+    "blitz": "^2.0.0-beta.4"
   }
 }
