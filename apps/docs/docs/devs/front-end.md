@@ -2,7 +2,13 @@
 
 This document outlines the front-end development process for Voxable.
 
-## Prerequisites & Setup
+## Deployment status
+
+| Environment                           | Status                                                                                                                                                                  |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 📖 [Docs](https://docs.chaosre.actor) | [![Netlify Status](https://api.netlify.com/api/v1/badges/df7bb056-a5d4-4669-925d-7664e57887f9/deploy-status)](https://app.netlify.com/sites/chaos-reactor-docs/deploys) |
+
+## Prerequisites & setup
 
 See [Getting Started](/docs/devs/getting-started/).
 
@@ -25,4 +31,3 @@ We use [Storybook](https://storybook.js.org/) to host living documentation for o
 ```bash
 nx stories:generate ui
 ```
-
