@@ -38,7 +38,7 @@
     "@nrwl/linter": "14.6.5",
     "@nrwl/nx-cloud": "latest",
     "@nrwl/react": "14.6.5",
-    "@nrwl/storybook": "^14.6.5",
+    "@nrwl/storybook": "^14.7.13",
     "@nrwl/web": "14.6.5",
     "@nrwl/workspace": "14.6.5",
     "@nx-plus/docusaurus": "^14.1.0",
