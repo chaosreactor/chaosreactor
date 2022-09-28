@@ -40,7 +40,7 @@
     "@nrwl/linter": "14.6.5",
     "@nrwl/nx-cloud": "latest",
     "@nrwl/react": "14.6.5",
-    "@nrwl/storybook": "^14.6.5",
+    "@nrwl/storybook": "^14.8.0",
     "@nrwl/web": "14.6.5",
     "@nrwl/workspace": "14.6.5",
     "@storybook/addon-essentials": "~6.5.9",
