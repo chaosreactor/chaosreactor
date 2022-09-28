@@ -11,10 +11,13 @@
   },
   "private": false,
   "dependencies": {
+    "@chakra-ui/pro-theme": "^0.0.55",
     "@chakra-ui/react": "^2.3.4",
     "@emotion/react": "^11.10.4",
     "@emotion/server": "11.10.0",
     "@emotion/styled": "^11.10.4",
+    "@fontsource/inter": "^4.5.12",
+    "@fontsource/work-sans": "^4.5.12",
     "@nrwl/next": "14.7.5",
     "clsx": "^1.1.1",
     "core-js": "^3.6.5",
