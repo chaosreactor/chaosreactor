@@ -4,7 +4,6 @@
   "projects": {
     "chaosreactor": "apps/chaosreactor",
     "chaosreactor-e2e": "apps/chaosreactor-e2e",
-    "docs": "apps/docs",
     "ui": "libs/ui",
     "ui-e2e": "apps/ui-e2e"
   }
