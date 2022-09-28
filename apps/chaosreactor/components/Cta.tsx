@@ -37,19 +37,12 @@ export const Cta = () => (
               Start building your next project with Chaos Reactor. Get started
               by joining our Discord community.
             </Text>
-          </Stack>
-          <Stack
-            spacing="3"
-            height="500px"
-            direction={{ base: 'column', sm: 'row' }}
-            justify={{ base: 'start' }}
-          >
             <div
               data-tf-widget="bjZHACdL"
               data-tf-iframe-props="title=Chaos Reactor Sign-up 🧪"
               data-tf-medium="snippet"
               data-tf-hidden="hubspot_utk=xxxxx,hubspot_page_name=xxxxx,hubspot_page_url=xxxxx"
-              style={{ width: '100%', height: '100%' }}
+              style={{ width: '100%', height: '400px' }}
             ></div>
           </Stack>
         </Stack>

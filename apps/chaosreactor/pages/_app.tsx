@@ -14,7 +14,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <title>Welcome to chaosreactor!</title>
       </Head>
       <main className="app">
-        <Chakra cookies={pageProps.cookies}>
+        <Chakra cookies={pageProps}>
           <Component {...pageProps} />
         </Chakra>
       </main>
