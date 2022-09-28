@@ -42,7 +42,7 @@ export const Cta = () => (
               data-tf-iframe-props="title=Chaos Reactor Sign-up 🧪"
               data-tf-medium="snippet"
               data-tf-hidden="hubspot_utk=xxxxx,hubspot_page_name=xxxxx,hubspot_page_url=xxxxx"
-              style={{ width: '100%', height: '400px' }}
+              style={{ width: '100%', height: '500px' }}
             ></div>
           </Stack>
         </Stack>
