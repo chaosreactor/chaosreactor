@@ -11,6 +11,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import * as React from 'react';
+import Script from 'next/script';
 
 export const Cta = () => (
   <ChakraProvider theme={chaosTheme}>
@@ -28,29 +29,32 @@ export const Cta = () => (
           justify="space-between"
         >
           <Stack spacing="4" maxW="2xl">
-            <Heading size="sm">Ready to Grow?</Heading>
+            <Heading size="sm">Ready to Create?</Heading>
             <Text
               color="muted"
               fontSize={useBreakpointValue({ base: 'lg', lg: 'xl' })}
             >
-              With this beautiful and responsive React components you will
-              realize your next project in no time.
+              Start building your next project with Chaos Reactor. Get started
+              by joining our Discord community.
             </Text>
           </Stack>
           <Stack
             spacing="3"
+            height="500px"
             direction={{ base: 'column', sm: 'row' }}
             justify={{ base: 'start' }}
           >
-            <Button variant="secondary" size="lg">
-              Learn more
-            </Button>
-            <Button variant="primary" size="lg">
-              Start Free Trial
-            </Button>
+            <div
+              data-tf-widget="bjZHACdL"
+              data-tf-iframe-props="title=Chaos Reactor Sign-up 🧪"
+              data-tf-medium="snippet"
+              data-tf-hidden="hubspot_utk=xxxxx,hubspot_page_name=xxxxx,hubspot_page_url=xxxxx"
+              style={{ width: '100%', height: '100%' }}
+            ></div>
           </Stack>
         </Stack>
       </Box>
+      <Script src="//embed.typeform.com/next/embed.js"></Script>
     </Container>
   </ChakraProvider>
 );
