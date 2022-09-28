@@ -1,7 +1,5 @@
 //@ts-check
 
-const { withBlitz } = require('@blitzjs/next');
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { withNx } = require('@nrwl/next/plugins/with-nx');
 
@@ -14,9 +12,6 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
-  compiler: {
-    styledComponents: true,
-  },
 };
 
-module.exports = withBlitz(withNx(nextConfig));
+module.exports = withNx(nextConfig);
