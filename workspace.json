@@ -2,8 +2,8 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "chaosreactor": "apps/chaosreactor",
-    "chaosreactor-e2e": "apps/chaosreactor-e2e",
+    "docs": "apps/docs",
+    "web": "apps/web",
     "ui": "libs/ui",
     "ui-e2e": "apps/ui-e2e"
   }

@@ -6,6 +6,7 @@
     "start": "nx serve",
     "build": "nx build",
     "build:docs": "nx build docs",
+    "nx:cache:clear": "rm -rf node_modules/.cache/nx/",
     "test": "nx test",
     "preinstall": "npx --yes only-allow npm"
   },
