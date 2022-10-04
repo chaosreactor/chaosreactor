@@ -1,8 +1,10 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import chaosTheme from '../theme';
 import {
+  Box,
   Button,
   Container,
+  DarkMode,
   FormControl,
   FormHelperText,
   FormLabel,
@@ -11,7 +13,7 @@ import {
   Input,
   Stack,
   Text,
-  useBreakpointValue,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import useAxios from 'axios-hooks';
@@ -45,6 +47,36 @@ const ChakraForm = () => {
   useEffect(() => {
     setPageUri(window.location.href);
   });
+
+  if (data)
+    return (
+      <ChakraProvider theme={chaosTheme}>
+        <DarkMode>
+          <Box as="section" py={{ base: '4', md: '8' }}>
+            <Container maxW="3xl">
+              <Box
+                bg="bg-surface"
+                boxShadow={useColorModeValue('sm', 'sm-dark')}
+                borderRadius="lg"
+                p={{ base: '4', md: '6' }}
+              >
+                <Stack spacing="5">
+                  <Stack spacing="1">
+                    <Text fontSize="2xl" fontWeight="medium" color="white">
+                      Opt-in to emails 🧪
+                    </Text>
+                    <Text fontSize="xl" color="muted">
+                      Click the link in the email to confirm your subscription,
+                      and we’ll send you the Discord invite link!
+                    </Text>
+                  </Stack>
+                </Stack>
+              </Box>
+            </Container>
+          </Box>
+        </DarkMode>
+      </ChakraProvider>
+    );
 
   return (
     <ChakraProvider theme={chaosTheme}>
