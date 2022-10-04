@@ -1,4 +1,7 @@
-import SignupForm from '../components/SignupForm';
+// @see https://www.aknapen.nl/blog/collect-emails-from-nextjs-form-in-hubspot/
+
+import SignupForm from '../../components/SignupForm';
+import ChakraForm from '../../components/ChakraForm';
 import { Style } from '@makeswift/runtime/controls';
 import { ReactRuntime } from '@makeswift/runtime/react';
 
@@ -19,6 +22,14 @@ ReactRuntime.registerComponent(HelloWorld, {
 ReactRuntime.registerComponent(SignupForm, {
   type: 'signup-form',
   label: 'Signup Form',
+  props: {
+    className: Style({ properties: Style.All }),
+  },
+});
+
+ReactRuntime.registerComponent(ChakraForm, {
+  type: 'chakra-form',
+  label: 'Chakra Form',
   props: {
     className: Style({ properties: Style.All }),
   },

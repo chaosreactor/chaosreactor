@@ -6,6 +6,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@chakra-ui/pro-theme": "^0.0.55",
+    "@chakra-ui/react": "^2.3.5",
+    "@fontsource/source-serif-pro": "^4.5.9",
+    "@fontsource/work-sans": "^4.5.12",
     "@makeswift/runtime": "0.2.2",
     "axios": "^0.27.2",
     "axios-hooks": "^4.0.0",
