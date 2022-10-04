@@ -1,7 +1,8 @@
 // @see https://www.aknapen.nl/blog/collect-emails-from-nextjs-form-in-hubspot/
 
 import SignupForm from '../../components/SignupForm';
-import { Style } from '@makeswift/runtime/controls';
+import Tweet from '../../components/Tweet';
+import { Style, TextInput } from '@makeswift/runtime/controls';
 import { ReactRuntime } from '@makeswift/runtime/react';
 
 // Register your components here!
@@ -23,5 +24,17 @@ ReactRuntime.registerComponent(SignupForm, {
   label: 'Signup Form',
   props: {
     className: Style({ properties: Style.All }),
+  },
+});
+
+ReactRuntime.registerComponent(Tweet, {
+  type: 'tweet',
+  label: 'Tweet',
+  props: {
+    className: Style({ properties: Style.All }),
+    tweetId: TextInput({
+      label: 'Tweet ID',
+      defaultValue: '841418541026877441',
+    }),
   },
 });

@@ -18,7 +18,7 @@ import {
 import { useEffect, useState } from 'react';
 import useAxios from 'axios-hooks';
 
-const ChakraForm = () => {
+const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -132,4 +132,4 @@ const ChakraForm = () => {
   );
 };
 
-export default ChakraForm;
+export default SignupForm;
