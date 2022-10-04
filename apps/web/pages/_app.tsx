@@ -12,6 +12,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
     <ChakraProvider theme={chaosTheme}>
       <Head>
         <title>Welcome to chaosreactor!</title>
+        <meta name="twitter:widgets:theme" content="dark"></meta>
       </Head>
       <main className="app">
         <Chakra cookies={pageProps}>

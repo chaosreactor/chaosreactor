@@ -1,7 +1,7 @@
 // @see https://www.aknapen.nl/blog/collect-emails-from-nextjs-form-in-hubspot/
 
 import SignupForm from '../../components/SignupForm';
-import { Style, TextInput } from '@makeswift/runtime/controls';
+import { Select, Style, TextInput } from '@makeswift/runtime/controls';
 import { ReactRuntime } from '@makeswift/runtime/react';
 
 import { Tweet } from 'react-twitter-widgets';
@@ -36,6 +36,15 @@ ReactRuntime.registerComponent(Tweet, {
     tweetId: TextInput({
       label: 'Tweet ID',
       defaultValue: '841418541026877441',
+    }),
+    theme: Select({
+      label: 'Theme',
+      labelOrientation: 'vertical',
+      options: [
+        { value: 'light', label: 'Light' },
+        { value: 'dark', label: 'Dark' },
+      ],
+      defaultValue: 'dark',
     }),
   },
 });
