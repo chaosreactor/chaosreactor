@@ -1,9 +1,10 @@
 // @see https://www.aknapen.nl/blog/collect-emails-from-nextjs-form-in-hubspot/
 
 import SignupForm from '../../components/SignupForm';
-import Tweet from '../../components/Tweet';
 import { Style, TextInput } from '@makeswift/runtime/controls';
 import { ReactRuntime } from '@makeswift/runtime/react';
+
+import { Tweet } from 'react-twitter-widgets';
 
 // Register your components here!
 
