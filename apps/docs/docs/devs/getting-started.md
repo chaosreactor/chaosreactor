@@ -18,10 +18,10 @@ Let's get started developing your first new feature as a Voxable developer in *l
    git clone
    ```
 
-2. Install dependencies
+2. Install dependencies (yes, you need `--force`, for the moment)
 
     ```bash
-    npm install
+    npm install --force
     ```
 
 3. Start the development environment

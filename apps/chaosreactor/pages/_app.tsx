@@ -1,28 +1,25 @@
-import { ApolloProvider } from '@apollo/client';
-import { client } from '../apollo/client';
-// import gql from 'graphql-tag';
-// import { useQuery } from '@apollo/react-hooks';
-import React from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { withBlitz } from '../blitz-client';
-
 import './styles.css';
-import { Nav } from '@chaosreactor/ui';
+// pages/_app.js
+import { ChakraProvider } from '@chakra-ui/react';
+import chaosTheme from '../theme';
+import '@fontsource/work-sans';
+import { Chakra } from '../lib/chakra';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={client}>
+    <ChakraProvider theme={chaosTheme}>
       <Head>
-        <title>Welcome to Voxable!</title>
+        <title>Welcome to chaosreactor!</title>
       </Head>
-      <main className="app" {...pageProps}>
-        <Nav title="Voxable">
+      <main className="app">
+        <Chakra cookies={pageProps}>
           <Component {...pageProps} />
-        </Nav>
+        </Chakra>
       </main>
-    </ApolloProvider>
+    </ChakraProvider>
   );
 }
 
-export default withBlitz(CustomApp);
+export default CustomApp;

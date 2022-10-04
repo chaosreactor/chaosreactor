@@ -1,19 +1,32 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
-import { DocList } from '../components/DocList';
+import { Header } from '../components/Header';
+import { Cta } from '../components/Cta';
+import Image from 'next/image';
+import Demo from '../public/demo.png';
 
 const StyledPage = styled.div`
   .page {
   }
 `;
 
-export function Index(pageProps) {
+export function Index() {
   /*
    * Replace the elements below with your own.
    *
-   * Note: The corresponding styles are in the ./index.styled-components file.
+   * Note: The corresponding styles are in the ./index.@emotion/styled file.
    */
-  return <StyledPage {...pageProps}></StyledPage>;
+  return (
+    <StyledPage>
+      <div className="wrapper">
+        <div className="container">
+          <Header />
+          <Image alt="Demo" src={Demo} />
+          <Cta />
+        </div>
+      </div>
+    </StyledPage>
+  );
 }
 
 export default Index;
