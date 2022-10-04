@@ -1,6 +1,14 @@
 version: 0.1
+runtimes:
+  enabled:
+    - go@1.18.3
+    - node@16.14.2
+actions:
+  enabled:
+    - trunk-cache-prune
+    - trunk-upgrade-available
 cli:
-  version: 0.17.0-beta
+  version: 0.18.1-beta
 plugins:
   sources:
     - id: trunk
