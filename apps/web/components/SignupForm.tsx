@@ -26,7 +26,7 @@ const ChakraForm = () => {
     {
       url: '/api/emailSignup',
       method: 'POST',
-      data: { email, pageUri },
+      data: { email, firstName, lastName, pageUri },
     },
     {
       manual: true,
