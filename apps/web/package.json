@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@chakra-ui/pro-theme": "^0.0.55",
+    "@chakra-ui/react": "^2.3.5",
+    "@fontsource/source-serif-pro": "^4.5.9",
+    "@fontsource/work-sans": "^4.5.12",
+    "@makeswift/runtime": "0.2.2",
+    "axios": "^0.27.2",
+    "axios-hooks": "^4.0.0",
+    "next": "latest",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-twitter-widgets": "^1.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.41",
+    "@types/react": "18.0.12",
+    "typescript": "4.7.3"
+  }
+}
