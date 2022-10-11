@@ -1,7 +1,21 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/docs/docs",
+  "implicitDependencies": ["ui"],
   "projectType": "application",
-  "tags": [],
-  "implicitDependencies": ["ui"]
+  "sourceRoot": "apps/docs/src",
+  "targets": {
+    "build": {
+      "executor": "@nx-plus/docusaurus:browser",
+      "options": {
+        "outputPath": "dist/apps/docs"
+      }
+    },
+    "serve": {
+      "executor": "@nx-plus/docusaurus:dev-server",
+      "options": {
+        "port": 3000
+      }
+    }
+  },
+  "tags": []
 }
