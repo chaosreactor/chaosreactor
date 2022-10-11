@@ -1,6 +1,6 @@
 # Getting Started
 
-Let's get started developing your first new feature as a Voxable developer in _less than 5 minutes_.
+Let's get started developing your first new feature as a Voxable developer in *less than 5 minutes*.
 
 ## Prerequisites
 
