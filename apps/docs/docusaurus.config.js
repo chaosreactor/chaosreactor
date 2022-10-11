@@ -13,8 +13,8 @@ const config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'chaosreactor', // Usually your GitHub org/user name.
+  projectName: 'all', // Usually your repo name.
 
   presets: [
     [
@@ -24,7 +24,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
+          editUrl: 'https://github.com/chaosreactor/all/apps/docs/',
         },
         blog: {
           showReadingTime: true,
@@ -50,16 +50,23 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'devs/getting-started',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Developer Docs',
           },
-          { to: '/blog', label: 'Blog', position: 'left' },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            type: 'doc',
+            docId: 'chaos-design-system/overview',
+            position: 'left',
+            label: 'Chaos Design System',
+          },
+        /** { to: '/blog', label: 'Blog', position: 'left' },
+          {
+            href: 'https://github.com/chaosreactor',
             label: 'GitHub',
             position: 'right',
           },
+        */
         ],
       },
       footer: {
@@ -78,16 +85,12 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
                 label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                href: 'https://discord.gg/xQay8BEUyt',
               },
               {
                 label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                href: 'https://twitter.com/chaosreactor',
               },
             ],
           },
@@ -100,12 +103,12 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/chaosreactor',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Chaos Reactor. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
