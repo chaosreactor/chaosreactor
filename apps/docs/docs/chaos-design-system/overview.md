@@ -1,9 +1,8 @@
 # The Chaos Design System
-* [[01 - Global]]
-* [[02 - Components]]
-* [[03 - Views]]
-* [[Contribution Guide]]
-* [[Update Process]]
+* [Global](apps/docs/docs/chaos-design-system/overview.md)
+* [Components](apps/docs/docs/chaos-design-system/components)
+* [Views](apps/docs/docs/chaos-design-system/views.md)
+* [System Objects](apps/docs/docs/chaos-design-system/system-objects.md)
 
 Chaos Reactor is a no-code desktop app for building AI workflows. 
 
@@ -23,6 +22,7 @@ Chaos Reactor is a no-code desktop app for building AI workflows.
 	* Product File
 	* Design System
 	* Plugins
+		* [Gist](https://docs.gist-plugin.com/) - links designs to their docs.
 		* Optional:
 			* Sort Layers
 			* Lilgrid
@@ -30,4 +30,4 @@ Chaos Reactor is a no-code desktop app for building AI workflows.
 		* Check out:
 			* [Figma tokens](https://www.figma.com/community/plugin/843461159747178978/Figma-Tokens)
 			* [Content Reel](https://www.figma.com/community/plugin/731627216655469013/Content-Reel)
-			* [Gist](https://docs.gist-plugin.com/)
+			
