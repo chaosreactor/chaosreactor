@@ -1,6 +1,6 @@
 # The Chaos Design System
 
-- Global
+- [Global](./global.md)
 - [Components](./components/)
 - [Views](./views)
 - [System Objects](./system-objects)

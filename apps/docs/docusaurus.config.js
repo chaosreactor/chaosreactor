@@ -14,7 +14,7 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'chaosreactor', // Usually your GitHub org/user name.
-  projectName: 'all', // Usually your repo name.
+  projectName: 'chaosreactor', // Usually your repo name.
 
   presets: [
     [
@@ -56,7 +56,7 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'chaos-design-system/overview',
+            docId: 'chaos-design-system/README',
             position: 'left',
             label: 'Chaos Design System',
           },
