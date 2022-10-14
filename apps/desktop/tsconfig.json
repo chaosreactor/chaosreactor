@@ -1,20 +1,22 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "incremental": true,
-    "esModuleInterop": true,
-    "module": "esnext",
+    "target": "ES2017",
+    "module": "ES2020",
+    "lib": ["es2020", "DOM", "WebWorker", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "@builder.io/qwik",
+    "strict": true,
     "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "incremental": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "types": ["node", "vite/client"],
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["src"]
 }

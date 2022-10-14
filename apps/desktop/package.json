@@ -1,23 +1,38 @@
 {
-  "name": "desktop",
-  "private": true,
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "next dev -p 1420",
-    "build": "next build && next export -o dist",
-    "tauri": "tauri"
+  "name": "@chaosreactor/desktop",
+  "description": "The Chaos Reactor Desktop app",
+  "engines": {
+    "node": ">=15.0.0"
   },
-  "dependencies": {
-    "@tauri-apps/api": "^1.1.0",
-    "next": "^12.2.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+  "private": true,
+  "scripts": {
+    "build": "qwik build",
+    "build.client": "vite build",
+    "build.preview": "vite build --ssr src/entry.preview.tsx",
+    "build.types": "tsc --incremental --noEmit",
+    "dev": "vite --mode ssr",
+    "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
+    "fmt": "prettier --write .",
+    "fmt.check": "prettier --check .",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "preview": "qwik build preview && vite preview --open",
+    "start": "vite --open --mode ssr",
+    "tauri": "tauri dev --target $TAURI_TARGET",
+    "qwik": "qwik"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^1.1.0",
-    "@types/node": "^18.7.11",
-    "@types/react": "^18.0.17",
-    "@types/react-dom": "^18.0.6",
-    "typescript": "^4.7.4"
+    "@builder.io/qwik": "0.11.0",
+    "@builder.io/qwik-city": "0.0.112",
+    "@types/eslint": "8.4.6",
+    "@types/node": "latest",
+    "@typescript-eslint/eslint-plugin": "5.40.0",
+    "@typescript-eslint/parser": "5.40.0",
+    "eslint": "8.25.0",
+    "eslint-plugin-qwik": "0.11.0",
+    "node-fetch": "3.2.10",
+    "prettier": "2.7.1",
+    "typescript": "4.8.4",
+    "vite": "3.1.7",
+    "vite-tsconfig-paths": "3.5.0"
   }
 }

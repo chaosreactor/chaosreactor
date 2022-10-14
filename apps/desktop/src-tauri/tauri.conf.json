@@ -1,14 +1,15 @@
 {
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build",
-    "devPath": "http://localhost:1420",
-    "distDir": "../dist",
+    "beforeDevCommand": "npm run dev",
+    "devPath": "http://localhost:5173",
+    "distDir": "./dist",
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "desktop",
-    "version": "0.0.0"
+    "productName": "chaosreactor",
+    "version": "0.1.0"
   },
   "tauri": {
     "allowlist": {
@@ -58,7 +59,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "desktop",
+        "title": "Chaos Reactor 🧪",
         "width": 800
       }
     ]
