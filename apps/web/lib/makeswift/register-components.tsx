@@ -37,11 +37,6 @@ ReactRuntime.registerComponent(Tweet, {
       label: 'Tweet ID',
       defaultValue: '841418541026877441',
     }),
-    width: Number({
-      label: 'Width',
-      min: 250,
-      defaultValue: 250,
-    }),
     theme: Select({
       label: 'Theme',
       labelOrientation: 'vertical',
