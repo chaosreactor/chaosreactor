@@ -20,6 +20,8 @@ A reactor is a graphical representation of connected prompts and transformations
 * Classifier - groups things together
 * Extrapolator - expands areas of content
 * Re-organizer - reorganizes content
+* Searcher - searches for text
+* Editor - edits text 
 ### Basic Blocks
 * Operators - control flow of data between nodes in a reactor. Check out the operators in Make ([Flow control](https://share.voxable.io/6quGZ58p), [Tool](https://share.voxable.io/xQuxqWzr)[s](https://share.voxable.io/yAuQK2K7), [Text parser](https://share.voxable.io/2Nu7zXzq))
 * Flow Control
@@ -60,3 +62,16 @@ Pre-training data - source data the user connects to their workspace. AI models 
 
 ## Library 
 The Library is container for reactors, data sources, and everthing else a user can interact with and create. 
+
+## AI Providers
+AI providers are organizations that build large language and other AI models.
+
+| Model Version			| Model        			| Provider    			|
+| ----------- 			| ----------- 			| ----------- 			|
+| text-davinci-002		| GPT-3					| Open AI     			|
+| text-curie-001		| GPT-3					| Open AI     			|
+| text-babbage-001		| GPT-3					| Open AI     			|
+| text-ada-001			| GPT-3					| Open AI     			|
+| code-cushman-001		| Codex       			| Open AI     			|
+| code-davinci-002		| Codex       			| Open AI     			|
+| Stable Diffusion		| Stable Diffusion		| Stability AI 			|
