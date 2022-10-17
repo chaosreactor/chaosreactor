@@ -50,7 +50,7 @@
     "@nrwl/react": "14.8.2",
     "@nrwl/storybook": "^14.8.2",
     "@nrwl/web": "14.8.2",
-    "@nrwl/workspace": "14.8.2",
+    "@nrwl/workspace": "14.8.6",
     "@nx-plus/docusaurus": "^14.1.0",
     "@storybook/addon-essentials": "~6.5.12",
     "@storybook/builder-webpack5": "~6.5.12",
