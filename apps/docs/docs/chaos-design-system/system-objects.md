@@ -66,12 +66,13 @@ The Library is container for reactors, data sources, and everthing else a user c
 ## AI Providers
 AI providers are organizations that build large language and other AI models.
 
-| Model Version			| Model        			| Provider    			|
-| ----------- 			| ----------- 			| ----------- 			|
-| text-davinci-002		| GPT-3					| Open AI     			|
-| text-curie-001		| GPT-3					| Open AI     			|
-| text-babbage-001		| GPT-3					| Open AI     			|
-| text-ada-001			| GPT-3					| Open AI     			|
-| code-cushman-001		| Codex       			| Open AI     			|
-| code-davinci-002		| Codex       			| Open AI     			|
-| Stable Diffusion		| Stable Diffusion		| Stability AI 			|
+| Model Version		| Model        		| Provider    		| Type		   		|
+| ----------- 		| ----------- 		| ----------- 		| ----------- 		|
+| text-davinci-002	| GPT-3				| Open AI     		| Text				|
+| text-curie-001	| GPT-3				| Open AI     		| Text				|
+| text-babbage-001	| GPT-3				| Open AI     		| Text 				|
+| text-ada-001		| GPT-3				| Open AI     		| Text				|
+| code-cushman-001	| Codex       		| Open AI     		| Code				|
+| code-davinci-002	| Codex       		| Open AI     		| Code				|
+| stable_diffusion	| Stable Diffusion	| Stability AI 		| Image				|
+| latent_diffusion	| Stable Diffusion	| Stability AI 		| Image				|
