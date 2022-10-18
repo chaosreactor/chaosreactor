@@ -64,7 +64,7 @@ Pre-training data - source data the user connects to their workspace. AI models 
 The Library is container for reactors, data sources, and everthing else a user can interact with and create. 
 
 ## AI Providers
-AI providers are organizations that build large language and other AI models.
+AI providers are organizations that build large language and other AI models. Chaos Reactor is targeting [Open AI](https://beta.openai.com/docs/models) and [Stability AI](https://github.com/huggingface/diffusers/tree/main/src/diffusers/pipelines#pipelines-summary) as initial model integrations.
 
 | Model Version		| Model        		| Provider    		| Type		   		|
 | ----------- 		| ----------- 		| ----------- 		| ----------- 		|
