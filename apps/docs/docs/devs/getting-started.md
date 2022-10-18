@@ -20,18 +20,18 @@ Let's get started developing your first new feature as a Voxable developer in *l
 
 2. Install dependencies (yes, you need `--force`, for the moment)
 
-    ```bash
-    npm install --force
-    ```
+   ```bash
+   npm install --force
+   ```
 
 3. Start the development environment
 
-    ```bash
-    npx nx serve
-    ```
+   ```bash
+   npx nx serve
+   ```
 
 4. Run NX console
-   
+
    1. Navigate to the NX Sidebar
    2. Select `run-many` from the list of common NX commands.
    3. Select `serve`
@@ -39,9 +39,9 @@ Let's get started developing your first new feature as a Voxable developer in *l
 
 5. Open the app in your browser
 
-    ```bash
-    open http://localhost:3000
-    ```
+   ```bash
+   open http://localhost:3000
+   ```
 
 ## Next Steps
 
