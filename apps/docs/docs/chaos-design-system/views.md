@@ -25,6 +25,9 @@ The Chaos Reactor Desktop onboarding steps are as follows:
 3. **Open the desktop app** - User launches the app after installing it.
 4. **View the first screen** - Welcome screen orient users and connect their AI providers. This screen will show until users connect with a provider.
 5. **Connect to AI providers** - There is a different process for connecting with each provider.
+	1. Hugging Face
+	2. Open AI
+	3. Stability AI
 6. **Create first Reactor** - After users connect to providers, they are dropped into a new Reactor with the template selction screen. They can choose an existing template, or start with a blank reactor.
 	1. We need input on which use cases to cover in our templates. 
 	2. Templates will have docs that can load in the sidebar walking users through how to use the product.
