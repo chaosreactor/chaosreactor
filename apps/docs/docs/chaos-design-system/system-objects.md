@@ -74,5 +74,7 @@ AI providers are organizations that build large language and other AI models.
 | text-ada-001		| GPT-3				| Open AI     		| Text				|
 | code-cushman-001	| Codex       		| Open AI     		| Code				|
 | code-davinci-002	| Codex       		| Open AI     		| Code				|
-| stable_diffusion	| Stable Diffusion	| Stability AI 		| Image				|
-| latent_diffusion	| Stable Diffusion	| Stability AI 		| Image				|
+| Text-to-Image		| Stable Diffusion	| Stability AI 		| Image				|
+| Text-to-Image		| Latent Diffusion	| Stability AI 		| Image				|
+| Image-to-Image	| Stable Diffusion	| Stability AI 		| Image				|
+| Inpainting		| Stable Diffusion	| Stability AI 		| Image				|
