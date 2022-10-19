@@ -11,8 +11,9 @@ import {
 } from '@chakra-ui/react'
 import * as React from 'react'
 import { FiHelpCircle, FiMenu, FiSearch, FiSettings } from 'react-icons/fi'
-import { Logo } from './Logo'
+import { Icon } from '@iconify/react';
 
+import { Logo } from './Logo'
 import { ChakraProvider } from '@chakra-ui/react';
 import chaosTheme from '../../theme'
 import '@fontsource/work-sans';
@@ -27,8 +28,8 @@ export function Nav(props: NavProps) {
   return (
     <ChakraProvider theme={chaosTheme}>
       <Box className={styles["container"]} as="nav" bg="bg-surface" height="48px" boxShadow={useColorModeValue('sm', 'sm-dark')}>
-        <Container>
-          <Flex justify="space-between" py={{ base: '1' }}>
+        <Container maxW="100%">
+          <Flex justify="space-between" px={{ base: '0' }} py={{ base: '1' }}>
             <HStack spacing="4">
               <Logo />
             </HStack>
@@ -39,9 +40,9 @@ export function Nav(props: NavProps) {
                   <Button>Data Sources</Button>
                 </ButtonGroup>
                 <ButtonGroup variant="ghost" spacing="1">
-                  <IconButton icon={<FiSearch fontSize="1.25rem" />} aria-label="Search" />
-                  <IconButton icon={<FiSettings fontSize="1.25rem" />} aria-label="Settings" />
-                  <IconButton icon={<FiHelpCircle fontSize="1.25rem" />} aria-label="Help Center" />
+                  <IconButton icon={<Icon icon="noto:left-speech-bubble" />} aria-label="Search" />
+                  <IconButton icon={<Icon icon="noto:bell" />} aria-label="Settings" />
+                  <IconButton icon={<Icon icon="noto:gear"/>} aria-label="Help Center" />
                 </ButtonGroup>
               </HStack>
             ) : (
