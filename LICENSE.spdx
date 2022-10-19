@@ -1,0 +1,20 @@
+SPDXVersion: SPDX-2.1
+DataLicense: CC0-1.0
+PackageName: tauri
+DataFormat: SPDXRef-1
+PackageSupplier: Organization: Voxable, Inc.
+PackageHomePage: https://chaosreactor.com
+PackageLicenseDeclared: Apache-2.0
+PackageLicenseDeclared: MIT
+PackageCopyrightText: 2022, Voxable, Inc.
+PackageSummary: <text>Chaos Reactor is a suite of software applications
+that enable anyone to build anything with next-generation AI.
+                </text>
+PackageComment: <text>The package includes the following libraries; see
+Relationship information.
+                </text>
+Created: 2022-10-18T09:00:00Z
+PackageDownloadLocation: git://github.com/chaosreactor/all
+PackageDownloadLocation: git+https://github.com/chaosreactor/all.git
+PackageDownloadLocation: git+ssh://github.com/chaosreactor/all.git
+Creator: Organization: Voxable, Inc.
