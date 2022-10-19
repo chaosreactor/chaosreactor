@@ -4,8 +4,9 @@
   line-height: 24px;
   font-weight: 400;
 
-  color: #0f0f0f;
-  background-color: #f6f6f6;
+  color: #fff;
+  background: linear-gradient(0deg, #1a202c, #1a202c), url(cream_pixels.png);
+  background-blend-mode: multiply, normal;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
