@@ -23,6 +23,7 @@
     "@fontsource/work-sans": "^4.5.12",
     "@mdx-js/react": "^1.6.21",
     "@nrwl/next": "14.8.2",
+    "@tauri-apps/cli": "^1.1.1",
     "clsx": "^1.2.1",
     "core-js": "^3.25.5",
     "framer-motion": "^7.5.1",
