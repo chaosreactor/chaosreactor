@@ -1,33 +1,13 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Nav } from './nav';
 
-import { Nav, NavProps } from './nav';
-
-export default {
-  /* 👇 The title prop is optional.
-   * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
-   * to learn how to generate automatic titles
-   */
+const Story: ComponentMeta<typeof Nav> = {
   component: Nav,
-} as ComponentMeta<typeof Nav>;
-
-const Basic: ComponentStory<typeof Nav> = () => <Nav />;
-
-const WithProp: ComponentStory<typeof Nav> = (props: NavProps) => {
-  const { title } = props;
-
-  return (
-    <Nav title={title}>
-      <div>Child content</div>
-    </Nav>
-  );
+  title: 'Nav',
 };
+export default Story;
 
-export const Primary = Basic.bind({});
-export const WithTitleProp = WithProp.bind({});
+const Template: ComponentStory<typeof Nav> = (args) => <Nav {...args} />;
 
-WithTitleProp.args = {
-  title: 'Voxable',
-};
-
-// Nav.story.ts|tsx
+export const Primary = Template.bind({});
+Primary.args = {};
