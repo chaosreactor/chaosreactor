@@ -28,7 +28,7 @@ export function Nav(props: NavProps) {
   return (
     <ChakraProvider theme={chaosTheme}>
       <DarkMode>
-        <Box className={styles["container"]} as="nav" bg="#2D3648" height="48px" boxShadow={useColorModeValue('sm', 'sm-dark')}>
+        <Box id="nav" className={styles["#nav"]} as="nav" bg="#2D3648" height="48px" boxShadow={useColorModeValue('sm', 'sm-dark')}>
           <Container maxW="100%">
             <Flex justify="space-between" px={{ base: '0' }} py={{ base: '1' }}>
               <HStack spacing="4">

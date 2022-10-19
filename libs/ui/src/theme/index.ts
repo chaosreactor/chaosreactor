@@ -7,7 +7,7 @@ export { default as styles } from './styles';
 export { default as semanticTokens } from './tokens';
 
 const chaosTheme: ThemeConfig = extendTheme(theme, {
-  colors: { ...theme.colors, brand: theme.colors.green },
+  colors: { ...theme['colors'], brand: theme['colors']['green'] },
   fonts: {
     heading: '"Work Sans", -apple-system, system-ui, sans-serif',
     body: '"Work Sans", -apple-system, system-ui, sans-serif',
