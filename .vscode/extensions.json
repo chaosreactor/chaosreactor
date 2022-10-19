@@ -8,6 +8,7 @@
     "ijs.reactnextjssnippets",
     "gruntfuggly.todo-tree",
     "johnpapa.vscode-peacock",
-    "GitHub.copilot"
+    "github.copilot",
+    "esbenp.prettier-vscode"
   ]
 }

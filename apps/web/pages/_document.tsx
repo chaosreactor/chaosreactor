@@ -1,5 +1,4 @@
-import { Chakra } from '../lib/chakra';
-import chaosTheme from '../theme';
+import chaosTheme from '../../../libs/ui/src/theme';
 
 import { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
