@@ -69,7 +69,7 @@
 
 ## About Chaos Reactor 🧪
 
-[![Chaos Reactor Screen Shot][product-screenshot]](https://example.com)
+![Chaos Reactor Screen Shot](https://p129.p0.n0.cdn.getcloudapp.com/items/xQuxJRz5/a2cdc41c-4dec-447d-a251-9f6cfe2f2d34.png?v=9cdb50820f24a88578d2802b73048dd9)
 
 Chaos Reactor is a free, open-source desktop application that allows anyone to harness the power of Artificial Intelligence. Chaos Reactor’s visual [Flow-Based Programming](https://en.wikipedia.org/wiki/Flow-based_programming) environment enables even less-technical users to experiment with [foundation models](https://en.wikipedia.org/wiki/Foundation_models) via techniques like [prompt chaining](https://arxiv.org/abs/2203.06566) to build anything they can describe.
 
@@ -94,7 +94,7 @@ Check out the [Getting Started documentation](https://docs.chaosreactor.com/docs
 ## Roadmap
 
 - [x] Design initial desktop app UI
-- [ ] *Release initial desktop app* (in progress)
+- [ ] _Release initial desktop app_ (in progress)
 - [ ] Take over :earth_americas:
 
 See the [open issues](https://github.com/chaosreactor/chaosreactor/issues) for a full list of proposed features (and known issues).
