@@ -21,8 +21,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/chaosreactor/chaosreactor/raw/main/libs/ui/src/lib/test-tube.png">
-    <img src="images/logo.png" alt="Chaos Reactor test tube logo" width="80" height="80">
+  <a href="https://chaosreactor.com">
+    <img src="https://github.com/chaosreactor/chaosreactor/raw/main/libs/ui/src/lib/test-tube.png" alt="Chaos Reactor test tube logo" width="80" height="80">
   </a>
 
 <h3 align="center">Chaos Reactor</h3>
