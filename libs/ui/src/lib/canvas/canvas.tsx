@@ -17,6 +17,8 @@ import 'reactflow/dist/style.css';
 
 import styles from './canvas.module.css';
 
+const proOptions = { hideAttribution: true };
+
 const initialNodes: Node[] = [
   {
     id: '1',
@@ -71,9 +73,11 @@ export function Canvas(props: CanvasProps) {
     [setEdges]
   );
 
+
   return (
-    <div className={styles['canvasContainer']} style={{ height: props.height, width: props.width }}>
+    <div className={styles['canvasContainer']} style={{ height: props.height, width: props.width, maxHeight: '100%' }}>
       <ReactFlow
+        panOnScroll={true}
         nodes={nodes}
         onNodesChange={onNodesChange}
         edges={edges}
@@ -84,6 +88,7 @@ export function Canvas(props: CanvasProps) {
         connectionLineType={ConnectionLineType.SmoothStep}
         className={styles['canvas']}
         style={{ height: '100%', width: '100%', background: 'transparent' }}
+        proOptions={proOptions}
         fitView
       >
         <Background variant="dots" gap={12} size={1} />

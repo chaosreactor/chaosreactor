@@ -1,12 +1,6 @@
-import { useState } from "react";
+import { useCallback, useState, useEffect, createRef } from 'react';
 import { invoke } from "@tauri-apps/api/tauri";
-import Image from "next/image";
-import reactLogo from "../assets/react.svg";
-import tauriLogo from "../assets/tauri.svg";
-import nextLogo from "../assets/next.svg";
 import { Nav, Canvas } from "../../../../libs/ui/src/index";
-
-import { useResizeDetector } from 'react-resize-detector';
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -17,10 +11,29 @@ function App() {
     setGreetMsg(await invoke("greet", { name }));
   }
 
-  const { width, height, ref } = useResizeDetector();
+  const wrapper = createRef<HTMLDivElement>()
+
+  const height = wrapper.current?.style.height || '100vh';
+  const width = wrapper.current?.style.width || '100vw';
+
+  const [dimensions, setDimensions] = useState({
+    height: height,
+    width: width
+  })
+
+  useEffect(() => {
+    function handleResize() {
+      setDimensions({
+        height: height,
+        width: width
+      })
+    }
+
+    window.addEventListener('resize', handleResize)
+  })
 
   return (
-    <div className="container" ref={ref}>
+    <div id="wrapper" ref={wrapper}>
       <Nav />
       <Canvas height={height} width={width} />
     </div>
