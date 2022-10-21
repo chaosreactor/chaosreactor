@@ -9,10 +9,10 @@ A reactor is a graphical representation of connected prompts and transformations
 ## Blocks
 A block is an operation that can be added to a reactor. Block attributes:
 	* Name - the title the user gives to the block 
-    * Input type - the content being transformed by the block  
+    * Input - the content being transformed by the block  
     * Prompt - natural language instructions created by the user
 	* Model controls - unique fields and properties that a model can receive aside from the prompt text
-    * Output type - the block's target output format. The default is based on the model type (see table below) based on **content output templates** which can be modified in *settings*.
+    * Output - the block's target output format (Text, Image, or Code) based on the model type (see table below).
     * Pre-training sources
     * Variants - how many variants are generated. The default is one.
     * Block Type
