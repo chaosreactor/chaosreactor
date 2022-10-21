@@ -6,6 +6,6 @@
     "generate-stories": "nx g @nrwl/react:stories --project ui --generateCypressSpecs --cypressProject chaosreactor-e2e"
   },
   "dependencies": {
-    "reactflow": "^11.1.1"
+    "react-resize-detector": "^7.1.2"
   }
 }

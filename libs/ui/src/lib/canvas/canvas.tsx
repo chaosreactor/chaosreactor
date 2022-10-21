@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
 import ReactFlow, {
+  Background,
+  Controls,
   Node,
   useNodesState,
   useEdgesState,
@@ -8,7 +10,10 @@ import ReactFlow, {
   Edge,
   ConnectionLineType,
 } from 'reactflow';
+
 import BaseNode from './BaseNode';
+
+import 'reactflow/dist/style.css';
 
 import styles from './canvas.module.css';
 
@@ -16,7 +21,7 @@ const initialNodes: Node[] = [
   {
     id: '1',
     type: 'input',
-    data: { label: 'Node 1' },
+    data: { label: 'Node!!!' },
     position: { x: 250, y: 5 },
   },
   {
@@ -53,7 +58,10 @@ const defaultEdgeOptions = {
 };
 
 /* eslint-disable-next-line */
-export interface CanvasProps {}
+export interface CanvasProps {
+  height: number;
+  width: number;
+}
 
 export function Canvas(props: CanvasProps) {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -64,7 +72,7 @@ export function Canvas(props: CanvasProps) {
   );
 
   return (
-    <div className={styles['container']}>
+    <div className={styles['canvasContainer']} style={{ height: props.height, width: props.width }}>
       <ReactFlow
         nodes={nodes}
         onNodesChange={onNodesChange}
@@ -74,8 +82,13 @@ export function Canvas(props: CanvasProps) {
         nodeTypes={nodeTypes}
         defaultEdgeOptions={defaultEdgeOptions}
         connectionLineType={ConnectionLineType.SmoothStep}
+        className={styles['canvas']}
+        style={{ height: '100%', width: '100%', background: 'transparent' }}
         fitView
-      />
+      >
+        <Background variant="dots" gap={12} size={1} />
+        <Controls />
+      </ReactFlow>
     </div>
   );
 }

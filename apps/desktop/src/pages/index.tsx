@@ -6,6 +6,8 @@ import tauriLogo from "../assets/tauri.svg";
 import nextLogo from "../assets/next.svg";
 import { Nav, Canvas } from "../../../../libs/ui/src/index";
 
+import { useResizeDetector } from 'react-resize-detector';
+
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
@@ -15,10 +17,12 @@ function App() {
     setGreetMsg(await invoke("greet", { name }));
   }
 
+  const { width, height, ref } = useResizeDetector();
+
   return (
-    <div className="container">
+    <div className="container" ref={ref}>
       <Nav />
-      <Canvas />
+      <Canvas height={height} width={width} />
     </div>
   );
 }

@@ -55,7 +55,6 @@ span.logos > a > span {
 
 .container {
   margin: 0;
-  padding-top: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
