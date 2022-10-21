@@ -1,3 +1,18 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#__next,
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+,
 .logo {
   padding: 1.5em !important;
 }
@@ -45,6 +60,7 @@ span.logos > a > span {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  height: 100%;
 }
 
 .logo {

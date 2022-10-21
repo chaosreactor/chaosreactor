@@ -4,7 +4,7 @@ import Image from "next/image";
 import reactLogo from "../assets/react.svg";
 import tauriLogo from "../assets/tauri.svg";
 import nextLogo from "../assets/next.svg";
-import { Nav } from "../../../../libs/ui/src/index";
+import { Nav, Canvas } from "../../../../libs/ui/src/index";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -18,6 +18,7 @@ function App() {
   return (
     <div className="container">
       <Nav />
+      <Canvas />
     </div>
   );
 }
