@@ -1,7 +1,9 @@
-import { useCallback } from 'react';
+import { MouseEvent as ReactMouseEvent, useCallback } from 'react';
 import ReactFlow, {
   Background,
-  Controls,
+  BackgroundVariant,
+  Connection,
+  OnConnectionStartParams,
   Node,
   useNodesState,
   useEdgesState,
@@ -9,13 +11,28 @@ import ReactFlow, {
   Connection,
   Edge,
   ConnectionLineType,
+  XYPosition
 } from 'reactflow';
+import { v4 as uuidv4 } from "uuid";
+
+import { behaveToFlow } from "../../../vendor/behave-flow/src/transformers/behaveToFlow";
+import { customNodeTypes } from "../../../vendor/behave-flow/src/util/customNodeTypes";
+import Controls from "../../../vendor/behave-flow/src/components/Controls";
+import rawGraphJSON from "../../../vendor/behave-flow/src/graph.json";
+import { GraphJSON } from "behave-graph";
+import NodePicker from "../../../vendor/behave-flow/src/components/NodePicker";
+import { getNodePickerFilters } from "../../../vendor/behave-flow/src/util/getPickerFilters";
+import { calculateNewEdge } from "../../../vendor/behave-flow/src/util/calculateNewEdge";
 
 import BaseNode from './BaseNode';
 
 import 'reactflow/dist/style.css';
 
 import styles from './canvas.module.css';
+
+const graphJSON = rawGraphJSON as GraphJSON;
+const [initialNodes, initialEdges] = behaveToFlow(graphJSON);
+
 
 const proOptions = { hideAttribution: true };
 
