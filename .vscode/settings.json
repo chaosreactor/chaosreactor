@@ -47,8 +47,5 @@
       "color": "terminal.ansiMagenta"
     }
   },
-  "peacock.remoteColor": "#42b883",
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "trunk.io"
-  }
+  "peacock.remoteColor": "#42b883"
 }

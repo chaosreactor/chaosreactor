@@ -6,14 +6,20 @@ export { default as shadows } from './shadows';
 export { default as styles } from './styles';
 export { default as semanticTokens } from './tokens';
 
+theme['colors']['gray'][700] = '#2D3648';
+theme['colors']['gray'][800] = '#1A202C';
+
 const chaosTheme: ThemeConfig = extendTheme(theme, {
-  colors: { ...theme['colors'], brand: theme['colors']['green'] },
+  colors: {
+    ...theme['colors'],
+    brand: theme['colors']['green'],
+  },
   fonts: {
     heading: '"Work Sans", -apple-system, system-ui, sans-serif',
     body: '"Work Sans", -apple-system, system-ui, sans-serif',
   },
   initialColorMode: 'dark',
-  useSystemColorMode: false,
+  useSystemColorMode: true,
 });
 
 export default chaosTheme;
