@@ -1,3 +1,5 @@
+import { customNodeTypes } from './customNodeTypes';
+
 import { MouseEvent as ReactMouseEvent, useCallback, useState } from 'react';
 import ReactFlow, {
   Background,
@@ -10,7 +12,6 @@ import ReactFlow, {
 } from 'reactflow';
 import { v4 as uuidv4 } from 'uuid';
 import { behaveToFlow } from '../../../vendor/behave-flow/src/transformers/behaveToFlow';
-import { customNodeTypes } from '../../../vendor/behave-flow/src/util/customNodeTypes';
 import Controls from '../../../vendor/behave-flow/src/components/Controls';
 import rawGraphJSON from '../../../vendor/behave-flow/src/graph.json';
 import { GraphJSON } from 'behave-graph';
