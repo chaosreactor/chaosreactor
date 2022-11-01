@@ -27,3 +27,9 @@ You'll need to install the Xcode Command Line Tools.
  sudo xcodebuild -license
  xcodebuild -runFirstLaunch
 ```
+
+## Updating Tauri
+
+```bash
+npm install @tauri-apps/cli@latest @tauri-apps/api@latest
+```

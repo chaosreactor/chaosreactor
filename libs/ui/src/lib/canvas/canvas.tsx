@@ -1,6 +1,11 @@
 import { customNodeTypes } from './customNodeTypes';
 
-import { MouseEvent as ReactMouseEvent, useCallback, useState } from 'react';
+import {
+  MouseEvent as ReactMouseEvent,
+  useCallback,
+  useState,
+  useEffect,
+} from 'react';
 import ReactFlow, {
   Background,
   BackgroundVariant,
@@ -112,44 +117,59 @@ function Flow() {
     setNodePickerVisibility(undefined);
   };
 
-  const handlePaneClick = () => closeNodePicker();
-
   const handlePaneContextMenu = (e: ReactMouseEvent) => {
     e.preventDefault();
     setNodePickerVisibility({ x: e.clientX, y: e.clientY });
   };
 
-  return (
-    <ReactFlow
-      nodeTypes={customNodeTypes}
-      nodes={nodes}
-      edges={edges}
-      onNodesChange={onNodesChange}
-      onEdgesChange={onEdgesChange}
-      onConnect={onConnect}
-      onConnectStart={handleStartConnect}
-      onConnectEnd={handleStopConnect}
-      fitView
-      fitViewOptions={{ maxZoom: 1 }}
-      onPaneClick={handlePaneClick}
-      onPaneContextMenu={handlePaneContextMenu}
-    >
-      <Controls />
-      <Background
-        variant={BackgroundVariant.Lines}
-        color="#2a2b2d"
-        style={{ backgroundColor: '#1a202c' }}
-      />
-      {nodePickerVisibility && (
-        <NodePicker
-          position={nodePickerVisibility}
-          filters={getNodePickerFilters(nodes, lastConnectStart)}
-          onPickNode={handleAddNode}
-          onClose={closeNodePicker}
+  const [RenderedFlow, setRenderedFlow] = useState(<div></div>);
+
+  useEffect(() => {
+    const handlePaneClick = () => closeNodePicker();
+
+    setRenderedFlow(
+      <ReactFlow
+        nodeTypes={customNodeTypes}
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+        onConnectStart={handleStartConnect}
+        onConnectEnd={handleStopConnect}
+        fitView
+        fitViewOptions={{ maxZoom: 1 }}
+        onPaneClick={handlePaneClick}
+        onPaneContextMenu={handlePaneContextMenu}
+      >
+        <Controls />
+        <Background
+          variant={BackgroundVariant.Lines}
+          color="#2a2b2d"
+          style={{ backgroundColor: '#1a202c' }}
         />
-      )}
-    </ReactFlow>
-  );
+        {nodePickerVisibility && (
+          <NodePicker
+            position={nodePickerVisibility}
+            filters={getNodePickerFilters(nodes, lastConnectStart)}
+            onPickNode={handleAddNode}
+            onClose={closeNodePicker}
+          />
+        )}
+      </ReactFlow>
+    );
+  }, [
+    nodes,
+    edges,
+    onNodesChange,
+    onEdgesChange,
+    onConnect,
+    nodePickerVisibility,
+    lastConnectStart,
+    handleAddNode,
+  ]);
+
+  return RenderedFlow;
 }
 
 export function Canvas(props: CanvasProps) {
