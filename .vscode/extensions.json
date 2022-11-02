@@ -9,6 +9,8 @@
     "gruntfuggly.todo-tree",
     "johnpapa.vscode-peacock",
     "github.copilot",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "github.vscode-pull-request-github",
+    "mtxr.sqltools"
   ]
 }

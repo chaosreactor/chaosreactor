@@ -1,4 +1,5 @@
 import { customNodeTypes } from './customNodeTypes';
+import Controls from './Controls';
 
 import {
   MouseEvent as ReactMouseEvent,
@@ -17,8 +18,7 @@ import ReactFlow, {
 } from 'reactflow';
 import { v4 as uuidv4 } from 'uuid';
 import { behaveToFlow } from '../../../vendor/behave-flow/src/transformers/behaveToFlow';
-import Controls from '../../../vendor/behave-flow/src/components/Controls';
-import rawGraphJSON from '../../../vendor/behave-flow/src/graph.json';
+import rawGraphJSON from '../data/initialGraph.json';
 import { GraphJSON } from 'behave-graph';
 import NodePicker from '../../../vendor/behave-flow/src/components/NodePicker';
 import { getNodePickerFilters } from '../../../vendor/behave-flow/src/util/getPickerFilters';
