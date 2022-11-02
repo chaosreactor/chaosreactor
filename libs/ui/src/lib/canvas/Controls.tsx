@@ -49,7 +49,7 @@ const CustomControls = () => {
 
     const graphEvaluator = new GraphEvaluator(graph);
 
-    await graphEvaluator.executeAll();
+    await graphEvaluator.executeAllSync();
 
     if (manualLifecycleEventEmitter.startEvent.listenerCount > 0) {
       manualLifecycleEventEmitter.startEvent.emit();
