@@ -22,7 +22,5 @@ export const getNodeSpecJSON = (): NodeSpecJSON[] => {
     nodeSpecJSON = writeNodeSpecsToJSON(registry);
   }
 
-  console.log(nodeSpecJSON);
-
   return nodeSpecJSON;
 };

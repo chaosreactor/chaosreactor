@@ -1,19 +1,19 @@
-import { NodeProps as FlowNodeProps, useEdges } from "reactflow";
-import { NodeSpecJSON } from "behave-graph";
-import InputSocket from "../../../vendor/behave-flow/src/components/InputSocket";
-import NodeContainer from "../../../vendor/behave-flow/src/components/NodeContainer";
-import OutputSocket from "../../../vendor/behave-flow/src/components/OutputSocket";
-import { useChangeNodeData } from "../../../vendor/behave-flow/src/hooks/useChangeNodeData";
-import { isHandleConnected } from "../../../vendor/behave-flow/src/util/isHandleConnected";
+import { NodeProps as FlowNodeProps, useEdges } from 'reactflow';
+import { NodeSpecJSON } from 'behave-graph';
+import InputSocket from './InputSocket';
+import NodeContainer from './NodeContainer';
+import OutputSocket from './OutputSocket';
+import { useChangeNodeData } from '../../../vendor/behave-flow/src/hooks/useChangeNodeData';
+import { isHandleConnected } from '../../../vendor/behave-flow/src/util/isHandleConnected';
 
 type NodeProps = FlowNodeProps & {
   spec: NodeSpecJSON;
 };
 
 const getTitle = (type: string) => {
-  const tokens = type.split("/");
+  const tokens = type.split('/');
   const end = tokens[Math.min(tokens.length - 1, 1)]; // handles polymorphic node naming structure
-  const spaces = end.replace(/([A-Z])/g, " $1");
+  const spaces = end.replace(/([A-Z])/g, ' $1');
   return spaces.charAt(0).toUpperCase() + spaces.slice(1);
 };
 
@@ -24,6 +24,7 @@ const getPairs = <T, U>(arr1: T[], arr2: U[]) => {
     const pair: [T | undefined, U | undefined] = [arr1[i], arr2[i]];
     pairs.push(pair);
   }
+  console.log('pairs', pairs);
   return pairs;
 };
 
@@ -47,13 +48,13 @@ export const Node = ({ id, data, spec, selected }: NodeProps) => {
               {...input}
               value={data[input.name] ?? input.defaultValue}
               onChange={handleChange}
-              connected={isHandleConnected(edges, id, input.name, "target")}
+              connected={isHandleConnected(edges, id, input.name, 'target')}
             />
           )}
           {output && (
             <OutputSocket
               {...output}
-              connected={isHandleConnected(edges, id, output.name, "source")}
+              connected={isHandleConnected(edges, id, output.name, 'source')}
             />
           )}
         </div>

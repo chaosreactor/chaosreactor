@@ -1,11 +1,4 @@
-import {
-  Graph,
-  Node,
-  NodeEvalContext,
-  Socket,
-  ILogger,
-  In1Out1FuncNode,
-} from 'behave-graph';
+import { Graph, Node, NodeEvalContext, Socket, ILogger } from 'behave-graph';
 import { NodeDescription } from 'behave-graph/dist/lib/Nodes/NodeDescription';
 
 export class Text2Image extends Node {
@@ -13,15 +6,7 @@ export class Text2Image extends Node {
     'action/text2image',
     'Action',
     'Text 2 Image',
-    (description, graph) =>
-      new In1Out1FuncNode(
-        description,
-        graph,
-        ['string'],
-        'string',
-        (prompt: string) => prompt,
-        ['prompt']
-      )
+    (description, graph) => new Text2Image(description, graph)
   );
 
   constructor(description: NodeDescription, graph: Graph) {
@@ -29,7 +14,7 @@ export class Text2Image extends Node {
       description,
       graph,
       [new Socket('flow', 'flow'), new Socket('string', 'prompt')],
-      [new Socket('flow', 'flow')],
+      [new Socket('flow', 'flow'), new Socket('string', 'image')],
       (context: NodeEvalContext) => {
         const logger =
           context.graph.registry.abstractions.get<ILogger>('ILogger');
