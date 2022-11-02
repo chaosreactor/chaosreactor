@@ -12,6 +12,7 @@
   },
   "private": false,
   "dependencies": {
+    "@banana-dev/banana-dev": "^4.0.0",
     "@chakra-ui/pro-theme": "^0.0.55",
     "@chakra-ui/react": "^2.3.5",
     "@docusaurus/core": "2.0.0-beta.13",

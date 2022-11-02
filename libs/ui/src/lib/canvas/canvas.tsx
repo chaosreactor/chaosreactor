@@ -20,7 +20,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { behaveToFlow } from '../../../vendor/behave-flow/src/transformers/behaveToFlow';
 import rawGraphJSON from '../data/initialGraph.json';
 import { GraphJSON } from 'behave-graph';
-import NodePicker from '../../../vendor/behave-flow/src/components/NodePicker';
+import NodePicker from './NodePicker';
 import { getNodePickerFilters } from '../../../vendor/behave-flow/src/util/getPickerFilters';
 import { calculateNewEdge } from '../../../vendor/behave-flow/src/util/calculateNewEdge';
 

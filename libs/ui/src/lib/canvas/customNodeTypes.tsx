@@ -1,6 +1,6 @@
-import { NodeTypes } from "reactflow";
-import { Node } from "./Node";
-import { getNodeSpecJSON } from "../../../vendor/behave-flow/src/util/getNodeSpecJSON";
+import { NodeTypes } from 'reactflow';
+import { Node } from './Node';
+import { getNodeSpecJSON } from './util/getNodeSpecJSON';
 
 const spec = getNodeSpecJSON();
 

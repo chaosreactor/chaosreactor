@@ -1,0 +1,4400 @@
+[
+  {
+    "type": "action/text2image",
+    "category": "Action",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "prompt",
+        "valueType": "string",
+        "defaultValue": false
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "image",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "type": "debug/expectTrue",
+    "category": "Action",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "condition",
+        "valueType": "boolean",
+        "defaultValue": false
+      },
+      {
+        "name": "description",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "action/log",
+    "category": "Action",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "text",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "flow/branch",
+    "category": "Flow",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "condition",
+        "valueType": "boolean",
+        "defaultValue": false
+      }
+    ],
+    "outputs": [
+      {
+        "name": "true",
+        "valueType": "flow"
+      },
+      {
+        "name": "false",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "flow/delay",
+    "category": "Flow",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "duration",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "flow/flipFlop",
+    "category": "Flow",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "on",
+        "valueType": "flow"
+      },
+      {
+        "name": "off",
+        "valueType": "flow"
+      },
+      {
+        "name": "isOn",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "flow/forLoop",
+    "category": "Flow",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "startIndex",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "endIndex",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "loopBody",
+        "valueType": "flow"
+      },
+      {
+        "name": "index",
+        "valueType": "integer"
+      },
+      {
+        "name": "completed",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "flow/sequence",
+    "category": "Flow",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "1",
+        "valueType": "flow"
+      },
+      {
+        "name": "2",
+        "valueType": "flow"
+      },
+      {
+        "name": "3",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "lifecycle/onEnd",
+    "category": "Event",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "lifecycle/onStart",
+    "category": "Event",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "lifecycle/onTick",
+    "category": "Event",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "deltaSeconds",
+        "valueType": "float"
+      },
+      {
+        "name": "time",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "logic/concat/string",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "b",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "type": "logic/includes/string",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "b",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "logic/length/string",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "logic/string",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "type": "math/abs/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/abs/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "math/acos/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/add/color",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "color"
+      }
+    ]
+  },
+  {
+    "type": "math/add/euler",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "euler"
+      }
+    ]
+  },
+  {
+    "type": "math/add/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/add/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "math/add/vec2",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec2"
+      }
+    ]
+  },
+  {
+    "type": "math/add/vec3",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec3"
+      }
+    ]
+  },
+  {
+    "type": "math/add/vec4",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec4"
+      }
+    ]
+  },
+  {
+    "type": "math/and/boolean",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "boolean",
+        "defaultValue": false
+      },
+      {
+        "name": "b",
+        "valueType": "boolean",
+        "defaultValue": false
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/asin/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/atan/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/boolean",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "boolean",
+        "defaultValue": false
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/ceil/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/clamp/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "value",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "min",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "max",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/clamp/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "value",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "min",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "max",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "math/color",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "color"
+      }
+    ]
+  },
+  {
+    "type": "math/conjugate/quat",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "quat"
+      }
+    ]
+  },
+  {
+    "type": "math/cos/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/create/color",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "r",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "g",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "color"
+      }
+    ]
+  },
+  {
+    "type": "math/create/euler",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "x",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "y",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "z",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "euler"
+      }
+    ]
+  },
+  {
+    "type": "math/create/quat",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "x",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "y",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "z",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "w",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "quat"
+      }
+    ]
+  },
+  {
+    "type": "math/create/vec2",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "x",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "y",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec2"
+      }
+    ]
+  },
+  {
+    "type": "math/create/vec3",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "x",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "y",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "z",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec3"
+      }
+    ]
+  },
+  {
+    "type": "math/create/vec4",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "x",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "y",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "z",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "w",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec4"
+      }
+    ]
+  },
+  {
+    "type": "math/cross/vec3",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec3"
+      }
+    ]
+  },
+  {
+    "type": "math/divide/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/divide/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "math/dot/quat",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/dot/vec2",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/dot/vec3",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/dot/vec4",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/e/float",
+    "category": "Logic",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/elements/color",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "value",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "r",
+        "valueType": "float"
+      },
+      {
+        "name": "g",
+        "valueType": "float"
+      },
+      {
+        "name": "b",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/elements/euler",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "value",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "x",
+        "valueType": "float"
+      },
+      {
+        "name": "y",
+        "valueType": "float"
+      },
+      {
+        "name": "z",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/elements/quat",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "value",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "x",
+        "valueType": "float"
+      },
+      {
+        "name": "y",
+        "valueType": "float"
+      },
+      {
+        "name": "z",
+        "valueType": "float"
+      },
+      {
+        "name": "w",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/elements/vec2",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "value",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "x",
+        "valueType": "float"
+      },
+      {
+        "name": "y",
+        "valueType": "float"
+      },
+      {
+        "name": "z",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/elements/vec3",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "value",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "x",
+        "valueType": "float"
+      },
+      {
+        "name": "y",
+        "valueType": "float"
+      },
+      {
+        "name": "z",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/elements/vec4",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "value",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "x",
+        "valueType": "float"
+      },
+      {
+        "name": "y",
+        "valueType": "float"
+      },
+      {
+        "name": "z",
+        "valueType": "float"
+      },
+      {
+        "name": "w",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/equal/boolean",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "boolean",
+        "defaultValue": false
+      },
+      {
+        "name": "b",
+        "valueType": "boolean",
+        "defaultValue": false
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/equal/color",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/equal/euler",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/equal/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/equal/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/equal/quat",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/equal/string",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "b",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/equal/vec2",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/equal/vec3",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/equal/vec4",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/euler",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "euler"
+      }
+    ]
+  },
+  {
+    "type": "math/exp/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/floor/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/greaterThan/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/greaterThan/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/greaterThanOrEqual/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/greaterThanOrEqual/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "math/isInf/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/isNaN/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/length/quat",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/length/vec2",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/length/vec3",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/length/vec4",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/lessThan/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/lessThan/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/lessThanOrEqual/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/lessThanOrEqual/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/ln/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/log10/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/log2/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/max/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/max/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "math/min/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/min/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "math/mix/color",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      },
+      {
+        "name": "t",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "color"
+      }
+    ]
+  },
+  {
+    "type": "math/mix/euler",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "t",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "euler"
+      }
+    ]
+  },
+  {
+    "type": "math/mix/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "t",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/mix/vec2",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "name": "t",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec2"
+      }
+    ]
+  },
+  {
+    "type": "math/mix/vec3",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "t",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec3"
+      }
+    ]
+  },
+  {
+    "type": "math/mix/vec4",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      },
+      {
+        "name": "t",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec4"
+      }
+    ]
+  },
+  {
+    "type": "math/modulus/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/modulus/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "math/multiply/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/multiply/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "math/multiply/quat",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "quat"
+      }
+    ]
+  },
+  {
+    "type": "math/negate/boolean",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "boolean",
+        "defaultValue": false
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/negate/color",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "color"
+      }
+    ]
+  },
+  {
+    "type": "math/negate/euler",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "euler"
+      }
+    ]
+  },
+  {
+    "type": "math/negate/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/negate/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "math/negate/vec2",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec2"
+      }
+    ]
+  },
+  {
+    "type": "math/negate/vec3",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec3"
+      }
+    ]
+  },
+  {
+    "type": "math/negate/vec4",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec4"
+      }
+    ]
+  },
+  {
+    "type": "math/normalize/quat",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "quat"
+      }
+    ]
+  },
+  {
+    "type": "math/normalize/vec2",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec2"
+      }
+    ]
+  },
+  {
+    "type": "math/normalize/vec3",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec3"
+      }
+    ]
+  },
+  {
+    "type": "math/normalize/vec4",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec4"
+      }
+    ]
+  },
+  {
+    "type": "math/or/boolean",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "boolean",
+        "defaultValue": false
+      },
+      {
+        "name": "b",
+        "valueType": "boolean",
+        "defaultValue": false
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/pi/float",
+    "category": "Logic",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/pow/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/quat",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "quat"
+      }
+    ]
+  },
+  {
+    "type": "math/random/float",
+    "category": "Logic",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/round/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/scale/color",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "color"
+      }
+    ]
+  },
+  {
+    "type": "math/scale/euler",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "euler"
+      }
+    ]
+  },
+  {
+    "type": "math/scale/quat",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "quat"
+      }
+    ]
+  },
+  {
+    "type": "math/scale/vec2",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec2"
+      }
+    ]
+  },
+  {
+    "type": "math/scale/vec3",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec3"
+      }
+    ]
+  },
+  {
+    "type": "math/scale/vec4",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec4"
+      }
+    ]
+  },
+  {
+    "type": "math/sign/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/sign/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "math/sin/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/slerp/quat",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      },
+      {
+        "name": "t",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "quat"
+      }
+    ]
+  },
+  {
+    "type": "math/sqrt/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/subtract/color",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "color"
+      }
+    ]
+  },
+  {
+    "type": "math/subtract/euler",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "euler"
+      }
+    ]
+  },
+  {
+    "type": "math/subtract/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/subtract/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "math/subtract/vec2",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec2"
+      }
+    ]
+  },
+  {
+    "type": "math/subtract/vec3",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec3"
+      }
+    ]
+  },
+  {
+    "type": "math/subtract/vec4",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      },
+      {
+        "name": "b",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec4"
+      }
+    ]
+  },
+  {
+    "type": "math/tan/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/toBoolean/string",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "math/toColor/hex",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "color"
+      }
+    ]
+  },
+  {
+    "type": "math/ToColor/hsl",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "color"
+      }
+    ]
+  },
+  {
+    "type": "math/toColor/string",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "color"
+      }
+    ]
+  },
+  {
+    "type": "math/toEuler/string",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "euler"
+      }
+    ]
+  },
+  {
+    "type": "math/toFloat/boolean",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "boolean",
+        "defaultValue": false
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/toFloat/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/toFloat/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/toFloat/string",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/toHex/color",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/toHsl/color",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec3"
+      }
+    ]
+  },
+  {
+    "type": "math/toInteger/string",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "math/toQuat/angleAxis",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      },
+      {
+        "name": "b",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "quat"
+      }
+    ]
+  },
+  {
+    "type": "math/toQuat/euler",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "quat"
+      }
+    ]
+  },
+  {
+    "type": "math/toQuat/string",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "quat"
+      }
+    ]
+  },
+  {
+    "type": "math/toString/boolean",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "boolean",
+        "defaultValue": false
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "type": "math/toString/color",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "type": "math/toString/euler",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "type": "math/toString/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "type": "math/toString/integer",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "type": "math/toString/quat",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "type": "math/toString/vec2",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "type": "math/toString/vec3",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "type": "math/toString/vec4",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "type": "math/toVec2/string",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec2"
+      }
+    ]
+  },
+  {
+    "type": "math/toVec3/string",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec3"
+      }
+    ]
+  },
+  {
+    "type": "math/toVec4/string",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec4"
+      }
+    ]
+  },
+  {
+    "type": "math/trunc/float",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "math/vec2",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec2"
+      }
+    ]
+  },
+  {
+    "type": "math/vec3",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec3"
+      }
+    ]
+  },
+  {
+    "type": "math/vec4",
+    "category": "Logic",
+    "inputs": [
+      {
+        "name": "a",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "valueType": "vec4"
+      }
+    ]
+  },
+  {
+    "type": "scene/get/boolean",
+    "category": "Query",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "value",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "scene/get/color",
+    "category": "Query",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "value",
+        "valueType": "color"
+      }
+    ]
+  },
+  {
+    "type": "scene/get/euler",
+    "category": "Query",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "value",
+        "valueType": "euler"
+      }
+    ]
+  },
+  {
+    "type": "scene/get/float",
+    "category": "Query",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "value",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "scene/get/integer",
+    "category": "Query",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "value",
+        "valueType": "integer"
+      }
+    ]
+  },
+  {
+    "type": "scene/get/quat",
+    "category": "Query",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "value",
+        "valueType": "quat"
+      }
+    ]
+  },
+  {
+    "type": "scene/get/string",
+    "category": "Query",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "value",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "type": "scene/get/vec2",
+    "category": "Query",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "value",
+        "valueType": "vec2"
+      }
+    ]
+  },
+  {
+    "type": "scene/get/vec3",
+    "category": "Query",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "value",
+        "valueType": "vec3"
+      }
+    ]
+  },
+  {
+    "type": "scene/get/vec4",
+    "category": "Query",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "value",
+        "valueType": "vec4"
+      }
+    ]
+  },
+  {
+    "type": "scene/nodeClick",
+    "category": "Event",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "nodeIndex",
+        "valueType": "float"
+      }
+    ]
+  },
+  {
+    "type": "scene/set/boolean",
+    "category": "Action",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "value",
+        "valueType": "boolean",
+        "defaultValue": false
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "scene/set/color",
+    "category": "Action",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "value",
+        "valueType": "color",
+        "defaultValue": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "scene/set/euler",
+    "category": "Action",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "value",
+        "valueType": "euler",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "scene/set/float",
+    "category": "Action",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "value",
+        "valueType": "float",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "scene/set/integer",
+    "category": "Action",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "value",
+        "valueType": "integer",
+        "defaultValue": 0
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "scene/set/quat",
+    "category": "Action",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "value",
+        "valueType": "quat",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "scene/set/string",
+    "category": "Action",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "value",
+        "valueType": "string",
+        "defaultValue": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "scene/set/vec2",
+    "category": "Action",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "value",
+        "valueType": "vec2",
+        "defaultValue": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "scene/set/vec3",
+    "category": "Action",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "value",
+        "valueType": "vec3",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
+    "type": "scene/set/vec4",
+    "category": "Action",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "jsonPath",
+        "valueType": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "value",
+        "valueType": "vec4",
+        "defaultValue": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  }
+]
