@@ -32,6 +32,9 @@ export default function InputSocket({
     colorName = 'red';
   }
 
+  console.log('input name', name);
+  console.log('input value', value);
+
   const [backgroundColor, borderColor] = colors[colorName];
   const showName = isFlowSocket === false || name !== 'flow';
 

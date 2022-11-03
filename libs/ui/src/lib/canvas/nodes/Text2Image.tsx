@@ -2,6 +2,10 @@ import { Graph, Node, NodeEvalContext, Socket, ILogger } from 'behave-graph';
 import { NodeDescription } from 'behave-graph/dist/lib/Nodes/NodeDescription';
 import { run as Banana } from '@banana-dev/banana-dev';
 
+import useStore, { NodeData } from '../store';
+import { isContext } from 'vm';
+import _ from 'lodash';
+
 export class Text2Image extends Node {
   public static Description = new NodeDescription(
     'action/text2image',
@@ -25,7 +29,7 @@ export class Text2Image extends Node {
     const apiKey = process.env['NEXT_PUBLIC_BANANA_API_KEY'] || '';
     const modelKey = process.env['NEXT_PUBLIC_BANANA_TEXT2IMAGE_KEY'] || '';
     const modelParameters = {
-      prompt: 'table full of muffins',
+      prompt: prompt,
       num_inference_steps: 50,
       guidance_scale: 9,
       height: 512,
@@ -42,8 +46,6 @@ export class Text2Image extends Node {
 
     const base64 = out['modelOutputs'][0]['image_base64'];
 
-    console.log(base64);
-
     return base64;
   };
 
@@ -54,12 +56,30 @@ export class Text2Image extends Node {
       [new Socket('flow', 'flow'), new Socket('string', 'prompt')],
       [new Socket('flow', 'flow'), new Socket('string', 'image')],
       async (context: NodeEvalContext) => {
+        const nodes = useStore.getState().nodes;
+        console.log('nodesState', nodes);
+
         const logger =
           context.graph.registry.abstractions.get<ILogger>('ILogger');
         const prompt: string = context.readInput('prompt');
         logger.info(prompt);
         const image: string = await Text2Image.generate(prompt);
         logger.info(image);
+
+        context.writeOutput('image', image);
+
+        const nodeIndex = _.findIndex(nodes, ['id', context.node.id]);
+        console.log('nodeIndex', nodeIndex);
+
+        const node = nodes[nodeIndex];
+        const newNode = { ...node, data: { ...node.data, image: image } };
+        nodes.splice(nodeIndex, 1, newNode);
+        console.log('newNodes', nodes);
+        useStore.setState({ nodes });
+        // useStore.updateNodeImage(context.node.id, image)
+
+        context.commit('image');
+        context.finish();
       }
     );
   }

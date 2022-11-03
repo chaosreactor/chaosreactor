@@ -1,5 +1,26 @@
 [
   {
+    "type": "action/image",
+    "category": "Action",
+    "inputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      },
+      {
+        "name": "image",
+        "valueType": "string",
+        "defaultValue": false
+      }
+    ],
+    "outputs": [
+      {
+        "name": "flow",
+        "valueType": "flow"
+      }
+    ]
+  },
+  {
     "type": "action/text2image",
     "category": "Action",
     "inputs": [

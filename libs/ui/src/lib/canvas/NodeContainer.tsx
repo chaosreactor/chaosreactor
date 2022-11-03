@@ -1,20 +1,14 @@
 import { NodeSpecJSON } from 'behave-graph';
 import { PropsWithChildren } from 'react';
-import cx from 'classnames';
 import {
   Box,
-  Button,
   ChakraProvider,
   Container,
-  HStack,
-  Icon,
-  Square,
   Stack,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import * as React from 'react';
-import { FiFileText } from 'react-icons/fi';
 
 import {
   categoryColorMap,

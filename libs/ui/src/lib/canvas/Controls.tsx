@@ -24,7 +24,7 @@ import { SaveModal } from '../../../vendor/behave-flow/src/components/SaveModal'
 import { flowToBehave } from './transformers/flowToBehave';
 import { useReactFlow, Controls, ControlButton } from 'reactflow';
 
-import { Text2Image } from './nodes/Text2Image';
+import { Text2Image, Image } from './nodes';
 
 const CustomControls = () => {
   const [loadModalOpen, setLoadModalOpen] = useState(false);
@@ -35,7 +35,11 @@ const CustomControls = () => {
 
   const handleRun = async () => {
     const registry = new Registry();
+
+    // Register custom nodes.
     registry.nodes.register(Text2Image.Description);
+    registry.nodes.register(Image.Description);
+
     registerCoreProfile(registry);
     registerSceneProfile(registry);
     registry.abstractions.register('ILogger', new DefaultLogger());

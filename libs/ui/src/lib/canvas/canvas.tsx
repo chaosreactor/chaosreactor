@@ -18,23 +18,19 @@ import ReactFlow, {
 } from 'reactflow';
 import { v4 as uuidv4 } from 'uuid';
 import { behaveToFlow } from '../../../vendor/behave-flow/src/transformers/behaveToFlow';
-import rawGraphJSON from '../data/initialGraph.json';
-import { GraphJSON } from 'behave-graph';
 import NodePicker from './NodePicker';
 import { getNodePickerFilters } from '../../../vendor/behave-flow/src/util/getPickerFilters';
 import { calculateNewEdge } from '../../../vendor/behave-flow/src/util/calculateNewEdge';
 
-const graphJSON = rawGraphJSON as GraphJSON;
-
-const [initialNodes, initialEdges] = behaveToFlow(graphJSON);
+import useStore from './store';
 
 function Flow() {
   const [nodePickerVisibility, setNodePickerVisibility] =
     useState<XYPosition>();
   const [lastConnectStart, setLastConnectStart] =
     useState<OnConnectStartParams>();
-  const [nodes, , onNodesChange] = useNodesState(initialNodes);
-  const [edges, , onEdgesChange] = useEdgesState(initialEdges);
+
+  const { nodes, edges, onNodesChange, onEdgesChange } = useStore();
 
   const onConnect = useCallback(
     (connection: Connection) => {

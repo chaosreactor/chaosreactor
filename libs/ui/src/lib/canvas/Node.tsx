@@ -5,6 +5,7 @@ import NodeContainer from './NodeContainer';
 import OutputSocket from './OutputSocket';
 import { useChangeNodeData } from '../../../vendor/behave-flow/src/hooks/useChangeNodeData';
 import { isHandleConnected } from '../../../vendor/behave-flow/src/util/isHandleConnected';
+import Image from 'next/image';
 
 type NodeProps = FlowNodeProps & {
   spec: NodeSpecJSON;
@@ -24,7 +25,6 @@ const getPairs = <T, U>(arr1: T[], arr2: U[]) => {
     const pair: [T | undefined, U | undefined] = [arr1[i], arr2[i]];
     pairs.push(pair);
   }
-  console.log('pairs', pairs);
   return pairs;
 };
 
@@ -32,6 +32,13 @@ export const Node = ({ id, data, spec, selected }: NodeProps) => {
   const edges = useEdges();
   const handleChange = useChangeNodeData(id);
   const pairs = getPairs(spec.inputs, spec.outputs);
+
+  // Detect if an image has been passed.
+  const image = data.image;
+  console.log('type', spec.type);
+  console.log('data', data);
+  console.log('image!!!', image);
+
   return (
     <NodeContainer
       title={getTitle(spec.type)}
@@ -59,6 +66,15 @@ export const Node = ({ id, data, spec, selected }: NodeProps) => {
           )}
         </div>
       ))}
+
+      {image && (
+        <Image
+          unoptimized
+          src={`data:image/jpeg;base64,${image}`}
+          width={500}
+          height={500}
+        />
+      )}
     </NodeContainer>
   );
 };
