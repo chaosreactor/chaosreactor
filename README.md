@@ -1,90 +1,170 @@
-# Voxable
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 
-This project was generated using [Nx](https://nx.dev).
+<a name="readme-top"></a>
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+<!-- PROJECT SHIELDS -->
+<!--
+*** We're using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
 
-🔎 **Smart, Fast and Extensible Build System**
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-## Adding capabilities to your workspace
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://chaosreactor.com">
+    <img src="https://github.com/chaosreactor/chaosreactor/raw/main/libs/ui/src/lib/test-tube.png" alt="Chaos Reactor test tube logo" width="80" height="80">
+  </a>
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+<h3 align="center">Chaos Reactor</h3>
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+  <p align="center">
+    Chaos Reactor is an open-source, community-led platform where everyone can harness the power of AI.
+    <br />
+    <a href="https://docs.chaosreactor.com"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/chaosreactor/chaosreactor/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/chaosreactor/chaosreactor/issues">Request Feature</a>
+  </p>
+</div>
 
-Below are our core plugins:
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About Chaos Reactor 🧪</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+<!-- ABOUT THE PROJECT -->
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+## About Chaos Reactor 🧪
 
-## Generate an application
+![Chaos Reactor Screen Shot](https://p129.p0.n0.cdn.getcloudapp.com/items/xQuxJRz5/a2cdc41c-4dec-447d-a251-9f6cfe2f2d34.png?v=9cdb50820f24a88578d2802b73048dd9)
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+Chaos Reactor is a free, open-source desktop application that allows anyone to harness the power of Artificial Intelligence. Chaos Reactor’s visual [Flow-Based Programming](https://en.wikipedia.org/wiki/Flow-based_programming) environment enables even less-technical users to experiment with [foundation models](https://en.wikipedia.org/wiki/Foundation_models) via techniques like [prompt chaining](https://arxiv.org/abs/2203.06566) to build anything they can describe.
 
-> You can use any of the plugins above to generate applications as well.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+### Built With
 
-## Generate a library
+- [![Next][next.js]][next-url]
+- [![React][react.js]][react-url]
+- [![Tauri][tauri]][tauri-url]
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-> You can also use any of the plugins above to generate libraries as well.
+<!-- GETTING STARTED -->
 
-Libraries are shareable across libraries and applications. They can be imported from `@chaosreactor/mylib`.
+## Getting Started
 
-## Development server
+Check out the [Getting Started documentation](https://docs.chaosreactor.com/docs/devs/getting-started) for a quick start guide.
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+<!-- ROADMAP -->
 
-## Code scaffolding
+## Roadmap
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+- [x] Design initial desktop app UI
+- [ ] _Release initial desktop app_ (in progress)
+- [ ] Take over :earth_americas:
 
-## Build
+See the [open issues](https://github.com/chaosreactor/chaosreactor/issues) for a full list of proposed features (and known issues).
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Running unit tests
+<!-- CONTRIBUTING -->
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+## Contributing
 
-Run `nx affected:test` to execute the unit tests affected by a change.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-## Running end-to-end tests
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-Run `nx e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Understand your workspace
+<!-- LICENSE -->
 
-Run `nx graph` to see a diagram of the dependencies of your projects.
+## License
 
-## Further help
+Dual-licensed under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) and [MIT](https://opensource.org/licenses/MIT) licenses.
 
-Visit the [Nx Documentation](https://nx.dev) to learn more.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## ☁ Nx Cloud
+<!-- CONTACT -->
 
-### Distributed Computation Caching & Distributed Task Execution
+## Contact
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
+Your Name - [@chaosreactor](https://twitter.com/chaosreactor) - howdy@chaosreactor.com
 
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
+Project Link: [https://github.com/chaosreactor/chaosreactor](https://github.com/chaosreactor/chaosreactor)
 
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Visit [Nx Cloud](https://nx.app/) to learn more.
+<!-- ACKNOWLEDGMENTS -->
+
+## Acknowledgments
+
+- [README Template](https://github.com/othneildrew/Best-README-Template)
+- [behave-flow](https://github.com/beeglebug/behave-flow)
+- [behave-graph](https://github.com/bhouston/behave-graph)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+<!-- https://stackoverflow.com/questions/38985050/how-do-i-use-the-logo-option-in-shields-io-badges -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/chaosreactor/chaosreactor.svg?style=for-the-badge
+[contributors-url]: https://github.com/chaosreactor/chaosreactor/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/chaosreactor/chaosreactor.svg?style=for-the-badge
+[forks-url]: https://github.com/chaosreactor/chaosreactor/network/members
+[stars-shield]: https://img.shields.io/github/stars/chaosreactor/chaosreactor.svg?style=for-the-badge
+[stars-url]: https://github.com/chaosreactor/chaosreactor/stargazers
+[issues-shield]: https://img.shields.io/github/issues/chaosreactor/chaosreactor.svg?style=for-the-badge
+[issues-url]: https://github.com/chaosreactor/chaosreactor/issues
+[license-shield]: https://img.shields.io/github/license/chaosreactor/chaosreactor.svg?style=for-the-badge
+[license-url]: https://github.com/chaosreactor/chaosreactor/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/company/voxable
+[next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[next-url]: https://nextjs.org/
+[react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[react-url]: https://reactjs.org/
+[tauri]: https://img.shields.io/badge/Tauri-5effd7?style=for-the-badge&logo=tauri&logoColor=yellow
+[tauri-url]: https://tauri.app/
