@@ -16,7 +16,10 @@ import {
 import * as React from 'react';
 import { FiFileText } from 'react-icons/fi';
 
-import { categoryColorMap, colors } from '../../../vendor/behave-flow/src/util/colors';
+import {
+  categoryColorMap,
+  colors,
+} from '../../../vendor/behave-flow/src/util/colors';
 
 import chaosTheme from '../../theme';
 
@@ -47,7 +50,7 @@ export default function NodeContainer({
       <Box as="section" p={{ base: '0' }}>
         <Container maxW="3xl">
           <Box
-            bg="emphasized"
+            bg="#2D3648"
             boxShadow={useColorModeValue('sm', 'sm-dark')}
             borderRadius="lg"
             p={{ base: '0' }}

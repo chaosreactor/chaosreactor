@@ -10,7 +10,7 @@ export default {
     },
     'bg-subtle': {
       default: 'gray.50',
-      _dark: 'gray.700',
+      _dark: '#2D3648',
     },
     'bg-muted': {
       default: 'gray.100',
@@ -26,7 +26,7 @@ export default {
     },
     emphasized: {
       default: 'gray.700',
-      _dark: 'gray.100',
+      _dark: 'gray.700',
     },
     muted: {
       default: 'gray.600',
@@ -51,6 +51,9 @@ export default {
     error: {
       default: 'red.600',
       _dark: 'red.200',
+    },
+    gray: {
+      700: '#2D3648',
     },
     'bg-accent': 'brand.600',
     'bg-accent-subtle': 'brand.500',
