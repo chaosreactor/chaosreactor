@@ -60,13 +60,13 @@ const config = {
             position: 'left',
             label: 'Chaos Design System',
           },
-          /** { to: '/blog', label: 'Blog', position: 'left' },
+          /* { to: '/blog', label: 'Blog', position: 'left' },*/
           {
-            href: 'https://github.com/chaosreactor',
-            label: 'GitHub',
+            href: 'https://github.com/chaosreactor/chaosreactor',
+            className: 'header-github-link',
+            'aria-label': 'GitHub repository',
             position: 'right',
           },
-        */
         ],
       },
       footer: {
