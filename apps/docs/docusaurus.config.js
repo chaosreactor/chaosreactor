@@ -42,7 +42,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Chaos Reactor 🧪',
+        title: 'Chaos Reactor',
         logo: {
           alt: 'Chaos Reactor Logo (Noto Test Tube Emoji)',
           src: 'img/logo.svg',
