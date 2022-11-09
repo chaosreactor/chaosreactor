@@ -56,7 +56,7 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'chaos-design-system/README',
+            docId: 'chaos-design-system/index',
             position: 'left',
             label: 'Chaos Design System',
           },
