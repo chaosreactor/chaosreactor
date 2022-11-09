@@ -10,32 +10,30 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    image: '/img/undraw_docusaurus_mountain.svg',
+    title: 'Create AI generated content with Chaos Reactor',
+    image: '/img/content_creation.svg',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Learn about the Chaos Reactor product and how to get started generating content with AI using Chaos Reactor.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    image: '/img/undraw_docusaurus_tree.svg',
+    title: 'Contribute to Chaos Reactor development',
+    image: '/img/development.svg',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Get started contributing to Chaos Reactor development and learn about the project's architecture.
       </>
     ),
+
   },
   {
-    title: 'Powered by React',
-    image: '/img/undraw_docusaurus_react.svg',
+    title: 'Learn about the Chaos Design System',
+    image: '/img/design.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Read about our design principles, process, and the components that make up the Chaos Design System.
       </>
     ),
   },
