@@ -1,0 +1,4 @@
+[submodule "libs/ui/vendor/behave-flow"]
+	path = libs/ui/vendor/behave-flow
+	url = git@github.com:beeglebug/behave-flow.git
+
