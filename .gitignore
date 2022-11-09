@@ -32,8 +32,6 @@ node_modules
 .history
 .ionide
 
-apps/desktop
-
 # misc
 /.sass-cache
 /connect.lock
