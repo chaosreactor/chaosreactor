@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Chaos Reactor 🧪',
-  tagline: 'A program is just words.',
+  title: 'Chaos Reactor',
+  tagline: 'Chaos Reactor is an open source, community-led platform where everyone can harness the power of AI.',
   url: 'https://docs.chaosre.actor',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -42,12 +42,18 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Chaos Reactor 🧪',
+        title: 'Chaos Reactor',
         logo: {
           alt: 'Chaos Reactor Logo (Noto Test Tube Emoji)',
           src: 'img/logo.svg',
         },
         items: [
+          {
+            type: 'doc',
+            docId: 'support/getting-started',
+            position: 'left',
+            label: 'Support',
+          },
           {
             type: 'doc',
             docId: 'devs/README',
@@ -76,8 +82,16 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Support',
+                to: '/docs/support/getting-started',
+              },
+              {
+                label: 'Developer Docs',
+                to: '/docs/devs/getting-started',
+              },
+              {
+                label: 'Design Docs',
+                to: '/docs/design/README',
               },
             ],
           },
