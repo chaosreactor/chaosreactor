@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Chaos Reactor 🧪',
-  tagline: 'A program is just words.',
+  title: 'Chaos Reactor',
+  tagline: 'Chaos Reactor is an open source, community-led platform where everyone can harness the power of AI.',
   url: 'https://docs.chaosre.actor',
   baseUrl: '/',
   onBrokenLinks: 'throw',
