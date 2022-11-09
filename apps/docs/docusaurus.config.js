@@ -50,6 +50,12 @@ const config = {
         items: [
           {
             type: 'doc',
+            docId: 'support/getting-started',
+            position: 'left',
+            label: 'Support',
+          },
+          {
+            type: 'doc',
             docId: 'devs/getting-started',
             position: 'left',
             label: 'Developer Docs',
