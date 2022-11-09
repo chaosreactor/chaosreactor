@@ -50,17 +50,17 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'devs/getting-started',
+            docId: 'devs/README',
             position: 'left',
             label: 'Developer Docs',
           },
           {
             type: 'doc',
-            docId: 'chaos-design-system/README',
+            docId: 'chaos-design-system/index',
             position: 'left',
             label: 'Chaos Design System',
           },
-        /** { to: '/blog', label: 'Blog', position: 'left' },
+          /** { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/chaosreactor',
             label: 'GitHub',

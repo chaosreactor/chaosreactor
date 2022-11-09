@@ -1,4 +1,4 @@
-# The Chaos Design System
+# Chaos Design System: Overview
 
 - [Global](./global.md)
 - [Components](./components/)
@@ -33,3 +33,7 @@ Chaos Reactor is a no-code desktop app for building AI workflows.
     - Check out:
       - [Figma tokens](https://www.figma.com/community/plugin/843461159747178978/Figma-Tokens)
       - [Content Reel](https://www.figma.com/community/plugin/731627216655469013/Content-Reel)
+
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
