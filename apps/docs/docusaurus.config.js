@@ -7,7 +7,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Chaos Reactor',
-  tagline: 'Chaos Reactor is an open source, community-led platform where everyone can harness the power of AI.',
+  tagline:
+    'Chaos Reactor is an open source, community-led platform where everyone can harness the power of AI.',
   url: 'https://docs.chaosre.actor',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -87,11 +88,11 @@ const config = {
               },
               {
                 label: 'Developer Docs',
-                to: '/docs/devs/getting-started',
+                to: '/docs/devs',
               },
               {
                 label: 'Design Docs',
-                to: '/docs/design/README',
+                to: '/docs/chaos-design-system',
               },
             ],
           },
