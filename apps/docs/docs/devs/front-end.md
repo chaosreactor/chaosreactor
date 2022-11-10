@@ -10,7 +10,7 @@ This document outlines the front-end development process for Voxable.
 
 ## Prerequisites & setup
 
-See [Getting Started](/docs/devs/getting-started/).
+See [Getting Started](/docs/devs/).
 
 ## Generating components
 
