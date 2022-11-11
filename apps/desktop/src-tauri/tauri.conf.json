@@ -12,7 +12,16 @@
   },
   "tauri": {
     "allowlist": {
-      "all": true
+      "all": false,
+      "shell": {
+        "sidecar": true,
+        "scope": [
+          {
+            "name": "binaries/dolt",
+            "sidecar": true
+          }
+        ]
+      }
     },
     "bundle": {
       "active": true,
@@ -21,7 +30,7 @@
       "deb": {
         "depends": []
       },
-      "externalBin": [],
+      "externalBin": ["binaries/dolt"],
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
