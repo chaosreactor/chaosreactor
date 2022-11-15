@@ -51,4 +51,6 @@ apps/chaosreactor/.env.local
 apps/voxable/.env.local
 
 # Dolt
-apps/desktop/src-tauri/.sqlhistory
+.sqlhistory
+.dolt
+apps/desktop/src-tauri/.dolt

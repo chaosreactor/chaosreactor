@@ -1,4 +1,4 @@
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use tauri::api::path::data_dir;
 use tauri::api::process::Command;
 
@@ -12,31 +12,79 @@ fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
 }
 
+// The directory for Chaos Reactor app data.
+fn app_data_dir() -> PathBuf {
+    let data_dir: &Path = &data_dir().unwrap();
+    let app_dir = data_dir.join("ChaosReactor");
+    if !app_dir.exists() {
+        std::fs::create_dir_all(&app_dir).unwrap();
+    }
+    let app_dir_buf: PathBuf = app_dir.to_owned();
+    app_dir_buf
+}
+
+// The directory for Chaos Reactor reactor databases.
+fn app_db_dir() -> PathBuf {
+    let db_dir: &Path = &app_data_dir().join("db");
+    if !db_dir.exists() {
+        std::fs::create_dir_all(&db_dir).unwrap();
+    }
+    let db_dir_buf: PathBuf = db_dir.to_owned();
+    db_dir_buf
+}
+
 fn launch_dolt() -> Result<(), String> {
     println!("Launching Dolt");
 
     // Build the option to use the data directory as the dolt directory.
-    let dolt_data_path = "--data-dir ".to_owned()
-        + &data_dir()
-            .unwrap()
-            .join("dolt")
-            .into_os_string()
-            .into_string()
-            .unwrap();
+    let dolt_data_path =
+        "--data-dir ".to_owned() + &app_db_dir().into_os_string().into_string().unwrap();
 
-    println!("Dolt dir: {}", dolt_dir);
+    println!("Dolt dir: {}", dolt_data_path);
 
     Command::new_sidecar("dolt")
         .or(Err(String::from("Can't find dolt binary")))?
-        .args(&["sql-server", &dolt_dir])
+        .args(&["sql-server", &dolt_data_path])
         .spawn()
         .map_err(|err| format!("Error launching dolt {:?}", err))?;
 
     Ok(())
 }
 
+// Create the initial Reactor database, if none exists.
+fn init_reactor_db() -> Result<(), String> {
+    println!("Initializing Reactor database");
+
+    let db_path = app_db_dir();
+
+    println!("DB path: {}", db_path.display());
+
+    let db_exists = Path::new(&db_path).exists();
+
+    if !db_exists {
+        println!("Creating database");
+        Command::new_sidecar("dolt")
+            .or(Err(String::from("Can't find dolt binary")))?
+            .current_dir(db_path.clone())
+            .args(&["init"])
+            .spawn()
+            .map_err(|err| format!("Error initializing dolt data directory {:?}", err))?;
+    }
+
+    // Create the initial SQL database via `dolt sql`
+    Command::new_sidecar("dolt")
+        .or(Err(String::from("Can't find dolt binary")))?
+        .current_dir(db_path.clone())
+        .args(&["sql", "-q", "CREATE DATABASE IF NOT EXISTS reactor"])
+        .spawn()
+        .map_err(|err| format!("Error initializing reactor database {:?}", err))?;
+
+    Ok(())
+}
+
 fn main() {
     launch_dolt().unwrap();
+    init_reactor_db().unwrap();
 
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![greet])
