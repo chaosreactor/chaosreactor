@@ -54,3 +54,6 @@ apps/voxable/.env.local
 .sqlhistory
 .dolt
 apps/desktop/src-tauri/.dolt
+
+# Next.js API binary
+apps/desktop/src-tauri/binaries/api*
