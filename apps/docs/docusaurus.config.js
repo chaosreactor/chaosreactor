@@ -6,8 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Chaos Reactor 🧪',
-  tagline: 'A program is just words.',
+  title: 'Chaos Reactor',
+  tagline:
+    'Chaos Reactor is an open source, community-led platform where everyone can harness the power of AI.',
   url: 'https://docs.chaosre.actor',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -42,7 +43,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Chaos Reactor 🧪',
+        title: 'Chaos Reactor',
         logo: {
           alt: 'Chaos Reactor Logo (Noto Test Tube Emoji)',
           src: 'img/logo.svg',
@@ -50,17 +51,23 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'devs/getting-started',
+            docId: 'support/getting-started',
+            position: 'left',
+            label: 'Support',
+          },
+          {
+            type: 'doc',
+            docId: 'devs/README',
             position: 'left',
             label: 'Developer Docs',
           },
           {
             type: 'doc',
-            docId: 'chaos-design-system/README',
+            docId: 'chaos-design-system/index',
             position: 'left',
             label: 'Chaos Design System',
           },
-        /** { to: '/blog', label: 'Blog', position: 'left' },
+          /** { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/chaosreactor',
             label: 'GitHub',
@@ -76,8 +83,16 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Support',
+                to: '/docs/support/getting-started',
+              },
+              {
+                label: 'Developer Docs',
+                to: '/docs/devs',
+              },
+              {
+                label: 'Design Docs',
+                to: '/docs/chaos-design-system',
               },
             ],
           },

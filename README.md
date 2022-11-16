@@ -87,7 +87,7 @@ Chaos Reactor is a free, open-source desktop application that allows anyone to h
 
 ## Getting Started
 
-Check out the [Getting Started documentation](https://docs.chaosreactor.com/docs/devs/getting-started) for a quick start guide.
+Check out the [Getting Started documentation](https://docs.chaosreactor.com/docs/devs) for a quick start guide.
 
 <!-- ROADMAP -->
 
