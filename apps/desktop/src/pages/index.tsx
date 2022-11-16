@@ -1,6 +1,6 @@
 import { useCallback, useState, useEffect, createRef } from 'react';
 import { invoke } from "@tauri-apps/api/tauri";
-import { Nav, Canvas } from "../../../../libs/ui/src/index";
+import { Nav } from "../../../../libs/ui/src/index";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -35,7 +35,6 @@ function App() {
   return (
     <div id="wrapper" ref={wrapper}>
       <Nav />
-      <Canvas height={height} width={width} />
     </div>
   );
 }
