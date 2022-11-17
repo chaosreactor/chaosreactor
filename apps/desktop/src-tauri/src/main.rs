@@ -1,6 +1,9 @@
 use std::path::{Path, PathBuf};
 use tauri::api::path::data_dir;
-use tauri::api::process::Command;
+use tauri::{
+    api::process::{Command, CommandEvent},
+    Manager,
+  };
 
 #[cfg_attr(
     all(not(debug_assertions), target_os = "windows"),
@@ -72,6 +75,7 @@ fn init_reactor_db() -> Result<(), String> {
     }
 
     // Create the initial SQL database via `dolt sql`
+    // If dolt is not installed globally, does this still work?0
     Command::new_sidecar("dolt")
         .or(Err(String::from("Can't find dolt binary")))?
         .current_dir(db_path.clone())
@@ -88,6 +92,31 @@ fn main() {
 
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![greet])
+        .setup(|app| {
+            let window = app.get_window("main").unwrap();
+            tauri::async_runtime::spawn(async move {
+                let (mut rx, mut child) = Command::new_sidecar("trpc")
+                    .expect("failed to setup `trpc` sidecar")
+                    .spawn()
+                    .expect("Failed to spawn packaged trpc server");
+
+                let mut i = 0;
+                while let Some(event) = rx.recv().await {
+                    if let CommandEvent::Stdout(line) = event {
+                        window
+                            .emit("message", Some(format!("'{}'", line)))
+                            .expect("failed to emit event");
+                        i += 1;
+                        if i == 4 {
+                            child.write("message from trpc\n".as_bytes()).unwrap();
+                            i = 0;
+                        }
+                    }
+                }
+            });
+
+            Ok(())
+        })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

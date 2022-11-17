@@ -38,7 +38,7 @@ function App() {
   return (
     <div id="wrapper" ref={wrapper}>
       <Nav />
-      <p>{reactor.data.name}</p>
+      <p>{reactor?.data?.name}</p>
     </div>
   );
 }
