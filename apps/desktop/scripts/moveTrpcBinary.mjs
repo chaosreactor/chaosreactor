@@ -14,8 +14,8 @@ async function rename() {
 
   // Rename Next.js server binaries with target triple.
   renameSync(
-    `src-tauri/binaries/api${ext}`,
-    `src-tauri/binaries/api-${triple}${ext}`
+    `src-tauri/binaries/trpc${ext}`,
+    `src-tauri/binaries/trpc-${triple}${ext}`
   );
 }
 

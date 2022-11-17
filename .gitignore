@@ -55,16 +55,15 @@ Thumbs.db
 
 # Enivronment variables
 .env
-apps/chaosreactor/.env.local
-apps/voxable/.env.local
+.env.local
 
 # Dolt
 .sqlhistory
 .dolt
-apps/desktop/src-tauri/.dolt
-
-# Next.js API binary
-apps/desktop/src-tauri/binaries/api*
 
 # Rust
 target/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

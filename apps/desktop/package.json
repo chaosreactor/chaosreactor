@@ -1,23 +1,23 @@
 {
   "name": "@chaosreactor/desktop",
   "bin": ".next/server/pages/index.js",
-  "pkg": {
-    "assets": [
-      "src/**/*"
-    ]
-  },
   "version": "0.0.1",
   "scripts": {
     "dev": "next dev -p 1420",
     "build": "next build && next export -o dist",
     "tauri": "tauri dev --target $TAURI_TARGET",
-    "package": "pkg package.json --output src-tauri/binaries/api && node scripts/moveApiBinary.mjs"
+    "package": "tsc src-trpc/server.ts --outDir dist-trpc/ --excludeDirectories --skipLibCheck && pkg dist-trpc/server.js --output src-tauri/binaries/trpc && node scripts/moveTrpcBinary.mjs"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.16.1",
     "@tauri-apps/api": "^1.1.0",
+    "@trpc/client": "^10.0.0-rc.8",
+    "@trpc/react-query": "^10.0.0-rc.8",
+    "@trpc/server": "^10.0.0-rc.8",
     "next": "^12.2.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "zod": "^3.19.1"
   },
   "devDependencies": {
     "@chaosreactor/ui": "*",
