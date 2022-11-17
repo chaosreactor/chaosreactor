@@ -1,18 +1,7 @@
 import { useCallback, useState, useEffect, createRef } from 'react';
 import { invoke } from '@tauri-apps/api/tauri';
 import { Nav } from '../../../../libs/ui/src/index';
-
-import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
-import type { AppRouter } from '../../src-trpc/server';
-
-// Notice the <AppRouter> generic here.
-const trpc = createTRPCProxyClient<AppRouter>({
-  links: [
-    httpBatchLink({
-      url: 'http://localhost:2022/trpc',
-    }),
-  ],
-});
+import { trpc } from '../utils/trpc';
 
 function App() {
   const [greetMsg, setGreetMsg] = useState('');
@@ -42,19 +31,14 @@ function App() {
     }
 
     window.addEventListener('resize', handleResize);
-
-    const fetchData = async () => {
-      console.log('TRPC');
-
-      const reactor = await trpc.reactorById.query('1');
-    };
-
-    fetchData().catch(console.error);
   });
+
+  const reactor = trpc.reactorById.useQuery('1');
 
   return (
     <div id="wrapper" ref={wrapper}>
       <Nav />
+      <p>{reactor.data.name}</p>
     </div>
   );
 }
