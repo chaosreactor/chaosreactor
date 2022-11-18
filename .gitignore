@@ -67,3 +67,4 @@ target/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+Chaos Reactor desktop.session.sql

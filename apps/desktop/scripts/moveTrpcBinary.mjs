@@ -12,10 +12,10 @@ async function rename() {
     console.error('Error generating platform target triple');
   }
 
-  // Rename Next.js server binaries with target triple.
+  // Rename trpc server binaries with target triple.
   renameSync(
-    `src-tauri/binaries/trpc${ext}`,
-    `src-tauri/binaries/trpc-${triple}${ext}`
+    `../src-tauri/binaries/desktop-trpc${ext}`,
+    `../src-tauri/binaries/trpc-${triple}${ext}`
   );
 }
 

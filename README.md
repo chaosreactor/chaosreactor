@@ -130,7 +130,7 @@ Dual-licensed under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) an
 
 ## Contact
 
-Your Name - [@chaosreactor](https://twitter.com/chaosreactor) - howdy@chaosreactor.com
+[@chaosreactor](https://twitter.com/chaosreactor) - howdy@chaosreactor.com
 
 Project Link: [https://github.com/chaosreactor/chaosreactor](https://github.com/chaosreactor/chaosreactor)
 

@@ -3,7 +3,7 @@ use tauri::api::path::data_dir;
 use tauri::{
     api::process::{Command, CommandEvent},
     Manager,
-  };
+};
 
 #[cfg_attr(
     all(not(debug_assertions), target_os = "windows"),
@@ -94,6 +94,9 @@ fn main() {
         .invoke_handler(tauri::generate_handler![greet])
         .setup(|app| {
             let window = app.get_window("main").unwrap();
+
+            println!("Booting trpc server...");
+
             tauri::async_runtime::spawn(async move {
                 let (mut rx, mut child) = Command::new_sidecar("trpc")
                     .expect("failed to setup `trpc` sidecar")

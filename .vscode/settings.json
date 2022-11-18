@@ -52,5 +52,20 @@
       "color": "terminal.ansiMagenta"
     }
   },
-  "peacock.remoteColor": "#42b883"
+  "peacock.remoteColor": "#42b883",
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "Chaos Reactor desktop",
+      "database": "reactor",
+      "username": "root",
+      "password": ""
+    }
+  ]
 }

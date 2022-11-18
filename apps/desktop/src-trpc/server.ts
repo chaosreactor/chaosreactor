@@ -1,10 +1,12 @@
 // @filename: server.ts
-import { initTRPC } from '@trpc/server';
 import * as http from 'http';
 import { createHTTPHandler } from '@trpc/server/adapters/standalone';
 import { z } from 'zod';
 
-const t = initTRPC.create();
+import migrateToLatest from './db/migrator';
+import { procedure, publicProcedure, router } from './trpc';
+
+console.log('Launching server...');
 
 interface Reactor {
   id: string;
@@ -18,21 +20,18 @@ const reactorList: Reactor[] = [
   },
 ];
 
-const appRouter = t.router({
-  reactorById: t.procedure
+const appRouter = router({
+  // Find a reactor by ID.
+  reactorById: procedure
     .input((val: unknown) => {
       if (typeof val === 'string') return val;
       throw new Error(`Invalid input: ${typeof val}`);
     })
     .query((req) => {
       const { input } = req;
-      // const user = userList.find((u) => u.id === input);
-      // return user;
 
-      return {
-        id: input,
-        name: 'I am a block',
-      };
+      const reactor = reactorList.find((r) => r.id === input);
+      return reactor;
     }),
 });
 export type AppRouter = typeof appRouter;
@@ -44,7 +43,13 @@ const trpcHandler = createHTTPHandler({
   },
 });
 
-// create and listen to the server handler
+// Run database migrations
+console.log('Running migrations...');
+migrateToLatest();
+
+// Create and listen to the server handler
+console.log('Booting trpc server...');
+
 http
   .createServer((req, res) => {
     // act on the req/res objects

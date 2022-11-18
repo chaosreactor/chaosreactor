@@ -10,7 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-dist-trpc
+src-trpc/dist
 *.local
 .next
 

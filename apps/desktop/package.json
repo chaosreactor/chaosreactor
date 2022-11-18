@@ -6,7 +6,7 @@
     "dev": "next dev -p 1420",
     "build": "next build && next export -o dist",
     "tauri": "tauri dev --target $TAURI_TARGET",
-    "package": "tsc src-trpc/server.ts --outDir dist-trpc/ --excludeDirectories --skipLibCheck && pkg dist-trpc/server.js --output src-tauri/binaries/trpc && node scripts/moveTrpcBinary.mjs"
+    "package": "cd src-trpc && npm run build"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.16.1",
@@ -14,6 +14,8 @@
     "@trpc/client": "^10.0.0-rc.8",
     "@trpc/react-query": "^10.0.0-rc.8",
     "@trpc/server": "^10.0.0-rc.8",
+    "kysely": "^0.22.0",
+    "mysql2": "^2.3.3",
     "next": "^12.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
