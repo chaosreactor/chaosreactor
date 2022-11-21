@@ -24,9 +24,17 @@ npx g @nrwl/next:component Table --project=ui --no-interactive
 
 This will generate a component in `libs/ui/src/lib/table.tsx` and a test in `libs/ui/src/libs/table.test.tsx`.
 
+## Running Storybook
+
+We use [Storybook](https://storybook.js.org/) to host living documentation for our components. To run Storybook, run the following command:
+
+```bash
+nx run ui:storybook
+```
+
 ### Generating stories
 
-We use [Storybook](https://storybook.js.org/) to host living documentation for our components. To generate stories from your component code, run the following command:
+To generate stories from your component code, run the following command:
 
 ```bash
 nx stories:generate ui

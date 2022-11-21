@@ -1,6 +1,6 @@
 import { useCallback, useState, useEffect, createRef } from 'react';
 import { invoke } from '@tauri-apps/api/tauri';
-import { Nav } from '../../../../libs/ui/src/index';
+import { Nav, Playfield } from '../../../../libs/ui/src/index';
 import { trpc } from '../utils/trpc';
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
   return (
     <div id="wrapper" ref={wrapper}>
       <Nav />
-      <p>{reactor?.data?.name}</p>
+      <Playfield height={height} width={width} />
     </div>
   );
 }
