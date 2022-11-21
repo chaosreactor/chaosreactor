@@ -1,5 +1,8 @@
 import { useCallback, useState, useEffect, createRef } from 'react';
 import { invoke } from '@tauri-apps/api/tauri';
+import subscribe from 'subscribe-event';
+import { useDebouncedCallback } from 'use-debounce';
+
 import { Nav, Playfield } from '../../../../libs/ui/src/index';
 import { trpc } from '../utils/trpc';
 
@@ -22,15 +25,18 @@ function App() {
     width: width,
   });
 
-  useEffect(() => {
-    function handleResize() {
-      setDimensions({
-        height: height,
-        width: width,
-      });
-    }
+  const handleResize = useDebouncedCallback(() => {
+    setDimensions({
+      height: height,
+      width: width,
+    });
+  }, 200);
 
-    window.addEventListener('resize', handleResize);
+  useEffect(() => {
+    const unsubscribe = subscribe(window, 'resize', handleResize);
+    return () => {
+      unsubscribe();
+    };
   });
 
   const reactor = trpc.reactorById.useQuery('1');
