@@ -10,6 +10,8 @@ export interface PlayfieldProps {
 }
 
 export function Playfield(props: PlayfieldProps) {
+  console.log('Playfield dimensions', props.height, props.width);
+
   return (
     <div
       id="playfield"

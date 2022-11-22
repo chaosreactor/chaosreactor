@@ -1,2 +1,3 @@
-.container {
+#playfield {
+  flex-grow: 1;
 }
