@@ -1,4 +1,4 @@
-import ReactFlow, { Controls, Background } from 'reactflow';
+import ReactFlow, { Controls, Background, BackgroundVariant } from 'reactflow';
 import 'reactflow/dist/style.css';
 
 import styles from './playfield.module.css';
@@ -24,7 +24,7 @@ export function Playfield(props: PlayfieldProps) {
       style={{ height: props.height, width: props.width, maxHeight: '100%' }}
     >
       <ReactFlow proOptions={proOptions}>
-        <Background />
+        <Background color="#5c6169" variant={BackgroundVariant.Dots} />
         <Controls />
       </ReactFlow>
     </div>
