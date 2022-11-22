@@ -8,14 +8,16 @@ import {
   HStack,
   IconButton,
   useColorModeValue,
-} from '@chakra-ui/react'
-import * as React from 'react'
-import { FiMenu } from 'react-icons/fi'
+  useDisclosure,
+} from '@chakra-ui/react';
+import * as React from 'react';
+import { FiMenu } from 'react-icons/fi';
 import { Icon } from '@iconify/react';
 
-import { Logo } from './Logo'
+import { Logo } from './Logo';
+import { SettingsDrawer } from '../settings-drawer/settings-drawer';
 import { ChakraProvider } from '@chakra-ui/react';
-import chaosTheme from '../../theme'
+import chaosTheme from '../../theme';
 import '@fontsource/work-sans';
 import styles from './nav.module.css';
 
@@ -25,10 +27,19 @@ export interface NavProps {}
 export function Nav(props: NavProps) {
   const isDesktop = true;
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <ChakraProvider theme={chaosTheme}>
       <DarkMode>
-        <Box id="nav" className={styles["#nav"]} as="nav" bg="#2D3648" height="48px" boxShadow={useColorModeValue('sm', 'sm-dark')}>
+        <Box
+          id="nav"
+          className={styles['#nav']}
+          as="nav"
+          bg="#2D3648"
+          height="48px"
+          boxShadow={useColorModeValue('sm', 'sm-dark')}
+        >
           <Container maxW="100%">
             <Flex justify="space-between" px={{ base: '0' }} py={{ base: '1' }}>
               <HStack spacing="4">
@@ -41,9 +52,19 @@ export function Nav(props: NavProps) {
                     <Button>Data Sources</Button>
                   </ButtonGroup>
                   <ButtonGroup variant="ghost" spacing="1">
-                    <IconButton icon={<Icon icon="noto:left-speech-bubble" />} aria-label="Search" />
-                    <IconButton icon={<Icon icon="noto:bell" />} aria-label="Settings" />
-                    <IconButton icon={<Icon icon="noto:gear"/>} aria-label="Help Center" />
+                    <IconButton
+                      icon={<Icon icon="noto:left-speech-bubble" />}
+                      aria-label="Comments"
+                    />
+                    <IconButton
+                      icon={<Icon icon="noto:bell" />}
+                      aria-label="Notifications"
+                    />
+                    <IconButton
+                      icon={<Icon icon="noto:gear" />}
+                      aria-label="Settings"
+                      onClick={onOpen}
+                    />
                   </ButtonGroup>
                 </HStack>
               ) : (
@@ -55,10 +76,10 @@ export function Nav(props: NavProps) {
               )}
             </Flex>
           </Container>
+
+          <SettingsDrawer isOpen={isOpen} onClose={onClose} />
         </Box>
       </DarkMode>
     </ChakraProvider>
-  )
+  );
 }
-
-
