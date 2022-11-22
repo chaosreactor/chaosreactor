@@ -12,6 +12,7 @@ export interface PlayfieldProps {
 export function Playfield(props: PlayfieldProps) {
   return (
     <div
+      id="playfield"
       className={styles['container']}
       style={{ height: props.height, width: props.width, maxHeight: '100%' }}
     >

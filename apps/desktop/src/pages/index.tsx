@@ -17,8 +17,8 @@ function App() {
 
   const wrapper = createRef<HTMLDivElement>();
 
-  const height = wrapper.current?.style.height || '100vh';
-  const width = wrapper.current?.style.width || '100vw';
+  const height = '100%';
+  const width = '100%';
 
   const [dimensions, setDimensions] = useState({
     height: height,
@@ -32,8 +32,25 @@ function App() {
     });
   }, 200);
 
+  // Set the initial Playfield dimensions.
   useEffect(() => {
+    // Set the Playfield dimensions based on window size.
+    const htmlElement = document.getElementsByTagName('html')[0];
+    const currentWidth = htmlElement.clientWidth;
+    const currentHeight = htmlElement.clientHeight;
+
+    console.log('Initial dimensions: ', currentWidth, currentHeight);
+
+    setDimensions({
+      height: `${currentHeight.toString()}px`,
+      width: `${currentWidth.toString()}px`,
+    });
+  }, []);
+
+  useEffect(() => {
+    // Resize the Playfield on window resize.
     const unsubscribe = subscribe(window, 'resize', handleResize);
+
     return () => {
       unsubscribe();
     };
