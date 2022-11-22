@@ -10,7 +10,12 @@ export interface PlayfieldProps {
 }
 
 export function Playfield(props: PlayfieldProps) {
-  console.log('Playfield dimensions', props.height, props.width);
+  const proOptions = {
+    // passing in the account property will enable hiding the attribution
+    account: 'paid-pro',
+    // in combination with the account property, hideAttribution: true will remove the attribution
+    hideAttribution: true,
+  };
 
   return (
     <div
@@ -18,7 +23,7 @@ export function Playfield(props: PlayfieldProps) {
       className={styles['container']}
       style={{ height: props.height, width: props.width, maxHeight: '100%' }}
     >
-      <ReactFlow>
+      <ReactFlow proOptions={proOptions}>
         <Background />
         <Controls />
       </ReactFlow>
