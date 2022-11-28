@@ -8,7 +8,10 @@ import {
   DrawerContent,
   DrawerFooter,
   DarkMode,
-  Input,
+  FormControl,
+  FormLabel,
+  InputGroup,
+  Stack,
 } from '@chakra-ui/react';
 
 import { PasswordInput } from '../password-input/password-input';
@@ -32,6 +35,7 @@ export function SettingsDrawer(props: SettingsDrawerProps) {
             placement="right"
             onClose={props.onClose}
             isOpen={props.isOpen}
+            size="md"
           >
             <DrawerOverlay />
             <DrawerContent>
@@ -39,7 +43,16 @@ export function SettingsDrawer(props: SettingsDrawerProps) {
               <DrawerHeader>Settings</DrawerHeader>
 
               <DrawerBody>
-                <PasswordInput />
+                <Stack
+                  spacing="5"
+                  px={{ base: '4', md: '6' }}
+                  py={{ base: '5', md: '6' }}
+                >
+                  <FormControl id="stable-diffusion-api-key">
+                    <FormLabel>Stable Diffusion API key</FormLabel>
+                    <PasswordInput />
+                  </FormControl>
+                </Stack>
               </DrawerBody>
 
               <DrawerFooter>
