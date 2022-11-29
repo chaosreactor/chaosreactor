@@ -1,3 +1,4 @@
+import { useForm, Fields } from 'react-hook-form';
 import {
   Button,
   Drawer,
@@ -9,8 +10,8 @@ import {
   DrawerFooter,
   DarkMode,
   FormControl,
+  FormErrorMessage,
   FormLabel,
-  InputGroup,
   Stack,
 } from '@chakra-ui/react';
 
@@ -27,6 +28,18 @@ export interface SettingsDrawerProps {
 }
 
 export function SettingsDrawer(props: SettingsDrawerProps) {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<Fields>({
+    defaultValues: {
+      'stable-diffusion-api-key': '',
+    },
+  });
+
+  const onSubmit = (data: unknown) => console.log(data);
+
   return (
     <ChakraProvider theme={chaosTheme}>
       <DarkMode>
@@ -38,30 +51,38 @@ export function SettingsDrawer(props: SettingsDrawerProps) {
             size="md"
           >
             <DrawerOverlay />
-            <DrawerContent>
-              <DrawerCloseButton />
-              <DrawerHeader>Settings</DrawerHeader>
+            <form onSubmit={handleSubmit(onSubmit)} noValidate>
+              <DrawerContent>
+                <DrawerCloseButton />
+                <DrawerHeader>Settings</DrawerHeader>
+                <DrawerBody>
+                  <Stack
+                    spacing="5"
+                    px={{ base: '4', md: '6' }}
+                    py={{ base: '5', md: '6' }}
+                  >
+                    <PasswordInput
+                      name="stable-diffusion-api-key"
+                      label="Stable Diffusion API Key"
+                      control={control}
+                    />
+                  </Stack>
+                </DrawerBody>
 
-              <DrawerBody>
-                <Stack
-                  spacing="5"
-                  px={{ base: '4', md: '6' }}
-                  py={{ base: '5', md: '6' }}
-                >
-                  <FormControl id="stable-diffusion-api-key">
-                    <FormLabel>Stable Diffusion API key</FormLabel>
-                    <PasswordInput />
-                  </FormControl>
-                </Stack>
-              </DrawerBody>
-
-              <DrawerFooter>
-                <Button variant="outline" mr={3} onClick={props.onClose}>
-                  Cancel
-                </Button>
-                <Button colorScheme="blue">Save</Button>
-              </DrawerFooter>
-            </DrawerContent>
+                <DrawerFooter>
+                  <Button variant="outline" mr={3} onClick={props.onClose}>
+                    Cancel
+                  </Button>
+                  <Button
+                    colorScheme="blue"
+                    isLoading={isSubmitting}
+                    type="submit"
+                  >
+                    Save
+                  </Button>
+                </DrawerFooter>
+              </DrawerContent>
+            </form>
           </Drawer>
         </div>
       </DarkMode>
