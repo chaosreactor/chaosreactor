@@ -42,7 +42,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.chaosreactor.dev",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -68,11 +68,9 @@
     },
     "windows": [
       {
-        "fullscreen": false,
-        "height": 600,
+        "fullscreen": true,
         "resizable": true,
-        "title": "desktop",
-        "width": 800
+        "title": "Chaos Reactor"
       }
     ]
   }
