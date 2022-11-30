@@ -10,6 +10,7 @@ import {
   DrawerFooter,
   DarkMode,
   Stack,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { invoke } from '@tauri-apps/api/tauri';
 
@@ -39,16 +40,19 @@ export function SettingsDrawer(props: SettingsDrawerProps) {
   });
 
   useEffect(() => {
-    invoke('get_api_key', { key: 'stableDiffusionApiKey' }).then((apiKey) =>
-      console.log('apiKey', apiKey)
-    );
+    invoke('get_api_key', { key: 'stableDiffusionApiKey' }).then((apiKey) => {
+      const key = apiKey as string;
+      setValue('stable-diffusion-api-key', key);
+    });
   }, []);
 
-  const onSubmit = async (data: never) =>
+  const onSubmit = async (data: never) => {
     await invoke('set_api_key', {
       key: 'stableDiffusionApiKey',
       value: data['stable-diffusion-api-key'],
     });
+    props.onClose();
+  };
 
   return (
     <ChakraProvider theme={chaosTheme}>
