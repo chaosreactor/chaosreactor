@@ -17,6 +17,7 @@ fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
 }
 
+// Set an API key on the system keychain.
 #[tauri::command]
 fn set_api_key(key: &str, value: &str) {
     let service = "com.chaosreactor.settings.".to_owned() + key;
@@ -24,6 +25,20 @@ fn set_api_key(key: &str, value: &str) {
     let key = keyring::Entry::new(&service, &username);
 
     key.set_password(&value).unwrap();
+}
+
+// Get an API key from the keychain.
+#[tauri::command]
+fn get_api_key(key: &str) -> String {
+    let service = "com.chaosreactor.settings.".to_owned() + key;
+    let username = whoami::username();
+    let key = keyring::Entry::new(&service, &username);
+
+    let password = match key.get_password() {
+        Ok(password) => password,
+        Err(_) => "".to_string(),
+    };
+    password
 }
 
 // The directory for Chaos Reactor app data.
@@ -102,8 +117,7 @@ fn main() {
     init_reactor_db().unwrap();
 
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet])
-        .invoke_handler(tauri::generate_handler![set_api_key])
+        .invoke_handler(tauri::generate_handler![greet, set_api_key, get_api_key])
         .setup(|app| {
             let window = app.get_window("main").unwrap();
 

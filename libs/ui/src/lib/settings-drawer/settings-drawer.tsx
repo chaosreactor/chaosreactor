@@ -1,4 +1,4 @@
-import { useForm, Fields } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import {
   Button,
   Drawer,
@@ -9,9 +9,6 @@ import {
   DrawerContent,
   DrawerFooter,
   DarkMode,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
   Stack,
 } from '@chakra-ui/react';
 import { invoke } from '@tauri-apps/api/tauri';
@@ -21,6 +18,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import chaosTheme from '../../theme';
 import '@fontsource/work-sans';
 import styles from './settings-drawer.module.css';
+import { useEffect } from 'react';
 
 /* eslint-disable-next-line */
 export interface SettingsDrawerProps {
@@ -32,12 +30,19 @@ export function SettingsDrawer(props: SettingsDrawerProps) {
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
-  } = useForm<Fields>({
+  } = useForm({
     defaultValues: {
       'stable-diffusion-api-key': '',
     },
   });
+
+  useEffect(() => {
+    invoke('get_api_key', { key: 'stableDiffusionApiKey' }).then((apiKey) =>
+      console.log('apiKey', apiKey)
+    );
+  }, []);
 
   const onSubmit = async (data: never) =>
     await invoke('set_api_key', {
