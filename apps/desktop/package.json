@@ -20,7 +20,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.7",
-    "tauri-plugin-store-api": "github:tauri-apps/tauri-plugin-store#dev",
     "zod": "^3.19.1"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-import { useForm, Resolver, SubmitHandler } from 'react-hook-form';
+import { useForm, Fields } from 'react-hook-form';
 import {
   Button,
   Drawer,
@@ -25,41 +25,20 @@ import styles from './settings-drawer.module.css';
 export interface SettingsDrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  useStorage: (key: any, defaultValue: any, storeName?: string) => any[];
 }
 
-type FormValues = {
-  stableDiffusionApiKey: string;
-};
-
 export function SettingsDrawer(props: SettingsDrawerProps) {
-  const [stableDiffusionApiKey, setStableDiffusionApiKey] = props.useStorage(
-    'stableDiffusionApiKey',
-    ''
-  );
-
-  const resolver: Resolver<FormValues> = async (values) => {
-    return {
-      values,
-      errors: {},
-      defaultValues: {
-        stableDiffusionApiKey: stableDiffusionApiKey,
-      },
-    };
-  };
-
   const {
     control,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormValues>({
-    resolver,
+  } = useForm<Fields>({
+    defaultValues: {
+      'stable-diffusion-api-key': '',
+    },
   });
 
-  // Store settings in the settings file.
-  const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
-    // setStableDiffusionApiKey(data.stableDiffusionApiKey);
-  };
+  const onSubmit = (data: unknown) => console.log(data);
 
   return (
     <ChakraProvider theme={chaosTheme}>

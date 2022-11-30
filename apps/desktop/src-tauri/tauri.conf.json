@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "Chaos Reactor",
+    "productName": "desktop",
     "version": "0.0.0"
   },
   "tauri": {
@@ -42,7 +42,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.chaosreactor.dev",
+      "identifier": "com.tauri.dev",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -71,7 +71,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "Chaos Reactor",
+        "title": "desktop",
         "width": 800
       }
     ]

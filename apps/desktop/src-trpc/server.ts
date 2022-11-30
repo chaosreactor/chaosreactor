@@ -2,7 +2,6 @@
 import * as http from 'http';
 import { createHTTPHandler } from '@trpc/server/adapters/standalone';
 import { z } from 'zod';
-import { exists, BaseDirectory } from '@tauri-apps/api/fs';
 
 import migrateToLatest from './db/migrator';
 import { procedure, publicProcedure, router } from './trpc';

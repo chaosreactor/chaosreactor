@@ -22,9 +22,7 @@ import '@fontsource/work-sans';
 import styles from './nav.module.css';
 
 /* eslint-disable-next-line */
-export interface NavProps {
-  useStorage: (key: any, defaultValue: any, storeName?: string) => any[];
-}
+export interface NavProps {}
 
 export function Nav(props: NavProps) {
   const isDesktop = true;
@@ -79,11 +77,7 @@ export function Nav(props: NavProps) {
             </Flex>
           </Container>
 
-          <SettingsDrawer
-            isOpen={isOpen}
-            onClose={onClose}
-            useStorage={props.useStorage}
-          />
+          <SettingsDrawer isOpen={isOpen} onClose={onClose} />
         </Box>
       </DarkMode>
     </ChakraProvider>

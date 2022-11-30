@@ -4,7 +4,6 @@ use tauri::{
     api::process::{Command, CommandEvent},
     Manager,
 };
-use tauri_plugin_store::PluginBuilder;
 
 #[cfg_attr(
     all(not(debug_assertions), target_os = "windows"),
@@ -93,7 +92,6 @@ fn main() {
 
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![greet])
-        .plugin(PluginBuilder::default().build())
         .setup(|app| {
             let window = app.get_window("main").unwrap();
 

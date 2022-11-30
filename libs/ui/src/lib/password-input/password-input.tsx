@@ -20,7 +20,6 @@ export interface PasswordInputProps {
   control: Control;
   name: string;
   label: string;
-  value: string | null;
 }
 
 export function PasswordInput(props: PasswordInputProps) {
