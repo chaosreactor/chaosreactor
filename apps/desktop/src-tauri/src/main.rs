@@ -5,6 +5,10 @@ use tauri::{
     Manager,
 };
 
+extern crate keyring;
+
+use std::error::Error;
+
 #[cfg_attr(
     all(not(debug_assertions), target_os = "windows"),
     windows_subsystem = "windows"
@@ -13,6 +17,15 @@ use tauri::{
 #[tauri::command]
 fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
+}
+
+#[tauri::command]
+fn set_api_key(key: &str, value: &str) {
+    let service = "chaosreactor_".to_owned() + key;
+    let username = whoami::username();
+    let key = keyring::Entry::new(&service, &username);
+
+    key.set_password(&value);
 }
 
 // The directory for Chaos Reactor app data.
@@ -92,6 +105,7 @@ fn main() {
 
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![set_api_key])
         .setup(|app| {
             let window = app.get_window("main").unwrap();
 

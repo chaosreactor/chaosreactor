@@ -14,6 +14,7 @@ import {
   FormLabel,
   Stack,
 } from '@chakra-ui/react';
+import { invoke } from '@tauri-apps/api/tauri';
 
 import { PasswordInput } from '../password-input/password-input';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -38,7 +39,11 @@ export function SettingsDrawer(props: SettingsDrawerProps) {
     },
   });
 
-  const onSubmit = (data: unknown) => console.log(data);
+  const onSubmit = async (data: never) =>
+    await invoke('set_api_key', {
+      key: 'stableDiffusionApiKey',
+      value: data['stable-diffusion-api-key'],
+    });
 
   return (
     <ChakraProvider theme={chaosTheme}>
