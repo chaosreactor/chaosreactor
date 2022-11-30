@@ -21,11 +21,11 @@ fn greet(name: &str) -> String {
 
 #[tauri::command]
 fn set_api_key(key: &str, value: &str) {
-    let service = "chaosreactor_".to_owned() + key;
+    let service = "com.chaosreactor.settings.".to_owned() + key;
     let username = whoami::username();
     let key = keyring::Entry::new(&service, &username);
 
-    key.set_password(&value);
+    key.set_password(&value).unwrap();
 }
 
 // The directory for Chaos Reactor app data.
