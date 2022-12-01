@@ -1,7 +1,7 @@
 import { useState, createRef } from 'react';
 import { invoke } from '@tauri-apps/api/tauri';
 
-import { Nav, Playfield } from '../../../../libs/ui/src/index';
+import { Nav, Playfield, CommandBar } from '../../../../libs/ui/src/index';
 import { trpc } from '../utils/trpc';
 
 function App() {
@@ -19,8 +19,9 @@ function App() {
 
   return (
     <div id="wrapper" ref={wrapper}>
+      <CommandBar />
       <Nav />
-      <Playfield height='100%' width='100%' />
+      <Playfield height="100%" width="100%" />
     </div>
   );
 }
