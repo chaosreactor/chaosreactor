@@ -25,10 +25,7 @@ export function CommandBar(props: CommandBarProps) {
       <Command value={value} onValueChange={(v) => setValue(v)}>
         <div cmdk-framer-header="">
           <SearchIcon />
-          <Command.Input
-            autoFocus
-            placeholder="Find components, packages, and interactions..."
-          />
+          <Command.Input autoFocus placeholder="Search for blocks" />
         </div>
         <Command.List>
           <div cmdk-framer-items="">
