@@ -1,0 +1,42 @@
+.node {
+  border: 1px solid #0984e3;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  padding: 12px;
+  width: 160px;
+  text-align: center;
+  font-weight: bold;
+  color: #0984e3;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.node:hover {
+  background: radial-gradient(
+    circle at 18.7% 37.8%,
+    rgb(90, 152, 129) 100%,
+    rgb(6, 51, 35) 40%
+  );
+}
+
+.content {
+  pointer-events: none;
+}
+
+.handle {
+  visibility: hidden;
+}
+
+.placeholder {
+  width: 183px;
+  height: 118px;
+  line-height: 88px;
+  /* green/900 */
+  background: #1c4536;
+  /* green/600 */
+  border: 3px dashed #258565;
+  border-radius: 20px;
+  color: #bbb;
+  box-shadow: none;
+}

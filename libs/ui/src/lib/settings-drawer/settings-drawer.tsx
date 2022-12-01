@@ -10,7 +10,6 @@ import {
   DrawerFooter,
   DarkMode,
   Stack,
-  useDisclosure,
 } from '@chakra-ui/react';
 import { invoke } from '@tauri-apps/api/tauri';
 
