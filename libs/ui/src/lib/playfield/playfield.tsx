@@ -4,8 +4,10 @@ import ReactFlow, {
   BackgroundVariant,
   Node,
 } from 'reactflow';
+import shallow from 'zustand/shallow';
 import 'reactflow/dist/style.css';
 
+import useAppStore, {AppState} from '../../store';
 import blockTypes from './blocks';
 import styles from './playfield.module.css';
 
@@ -15,26 +17,27 @@ export interface PlayfieldProps {
   width: string;
 }
 
-// Initial playfield setup: a placeholder block which reveals the block
-// selector when clicked.
-const defaultNodes: Node[] = [
-  {
-    id: '1',
-    data: { label: 'Add first block' },
-    position: { x: 0, y: 150 },
-    type: 'placeholder',
-  },
-];
-
 const fitViewOptions = {
   padding: 0.95,
 };
+
+const selector = (state: AppState) => ({
+  nodes: state.nodes,
+  edges: state.edges,
+  onNodesChange: state.onNodesChange,
+  onEdgesChange: state.onEdgesChange,
+  onConnect: state.onConnect,
+});
 
 export function Playfield(props: PlayfieldProps) {
   const proOptions = {
     account: 'paid-pro',
     hideAttribution: true,
   };
+  const { nodes, edges, onNodesChange, onEdgesChange, onConnect } = useAppStore(
+    selector,
+    shallow
+  );
 
   return (
     <div
@@ -43,7 +46,11 @@ export function Playfield(props: PlayfieldProps) {
       style={{ height: props.height, width: props.width, maxHeight: '100%' }}
     >
       <ReactFlow
-        defaultNodes={defaultNodes}
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
         fitView
         fitViewOptions={fitViewOptions}
         minZoom={0.8}
