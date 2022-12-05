@@ -2,7 +2,7 @@ import { useState, createRef } from 'react';
 import { invoke } from '@tauri-apps/api/tauri';
 
 import { Nav, Playfield, CommandBar } from '../../../../libs/ui/src/index';
-import useAppStore from '../store';
+import useAppStore from '../../../../libs/ui/src/store';
 import { trpc } from '../utils/trpc';
 
 function App() {
