@@ -18,11 +18,14 @@ export const actions = [
 ];
 
 /* eslint-disable-next-line */
-export interface CommandBarProps {}
+export interface CommandBarProps {
+  isOpen: boolean;
+  setOpen: (open: boolean) => void;
+}
 
 export function CommandBar(props: CommandBarProps) {
   const [value, setValue] = useState('button');
-  const [open, setOpen] = useState(false);
+  const { isOpen, setOpen } = props;
 
   const onValueChange = (value: string) => {
     setValue(value);
@@ -33,16 +36,16 @@ export function CommandBar(props: CommandBarProps) {
     const down = (e: KeyboardEvent) => {
       if (e.key === 'k' && e.metaKey) {
         if ((e.target as HTMLElement).tagName === 'BODY')
-          setOpen((open) => !open);
+          setOpen(!isOpen);
       }
     };
 
     document.body.addEventListener('keydown', down);
     return () => document.body.removeEventListener('keydown', down);
-  }, [open]);
+  }, [setOpen, isOpen]);
 
   return (
-    <Command.Dialog open={open} onOpenChange={setOpen}>
+    <Command.Dialog open={isOpen} onOpenChange={setOpen}>
       <div className={styles['framer']}>
         <Command value={value} onValueChange={onValueChange}>
           <div cmdk-framer-header="">

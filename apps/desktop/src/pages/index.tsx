@@ -2,6 +2,7 @@ import { useState, createRef } from 'react';
 import { invoke } from '@tauri-apps/api/tauri';
 
 import { Nav, Playfield, CommandBar } from '../../../../libs/ui/src/index';
+import useAppStore from '../store';
 import { trpc } from '../utils/trpc';
 
 function App() {
@@ -15,11 +16,14 @@ function App() {
 
   const wrapper = createRef<HTMLDivElement>();
 
+  const commandBarOpen = useAppStore((state) => state.commandBarOpen);
+  const setCommandBarOpen = useAppStore((state) => state.setCommandBarOpen);
+
   const reactor = trpc.reactorById.useQuery('1');
 
   return (
     <div id="wrapper" ref={wrapper}>
-      <CommandBar />
+      <CommandBar isOpen={commandBarOpen} setOpen={setCommandBarOpen} />
       <Nav />
       <Playfield height="100%" width="100%" />
     </div>
