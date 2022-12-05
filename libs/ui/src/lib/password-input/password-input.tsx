@@ -1,4 +1,13 @@
-import { Controller, Control } from 'react-hook-form';
+import {
+  Controller,
+  Control,
+  FieldValues,
+  SubmitHandler,
+  DefaultValues,
+  FieldError,
+  FieldPath,
+  UseControllerProps,
+} from 'react-hook-form';
 import {
   Button,
   DarkMode,
@@ -16,13 +25,18 @@ import '@fontsource/work-sans';
 import styles from './password-input.module.css';
 
 /* eslint-disable-next-line */
-export interface PasswordInputProps {
-  control: Control;
-  name: string;
+export interface PasswordInputProps<T extends FieldValues>
+  extends UseControllerProps<T> {
+  error?: FieldError | undefined;
   label: string;
 }
 
-export function PasswordInput(props: PasswordInputProps) {
+export function PasswordInput<T extends FieldValues>({
+  name,
+  control,
+  label,
+  error,
+}: PasswordInputProps<T>) {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
 
@@ -30,14 +44,14 @@ export function PasswordInput(props: PasswordInputProps) {
     <ChakraProvider theme={chaosTheme}>
       <DarkMode>
         <Controller
-          control={props.control}
-          name={props.name}
+          control={control}
+          name={name}
           render={({ field, fieldState: { invalid, error } }) => (
-            <FormControl id={props.name} isInvalid={invalid} mb={5}>
-              <FormLabel htmlFor={props.name}>{props.label}</FormLabel>
+            <FormControl id={name} isInvalid={invalid} mb={5}>
+              <FormLabel htmlFor={name}>{label}</FormLabel>
               <InputGroup size="md">
                 <Input
-                  id={props.name}
+                  id={name}
                   pr="4.5rem"
                   type={show ? 'text' : 'password'}
                   placeholder="Enter password"
@@ -56,5 +70,3 @@ export function PasswordInput(props: PasswordInputProps) {
     </ChakraProvider>
   );
 }
-
-export default PasswordInput;

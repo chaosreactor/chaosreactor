@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler, Control } from 'react-hook-form';
 import {
   Button,
   Drawer,
@@ -26,26 +26,26 @@ export interface SettingsDrawerProps {
   onClose: () => void;
 }
 
+type SettingsFormValues = {
+  'stable-diffusion-api-key': string;
+};
+
 export function SettingsDrawer(props: SettingsDrawerProps) {
   const {
     control,
     handleSubmit,
     setValue,
     formState: { errors, isSubmitting },
-  } = useForm({
-    defaultValues: {
-      'stable-diffusion-api-key': '',
-    },
-  });
+  } = useForm<SettingsFormValues>();
 
   useEffect(() => {
     invoke('get_api_key', { key: 'stableDiffusionApiKey' }).then((apiKey) => {
       const key = apiKey as string;
       setValue('stable-diffusion-api-key', key);
     });
-  }, []);
+  }, [setValue]);
 
-  const onSubmit = async (data: never) => {
+  const onSubmit: SubmitHandler<SettingsFormValues> = async (data: SettingsFormValues) => {
     await invoke('set_api_key', {
       key: 'stableDiffusionApiKey',
       value: data['stable-diffusion-api-key'],
