@@ -2,6 +2,8 @@ import { Command } from 'cmdk';
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 
+import { ImageGeneratorBlock } from '../playfield/blocks/image-generator';
+
 import styles from './command-bar.module.css';
 
 // Default command bar options.
@@ -21,9 +23,13 @@ export interface CommandBarProps {}
 export function CommandBar(props: CommandBarProps) {
   const [value, setValue] = useState('button');
 
+  const onValueChange = (value: string) => {
+    setValue(value);
+  };
+
   return (
     <div className={styles['framer']}>
-      <Command value={value} onValueChange={(v) => setValue(v)}>
+      <Command value={value} onValueChange={onValueChange}>
         <div cmdk-framer-header="">
           <SearchIcon />
           <Command.Input autoFocus placeholder="Search for blocks" />
@@ -64,7 +70,7 @@ export function CommandBar(props: CommandBarProps) {
             </div>
             <hr cmdk-framer-separator="" />
             <div cmdk-framer-right="">
-              {value === 'button' && <Button />}
+              {value === 'generate image' && <ImageGeneratorBlock />}
               {value === 'input' && <Input />}
               {value === 'badge' && <Badge />}
               {value === 'radio' && <Radio />}
@@ -76,10 +82,6 @@ export function CommandBar(props: CommandBarProps) {
       </Command>
     </div>
   );
-}
-
-function Button() {
-  return <button>Primary</button>;
 }
 
 function Input() {
