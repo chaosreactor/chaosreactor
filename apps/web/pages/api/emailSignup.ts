@@ -1,9 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 
-const HUBSPOT_API_KEY = process.env.HUBSPOT_API_KEY;
-const HUBSPOT_PORTAL_ID = process.env.HUBSPOT_PORTAL_ID;
-const HUBSPOT_FORM_GUID = process.env.HUBSPOT_FORM_GUID;
+const MAILCHIMP_API_KEY = process.env.MAILCHIMP_API_KEY;
+const MAILCHIMP_SERVER_PREFIX = process.env.MAILCHIMP_SERVER_PREFIX;
+const MAILCHIMP_LIST_ID = process.env.MAILCHIMP_LIST_ID || '';
+
+import mailchimp from '@mailchimp/mailchimp_marketing';
+
+mailchimp.setConfig({
+  apiKey: MAILCHIMP_API_KEY,
+  server: MAILCHIMP_SERVER_PREFIX,
+});
 
 type Response = {
   success: boolean;
@@ -18,18 +25,13 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
   }
 
   try {
-    const response = await axios({
-      method: 'POST',
-      url: `https://api.hsforms.com/submissions/v3/integration/secure/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}\?hapikey\=${HUBSPOT_API_KEY}`,
-      data: {
-        fields: [
-          { name: 'email', value: email },
-          { name: 'firstname', value: firstName },
-          { name: 'lastname', value: lastName },
-        ],
-        context: { pageUri },
+    const response = await mailchimp.lists.addListMember(MAILCHIMP_LIST_ID, {
+      email_address: email,
+      status: 'pending',
+      merge_fields: {
+        FNAME: firstName,
+        LNAME: lastName,
       },
-      headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
     console.error(error);

@@ -35,100 +35,70 @@ const SignupForm = ({ className = '' }) => {
     }
   );
 
-  // Clear the form on successful submitting it
-  useEffect(() => {
-    if (data?.success === true && !loading) {
-      setEmail('');
-    }
-  }, [data?.success, loading]);
-
-  // Get the url the user is currently visiting.
-  // Optional, but enriches the data we have in HubSpot.
-  useEffect(() => {
-    setPageUri(window.location.href);
-  });
-
-  if (data)
-    return (
-      <ChakraProvider theme={chaosTheme}>
-        <DarkMode>
-          <div className={className}>
-            <Box as="section" py={{ base: '4', md: '8' }}>
-              <Container maxW="3xl">
-                <Box
-                  bg="bg-surface"
-                  boxShadow={useColorModeValue('sm', 'sm-dark')}
-                  borderRadius="lg"
-                  p={{ base: '4', md: '6' }}
-                >
-                  <Stack spacing="5">
-                    <Stack spacing="1">
-                      <Text fontSize="2xl" fontWeight="medium" color="white">
-                        Opt-in to emails 🧪
-                      </Text>
-                      <Text fontSize="xl" color="muted">
-                        Click the link in the email to confirm your
-                        subscription, and we’ll send you the Discord invite
-                        link!
-                      </Text>
-                    </Stack>
-                  </Stack>
-                </Box>
-              </Container>
-            </Box>
-          </div>
-        </DarkMode>
-      </ChakraProvider>
-    );
+  let rightPanel;
+  if (!data) {
+    rightPanel = <>
+      <Text fontSize="2xl" fontWeight="medium" color="white">
+        Thank you!
+      </Text>
+      <Text fontSize="xl" color="muted">
+        Check your email to confirm your subscription.
+      </Text>
+    </>;
+  } else {
+    rightPanel = <>
+      <FormControl>
+        <FormLabel color="white" htmlFor="firstName">
+          First name
+        </FormLabel>
+        <Input
+          id="firstName"
+          type="text"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+      </FormControl>
+      <FormControl>
+        <FormLabel color="white" htmlFor="lastName">
+          Last name
+        </FormLabel>
+        <Input
+          id="lastName"
+          type="text"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+      </FormControl>
+      <FormControl isRequired>
+        <FormLabel color="white" htmlFor="email">
+          Email
+        </FormLabel>
+        <Input
+          id="email"
+          type="email"
+          value={email}
+          placeholder="me@example.com"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </FormControl>
+      <Button
+        fontWeight="bold"
+        textTransform="capitalize"
+        variant="primary"
+        type={'submit'}
+        onClick={() => refetch()}
+        disabled={loading}
+      >
+        Sign up
+      </Button>
+    </>;
+  }
 
   return (
     <ChakraProvider theme={chaosTheme}>
       <Container minW="max-content" px="0" py={{ base: '0' }}>
         <Stack spacing="8">
-          <FormControl>
-            <FormLabel color="white" htmlFor="firstName">
-              First name
-            </FormLabel>
-            <Input
-              id="firstName"
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-          </FormControl>
-          <FormControl>
-            <FormLabel color="white" htmlFor="lastName">
-              Last name
-            </FormLabel>
-            <Input
-              id="lastName"
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel color="white" htmlFor="email">
-              Email
-            </FormLabel>
-            <Input
-              id="email"
-              type="email"
-              value={email}
-              placeholder="me@example.com"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </FormControl>
-          <Button
-            fontWeight="bold"
-            textTransform="capitalize"
-            variant="primary"
-            type={'submit'}
-            onClick={() => refetch()}
-            disabled={loading}
-          >
-            Sign up
-          </Button>
+          { rightPanel }
         </Stack>
       </Container>
     </ChakraProvider>
