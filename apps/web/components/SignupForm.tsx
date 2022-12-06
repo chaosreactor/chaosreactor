@@ -36,7 +36,7 @@ const SignupForm = ({ className = '' }) => {
   );
 
   let rightPanel;
-  if (!data) {
+  if (data) {
     rightPanel = <>
       <Text fontSize="2xl" fontWeight="medium" color="white">
         Thank you!
