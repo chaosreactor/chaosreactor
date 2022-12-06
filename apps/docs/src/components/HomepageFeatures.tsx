@@ -14,7 +14,7 @@ const FeatureList: FeatureItem[] = [
     image: '/img/content_creation.svg',
     description: (
       <>
-        Learn about the Chaos Reactor product and how to get started generating content with AI using Chaos Reactor.
+        Read help articles and watch tutorials for how to get started creating AI-generated content with Chaos Reactor.
       </>
     ),
   },
@@ -23,17 +23,16 @@ const FeatureList: FeatureItem[] = [
     image: '/img/development.svg',
     description: (
       <>
-        Get started contributing to Chaos Reactor development and learn about the project's architecture.
+        Contribute to Chaos Reactor development and learn about the project's architecture.
       </>
     ),
-
   },
   {
     title: 'Learn about the Chaos Design System',
     image: '/img/design.svg',
     description: (
       <>
-        Read about our design principles, process, and the components that make up the Chaos Design System.
+        Learn about the design principles and components and get involved with our open design process. 
       </>
     ),
   },

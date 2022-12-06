@@ -3,5 +3,6 @@
   "sourceRoot": "apps/web/",
   "projectType": "application",
   "tags": [],
-  "implicitDependencies": ["ui"]
+  "implicitDependencies": ["ui"],
+  "name": "web"
 }
