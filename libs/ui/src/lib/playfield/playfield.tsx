@@ -7,7 +7,8 @@ import ReactFlow, {
 import shallow from 'zustand/shallow';
 import 'reactflow/dist/style.css';
 
-import useAppStore, {AppState} from '../../store';
+import { events, useBus } from '../../bus';
+import useAppStore, { AppState } from '../../store';
 import blockTypes from './blocks';
 import styles from './playfield.module.css';
 
@@ -34,10 +35,15 @@ export function Playfield(props: PlayfieldProps) {
     account: 'paid-pro',
     hideAttribution: true,
   };
+
   const { nodes, edges, onNodesChange, onEdgesChange, onConnect } = useAppStore(
     selector,
     shallow
   );
+
+  useBus(events.blocks.add, (payload) => {
+    console.log('Playfield: Add block', payload);
+  });
 
   return (
     <div

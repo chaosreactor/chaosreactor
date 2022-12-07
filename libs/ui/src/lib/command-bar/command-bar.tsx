@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import shallow from 'zustand/shallow';
 
+import { dispatch, events } from '../../bus';
 import useAppStore, { AppState } from '../../store';
 
 import { ImageGeneratorBlock } from '../playfield/blocks/image-generator';
@@ -23,7 +24,7 @@ const selector = (state: AppState) => ({
  * @param blockType The block type to add.
  */
 const triggerBlockAdd = (blockType: string | undefined) => {
-  console.log('Trigger block', blockType);
+  dispatch({ type: events.blocks.add, payload: { blockType } });
 };
 
 export function CommandBar(props: CommandBarProps) {
@@ -32,7 +33,6 @@ export function CommandBar(props: CommandBarProps) {
   const { commandBarOpen, setCommandBarOpen } = useAppStore(selector, shallow);
 
   const onValueChange = (value: string) => {
-    console.log('onValueChange', value);
     setValue(value);
   };
 
@@ -71,7 +71,11 @@ export function CommandBar(props: CommandBarProps) {
 
               const selectedValue = selected?.getAttribute('data-value');
 
+              // Trigger the addition of the selected block.
               triggerBlockAdd(selectedValue || '');
+
+              // Close the command bar.
+              setCommandBarOpen(false);
             }
           }}
         >
@@ -87,6 +91,7 @@ export function CommandBar(props: CommandBarProps) {
                     value="Generate image"
                     subtitle="Text description to image"
                     onValueChange={onValueChange}
+                    setCommandBarOpen={setCommandBarOpen}
                   >
                     <Icon icon="noto:framed-picture" />
                   </Item>
@@ -94,6 +99,7 @@ export function CommandBar(props: CommandBarProps) {
                     value="Generate text"
                     subtitle="Expand a prompt"
                     onValueChange={onValueChange}
+                    setCommandBarOpen={setCommandBarOpen}
                   >
                     <Icon icon="noto:memo" />
                   </Item>
@@ -103,6 +109,7 @@ export function CommandBar(props: CommandBarProps) {
                     value="Classify"
                     subtitle="Group, identify, or categorize"
                     onValueChange={onValueChange}
+                    setCommandBarOpen={setCommandBarOpen}
                   >
                     <Icon icon="noto:bullseye" />
                   </Item>
@@ -112,6 +119,7 @@ export function CommandBar(props: CommandBarProps) {
                     value="Images"
                     subtitle="Use existing images"
                     onValueChange={onValueChange}
+                    setCommandBarOpen={setCommandBarOpen}
                   >
                     <Icon icon="noto:framed-picture" />
                   </Item>
@@ -119,6 +127,7 @@ export function CommandBar(props: CommandBarProps) {
                     value="Text"
                     subtitle="Enter text or select files"
                     onValueChange={onValueChange}
+                    setCommandBarOpen={setCommandBarOpen}
                   >
                     <Icon icon="noto:memo" />
                   </Item>
@@ -126,6 +135,7 @@ export function CommandBar(props: CommandBarProps) {
                     value="Movies"
                     subtitle="Select movie files or URLs"
                     onValueChange={onValueChange}
+                    setCommandBarOpen={setCommandBarOpen}
                   >
                     <Icon icon="noto:movie-camera" />
                   </Item>
@@ -181,16 +191,24 @@ function Item({
   children,
   value,
   onValueChange,
+  setCommandBarOpen,
   subtitle,
 }: {
   children: React.ReactNode;
   value: string;
   onValueChange: (value: string) => void;
+  setCommandBarOpen: (open: boolean) => void;
   subtitle: string;
 }) {
   const onSelect = (e: unknown) => {
+    // Change the value.
     onValueChange(value);
+
+    // Trigger the addition of a new block.
     triggerBlockAdd(value.toLowerCase());
+
+    // Close the command bar.
+    setCommandBarOpen(false);
   };
 
   return (
