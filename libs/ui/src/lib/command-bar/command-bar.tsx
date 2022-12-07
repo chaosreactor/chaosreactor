@@ -1,6 +1,7 @@
 import { Command } from 'cmdk';
 import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
+import useAppStore from '../../store';
 
 import { ImageGeneratorBlock } from '../playfield/blocks/image-generator';
 
@@ -18,14 +19,13 @@ export const actions = [
 ];
 
 /* eslint-disable-next-line */
-export interface CommandBarProps {
-  isOpen: boolean;
-  setOpen: (open: boolean) => void;
-}
+export interface CommandBarProps {}
 
 export function CommandBar(props: CommandBarProps) {
   const [value, setValue] = useState('button');
-  const { isOpen, setOpen } = props;
+
+  const commandBarOpen = useAppStore((state) => state.commandBarOpen);
+  const setCommandBarOpen = useAppStore((state) => state.setCommandBarOpen);
 
   const onValueChange = (value: string) => {
     setValue(value);
@@ -36,16 +36,16 @@ export function CommandBar(props: CommandBarProps) {
     const down = (e: KeyboardEvent) => {
       if (e.key === 'k' && e.metaKey) {
         if ((e.target as HTMLElement).tagName === 'BODY')
-          setOpen(!isOpen);
+          setCommandBarOpen(!commandBarOpen);
       }
     };
 
     document.body.addEventListener('keydown', down);
     return () => document.body.removeEventListener('keydown', down);
-  }, [setOpen, isOpen]);
+  }, [setCommandBarOpen, commandBarOpen]);
 
   return (
-    <Command.Dialog open={isOpen} onOpenChange={setOpen}>
+    <Command.Dialog open={commandBarOpen} onOpenChange={setCommandBarOpen}>
       <div className={styles['framer']}>
         <Command value={value} onValueChange={onValueChange}>
           <div cmdk-framer-header="">
