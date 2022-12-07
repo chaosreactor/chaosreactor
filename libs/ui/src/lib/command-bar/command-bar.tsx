@@ -1,33 +1,38 @@
 import { Command } from 'cmdk';
 import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
-import useAppStore from '../../store';
+import shallow from 'zustand/shallow';
+
+import useAppStore, { AppState } from '../../store';
 
 import { ImageGeneratorBlock } from '../playfield/blocks/image-generator';
 
 import styles from './command-bar.module.css';
 
-// Default command bar options.
-export const actions = [
-  {
-    id: 'add-block',
-    name: 'Add block',
-    shortcut: ['b'],
-    keywords: 'blocks add',
-    perform: () => console.log('Add block'),
-  },
-];
-
 /* eslint-disable-next-line */
 export interface CommandBarProps {}
+
+const selector = (state: AppState) => ({
+  commandBarOpen: state.commandBarOpen,
+  setCommandBarOpen: state.setCommandBarOpen,
+});
+
+/**
+ * Trigger the addition of a new block to the Playfield.
+ *
+ * @param blockType The block type to add.
+ */
+const triggerBlockAdd = (blockType: string | undefined) => {
+  console.log('Trigger block', blockType);
+};
 
 export function CommandBar(props: CommandBarProps) {
   const [value, setValue] = useState('button');
 
-  const commandBarOpen = useAppStore((state) => state.commandBarOpen);
-  const setCommandBarOpen = useAppStore((state) => state.setCommandBarOpen);
+  const { commandBarOpen, setCommandBarOpen } = useAppStore(selector, shallow);
 
   const onValueChange = (value: string) => {
+    console.log('onValueChange', value);
     setValue(value);
   };
 
@@ -47,7 +52,29 @@ export function CommandBar(props: CommandBarProps) {
   return (
     <Command.Dialog open={commandBarOpen} onOpenChange={setCommandBarOpen}>
       <div className={styles['framer']}>
-        <Command value={value} onValueChange={onValueChange}>
+        <Command
+          value={value}
+          onValueChange={onValueChange}
+          onKeyDown={(e) => {
+            // Escape goes to previous page
+            // Backspace goes to previous page when search is empty
+            if (e.key === 'Enter') {
+              e.preventDefault();
+
+              // Since we can't see the search terms, we have to use the value
+              // of the selected item in the DOM. This is a hack, but it works.
+              // @see https://github.com/pacocoursey/cmdk/issues/68
+
+              const selected = document.querySelector(
+                '[aria-selected="true"]'
+              ) as HTMLElement;
+
+              const selectedValue = selected?.getAttribute('data-value');
+
+              triggerBlockAdd(selectedValue || '');
+            }
+          }}
+        >
           <div cmdk-framer-header="">
             <SearchIcon />
             <Command.Input autoFocus placeholder="Search for blocks" />
@@ -59,10 +86,15 @@ export function CommandBar(props: CommandBarProps) {
                   <Item
                     value="Generate image"
                     subtitle="Text description to image"
+                    onValueChange={onValueChange}
                   >
                     <Icon icon="noto:framed-picture" />
                   </Item>
-                  <Item value="Generate text" subtitle="Expand a prompt">
+                  <Item
+                    value="Generate text"
+                    subtitle="Expand a prompt"
+                    onValueChange={onValueChange}
+                  >
                     <Icon icon="noto:memo" />
                   </Item>
                 </Command.Group>
@@ -70,18 +102,31 @@ export function CommandBar(props: CommandBarProps) {
                   <Item
                     value="Classify"
                     subtitle="Group, identify, or categorize"
+                    onValueChange={onValueChange}
                   >
                     <Icon icon="noto:bullseye" />
                   </Item>
                 </Command.Group>
                 <Command.Group heading="Source data">
-                  <Item value="Images" subtitle="Use existing images">
+                  <Item
+                    value="Images"
+                    subtitle="Use existing images"
+                    onValueChange={onValueChange}
+                  >
                     <Icon icon="noto:framed-picture" />
                   </Item>
-                  <Item value="Text" subtitle="Enter text or select files">
+                  <Item
+                    value="Text"
+                    subtitle="Enter text or select files"
+                    onValueChange={onValueChange}
+                  >
                     <Icon icon="noto:memo" />
                   </Item>
-                  <Item value="Movies" subtitle="Select movie files or URLs">
+                  <Item
+                    value="Movies"
+                    subtitle="Select movie files or URLs"
+                    onValueChange={onValueChange}
+                  >
                     <Icon icon="noto:movie-camera" />
                   </Item>
                 </Command.Group>
@@ -135,14 +180,21 @@ function Container() {
 function Item({
   children,
   value,
+  onValueChange,
   subtitle,
 }: {
   children: React.ReactNode;
   value: string;
+  onValueChange: (value: string) => void;
   subtitle: string;
 }) {
+  const onSelect = (e: unknown) => {
+    onValueChange(value);
+    triggerBlockAdd(value.toLowerCase());
+  };
+
   return (
-    <Command.Item value={value} onSelect={() => {}}>
+    <Command.Item value={value} onSelect={onSelect}>
       <div cmdk-framer-icon-wrapper="">{children}</div>
       <div cmdk-framer-item-meta="">
         {value}
@@ -150,10 +202,6 @@ function Item({
       </div>
     </Command.Item>
   );
-}
-
-function ButtonIcon() {
-  return <Icon icon="noto:collision" />;
 }
 
 function SearchIcon() {
