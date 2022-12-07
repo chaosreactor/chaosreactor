@@ -16,6 +16,9 @@ import {
 export interface AppState {
   commandBarOpen: boolean;
   setCommandBarOpen: (open: boolean) => void;
+  // The block that is currently selected in the command bar.
+  selectedBlockType?: string;
+  setSelectedBlockType: (block: string) => void;
   nodes: Node[];
   edges: Edge[];
   onNodesChange: OnNodesChange;
@@ -36,9 +39,11 @@ const defaultNodes: Node[] = [
 
 const useAppStore = create<AppState>((set, get) => ({
   commandBarOpen: false,
-  // The block that is currently selected in the command bar.
-  selectedBlock: null,
   setCommandBarOpen: (open: boolean) => set({ commandBarOpen: open }),
+
+  selectedBlockType: '',
+  setSelectedBlockType: (block: string) => set({ selectedBlockType: block }),
+
   nodes: defaultNodes,
   edges: [],
   onNodesChange: (changes: NodeChange[]) => {

@@ -1,8 +1,9 @@
 import { Command } from 'cmdk';
 import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
-import useAppStore from '../../store';
+import shallow from 'zustand/shallow';
 
+import useAppStore, { AppState } from '../../store';
 import { ImageGeneratorBlock } from '../playfield/blocks/image-generator';
 
 import styles from './command-bar.module.css';
@@ -21,14 +22,23 @@ export const actions = [
 /* eslint-disable-next-line */
 export interface CommandBarProps {}
 
-export function CommandBar(props: CommandBarProps) {
-  const [value, setValue] = useState('button');
+const selector = (state: AppState) => ({
+  commandBarOpen: state.commandBarOpen,
+  setCommandBarOpen: state.setCommandBarOpen,
+  selectedBlockType: state.selectedBlockType,
+  setSelectedBlockType: state.setSelectedBlockType,
+});
 
-  const commandBarOpen = useAppStore((state) => state.commandBarOpen);
-  const setCommandBarOpen = useAppStore((state) => state.setCommandBarOpen);
+export function CommandBar(props: CommandBarProps) {
+  const {
+    commandBarOpen,
+    setCommandBarOpen,
+    selectedBlockType,
+    setSelectedBlockType,
+  } = useAppStore(selector, shallow);
 
   const onValueChange = (value: string) => {
-    setValue(value);
+    setSelectedBlockType(value);
   };
 
   // Toggle the menu when ⌘K is pressed
@@ -44,10 +54,13 @@ export function CommandBar(props: CommandBarProps) {
     return () => document.body.removeEventListener('keydown', down);
   }, [setCommandBarOpen, commandBarOpen]);
 
+  const blockType: string | undefined =
+    selectedBlockType !== null ? selectedBlockType : 'generate image';
+
   return (
     <Command.Dialog open={commandBarOpen} onOpenChange={setCommandBarOpen}>
       <div className={styles['framer']}>
-        <Command value={value} onValueChange={onValueChange}>
+        <Command value={blockType} onValueChange={onValueChange}>
           <div cmdk-framer-header="">
             <SearchIcon />
             <Command.Input autoFocus placeholder="Search for blocks" />
@@ -88,12 +101,12 @@ export function CommandBar(props: CommandBarProps) {
               </div>
               <hr cmdk-framer-separator="" />
               <div cmdk-framer-right="">
-                {value === 'generate image' && <ImageGeneratorBlock />}
-                {value === 'input' && <Input />}
-                {value === 'badge' && <Badge />}
-                {value === 'radio' && <Radio />}
-                {value === 'slider' && <Slider />}
-                {value === 'container' && <Container />}
+                {blockType === 'generate image' && <ImageGeneratorBlock />}
+                {blockType === 'input' && <Input />}
+                {blockType === 'badge' && <Badge />}
+                {blockType === 'radio' && <Radio />}
+                {blockType === 'slider' && <Slider />}
+                {blockType === 'container' && <Container />}
               </div>
             </div>
           </Command.List>
