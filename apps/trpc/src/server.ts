@@ -3,7 +3,7 @@ import * as http from 'http';
 import { createHTTPHandler } from '@trpc/server/adapters/standalone';
 import { z } from 'zod';
 
-import migrateToLatest from './db/migrator';
+import migrateToLatest from '../db/migrator';
 import { procedure, publicProcedure, router } from './trpc';
 
 console.log('Launching server...');

@@ -21,7 +21,7 @@ function App() {
     <div id="wrapper" ref={wrapper}>
       <CommandBar />
       <Nav />
-      <Playfield height="100%" width="100%" />
+      <Playfield height="100%" width="100%" trpc={trpc}/>
     </div>
   );
 }

@@ -1,13 +1,13 @@
 {
-  "name": "@chaosreactor/desktop-trpc",
+  "name": "@chaosreactor/trpc",
   "bin": "dist/server.js",
   "version": "0.0.1",
   "pkg": {
     "scripts": "dist/**/*.js",
-    "outputPath": "../src-tauri/binaries/"
+    "outputPath": "../../apps/desktop/src-tauri/binaries/"
   },
   "scripts": {
-    "build": "tsc --outDir dist && pkg package.json --targets macos && node ../scripts/moveTrpcBinary.mjs"
+    "build": "tsc --outDir dist && pkg package.json --targets macos && node ./scripts/moveTrpcBinary.mjs"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.16.1",

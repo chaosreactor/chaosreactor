@@ -14,6 +14,6 @@
     "target": "ES2020",
     "module": "commonjs"
   },
-  "include": ["./server.ts", "./trpc.ts", "./db/**/*.ts", "**/*.tsx"],
+  "include": ["./src/**/*.ts", "./db/**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

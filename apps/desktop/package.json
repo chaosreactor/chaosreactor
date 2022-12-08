@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev -p 1420",
     "build": "next build && next export -o dist",
-    "tauri": "tauri dev --target $TAURI_TARGET",
-    "package": "cd src-trpc && npm run build"
+    "tauri": "tauri dev --target $TAURI_TARGET"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.16.1",

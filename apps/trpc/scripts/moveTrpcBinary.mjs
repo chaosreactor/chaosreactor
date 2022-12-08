@@ -14,8 +14,8 @@ async function rename() {
 
   // Rename trpc server binaries with target triple.
   renameSync(
-    `../src-tauri/binaries/desktop-trpc${ext}`,
-    `../src-tauri/binaries/trpc-${triple}${ext}`
+    `../../apps/desktop/src-tauri/binaries/trpc${ext}`,
+    `../../apps/desktop/src-tauri/binaries/trpc-${triple}${ext}`
   );
 }
 

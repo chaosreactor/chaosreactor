@@ -1,9 +1,4 @@
-import ReactFlow, {
-  Controls,
-  Background,
-  BackgroundVariant,
-  Node,
-} from 'reactflow';
+import ReactFlow, { Controls, Background, BackgroundVariant } from 'reactflow';
 import shallow from 'zustand/shallow';
 import 'reactflow/dist/style.css';
 
@@ -11,11 +6,15 @@ import { events, useBus } from '../../bus';
 import useAppStore, { AppState } from '../../store';
 import blockTypes from './blocks';
 import styles from './playfield.module.css';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import type { AppRouter } from '../../../../../apps/desktop/src-trpc/server';
 
 /* eslint-disable-next-line */
 export interface PlayfieldProps {
   height: string;
   width: string;
+  // tRPC client
+  trpc: AppRouter;
 }
 
 const fitViewOptions = {
@@ -40,6 +39,9 @@ export function Playfield(props: PlayfieldProps) {
     selector,
     shallow
   );
+
+  const reactor = props.trpc.reactorById;
+  console.log('reactor', reactor);
 
   useBus(events.blocks.add, (payload) => {
     console.log('Playfield: Add block', payload);
