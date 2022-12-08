@@ -4,5 +4,8 @@
   "main": "index.js",
   "scripts": {
     "generate-stories": "nx g @nrwl/react:stories --project ui --generateCypressSpecs --cypressProject chaosreactor-e2e"
+  },
+  "dependencies": {
+    "@chaosreactor/trpc": "*"
   }
 }

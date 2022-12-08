@@ -9,7 +9,7 @@ import 'reactflow/dist/style.css';
 import '../App.css';
 
 // This default export is required in a new `pages/_app.js` file.
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function ChaosReactor({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
   const [trpcClient] = useState(() =>
     trpc.createClient({

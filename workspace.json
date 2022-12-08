@@ -6,7 +6,7 @@
     "docs": "apps/docs",
     "ui": "libs/ui",
     "ui-e2e": "apps/ui-e2e",
-    "trpc": "apps/trpc",
+    "trpc": "libs/trpc",
     "web": "apps/web"
   }
 }

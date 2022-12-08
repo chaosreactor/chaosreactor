@@ -1,5 +1,6 @@
 {
   "name": "@chaosreactor/trpc",
+  "main": "src/trpc.js",
   "bin": "dist/server.js",
   "version": "0.0.1",
   "pkg": {

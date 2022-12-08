@@ -27,7 +27,7 @@ const appRouter = router({
       if (typeof val === 'string') return val;
       throw new Error(`Invalid input: ${typeof val}`);
     })
-    .query((req) => {
+    .query((req): Reactor => {
       const { input } = req;
 
       const reactor = reactorList.find((r) => r.id === input);
