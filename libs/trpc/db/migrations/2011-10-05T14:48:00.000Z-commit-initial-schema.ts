@@ -7,6 +7,7 @@ export async function up(db: Kysely<any>): Promise<void> {
 
   await dolt.add('blocks');
   await dolt.commit('Add initial schema');
+  await dolt.tag(Dolt.TAGS.MIGRATION, 'HEAD')
 }
 
 export async function down(db: Kysely<any>): Promise<void> {

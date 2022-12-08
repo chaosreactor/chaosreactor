@@ -6,12 +6,19 @@ import { Kysely, sql, QueryResult } from 'kysely';
 export default class Dolt {
   db: Kysely<any>;
 
+  // Dolt commit tags used to distinguish commit types.
+  static TAGS = {
+    MIGRATION: 'migration',
+  };
+
   constructor(db: Kysely<any>) {
     this.db = db;
   }
 
   /**
    * Call `dolt add` on all passed arguments.
+   *
+   * @see https://docs.dolthub.com/sql-reference/version-control/dolt-sql-procedures#dolt_add
    *
    * @param args
    *   The arguments to pass to `dolt add`.
@@ -20,11 +27,15 @@ export default class Dolt {
    *   The result of the `dolt add` operation.
    */
   async add(...args: string[]): Promise<QueryResult<unknown>> {
-    return await sql`call dolt_add(${sql.join(args, sql`, `)});`.execute(this.db);
+    return await sql`call dolt_add(${sql.join(args, sql`, `)});`.execute(
+      this.db
+    );
   }
 
   /**
    * Make a Dolt commit.
+   *
+   * @see https://docs.dolthub.com/sql-reference/version-control/dolt-sql-procedures#dolt_commit
    *
    * @param message
    *  The commit message.
@@ -39,6 +50,8 @@ export default class Dolt {
   /**
    * Revert a Dolt commit.
    *
+   * @see https://docs.dolthub.com/sql-reference/version-control/dolt-sql-procedures#dolt_revert
+   *
    * @param commit
    *   The commit to revert.
    *
@@ -47,5 +60,33 @@ export default class Dolt {
    */
   async revert(commit: string): Promise<QueryResult<unknown>> {
     return await sql`call dolt_revert('${commit}');`.execute(this.db);
+  }
+
+  /**
+   * Tag a Dolt commit.
+   *
+   * @see https://docs.dolthub.com/sql-reference/version-control/dolt-sql-procedures#dolt_tag
+   *
+   * @param tag
+   *   The tag to apply.
+   * @param commit
+   *   The commit to tag.
+   * @param message
+   *   The tag message.
+   *
+   * @returns
+   *   The result of the tag operation.
+   */
+  async tag(
+    tag: string,
+    commit: string,
+    message?: string
+  ): Promise<QueryResult<unknown>> {
+    // Build the optional message argument.
+    const messageArg = message ? sql`, '${message}'` : sql``;
+
+    return await sql`call dolt_tag('${tag}', '${commit}'${messageArg});`.execute(
+      this.db
+    );
   }
 }
