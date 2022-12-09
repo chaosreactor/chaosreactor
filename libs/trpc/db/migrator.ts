@@ -1,26 +1,13 @@
 import * as path from 'path';
-import { createPool } from 'mysql2';
 import { promises as fs } from 'fs';
 import {
-  Kysely,
   Migrator,
-  MysqlDialect,
   FileMigrationProvider,
-  DatabaseConnection,
 } from 'kysely';
 
-async function migrateToLatest() {
-  const db = new Kysely<DatabaseConnection>({
-    dialect: new MysqlDialect({
-      pool: createPool({
-        database: 'reactor',
-        host: '127.0.0.1',
-        user: 'root',
-        port: 3306,
-      }),
-    }),
-  });
+import db from './client';
 
+async function migrateToLatest() {
   // Output all files in the current directory to the console.
   const migrationsPath = path.join(__dirname, 'migrations');
   const files = await fs.readdir(migrationsPath);

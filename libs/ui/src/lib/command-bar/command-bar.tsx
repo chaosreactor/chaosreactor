@@ -24,6 +24,7 @@ const selector = (state: AppState) => ({
  * @param blockType The block type to add.
  */
 const triggerBlockAdd = (blockType: string | undefined) => {
+  console.log('CommandBar: Add block', blockType);
   dispatch({ type: events.blocks.add, payload: { blockType } });
 };
 

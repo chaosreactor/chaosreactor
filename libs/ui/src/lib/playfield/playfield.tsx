@@ -1,4 +1,10 @@
-import ReactFlow, { Controls, Background, BackgroundVariant } from 'reactflow';
+import ReactFlow, {
+  Controls,
+  Background,
+  BackgroundVariant,
+  NodeProps,
+  useReactFlow,
+} from 'reactflow';
 import shallow from 'zustand/shallow';
 import 'reactflow/dist/style.css';
 
@@ -7,6 +13,8 @@ import useAppStore, { AppState } from '../../store';
 import blockTypes from './blocks';
 import styles from './playfield.module.css';
 import { trpc } from '../../utils/trpc';
+import { CreateBlockInput, UpdateBlockInput } from '@chaosreactor/trpc';
+import { useEffect } from 'react';
 
 /* eslint-disable-next-line */
 export interface PlayfieldProps {
@@ -19,6 +27,9 @@ const fitViewOptions = {
 };
 
 const selector = (state: AppState) => ({
+  addNode: state.addNode,
+  getNode: state.getNode,
+  updateNode: state.updateNode,
   nodes: state.nodes,
   edges: state.edges,
   onNodesChange: state.onNodesChange,
@@ -32,16 +43,51 @@ export function Playfield(props: PlayfieldProps) {
     hideAttribution: true,
   };
 
-  const { nodes, edges, onNodesChange, onEdgesChange, onConnect } = useAppStore(
-    selector,
-    shallow
-  );
+  const { updateNode, nodes, edges, onNodesChange, onEdgesChange, onConnect } =
+    useAppStore(selector, shallow);
 
   const reactor = trpc.reactorById.useQuery('1');
-  console.log('Reactor', reactor.data?.name);
 
+  useEffect(() => {
+    console.log('Playfield: Reactor data changed', reactor.data);
+  }, [reactor]);
+
+  // Handle block addition event.
+  const createBlock = trpc.createBlock.useMutation();
   useBus(events.blocks.add, (payload) => {
     console.log('Playfield: Add block', payload);
+
+    // If there is a placeholder block present, replace it.
+    const placeholder = nodes.find((node) => node.type === 'placeholder');
+
+    if (placeholder) {
+      // Create the block via tRPC.
+
+      /*
+      const newBlock = {
+        id: placeholder.id,
+        type: payload['blockType'],
+        x: placeholder.position.x,
+        y: placeholder.position.y,
+      };
+
+      createBlock.mutate(newBlock as CreateBlockInput);
+      console.log(createBlock);*/
+
+      // Update the placeholder block in the store.
+      const updatedBlock = {
+        params: {
+          blockId: placeholder.id,
+        },
+        body: {
+          type: 'imageGenerator',
+          x: placeholder.position.x,
+          y: placeholder.position.y,
+        },
+      };
+
+      updateNode(updatedBlock as UpdateBlockInput);
+    }
   });
 
   return (

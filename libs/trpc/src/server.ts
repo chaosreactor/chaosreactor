@@ -1,10 +1,11 @@
 // @filename: server.ts
 import * as http from 'http';
 import { createHTTPHandler } from '@trpc/server/adapters/standalone';
-import { z } from 'zod';
 
 import migrateToLatest from '../db/migrator';
 import { procedure, publicProcedure, router } from './trpc';
+import { createBlockSchema } from './schemas/block.schema';
+import { createBlockController } from './controllers/block.controller';
 
 console.log('Launching server...');
 
@@ -33,6 +34,11 @@ const appRouter = router({
       const reactor = reactorList.find((r) => r.id === input);
       return reactor;
     }),
+
+  // Create a new block.
+  createBlock: procedure
+    .input(createBlockSchema)
+    .mutation(({ input }) => createBlockController({ input })),
 });
 export type AppRouter = typeof appRouter;
 

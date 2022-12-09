@@ -9,6 +9,9 @@ export default class Dolt {
   // Dolt commit tags used to distinguish commit types.
   static TAGS = {
     MIGRATION: 'migration',
+    BLOCKS: {
+      CREATE: 'blocks.create',
+    },
   };
 
   constructor(db: Kysely<any>) {
@@ -44,7 +47,7 @@ export default class Dolt {
    *  The result of the commit operation.
    */
   async commit(message: string): Promise<QueryResult<unknown>> {
-    return await sql`call dolt_commit('-m', '${message}');`.execute(this.db);
+    return await sql`call dolt_commit('-m', ${message});`.execute(this.db);
   }
 
   /**
@@ -59,7 +62,7 @@ export default class Dolt {
    *   The result of the revert operation.
    */
   async revert(commit: string): Promise<QueryResult<unknown>> {
-    return await sql`call dolt_revert('${commit}');`.execute(this.db);
+    return await sql`call dolt_revert(${commit});`.execute(this.db);
   }
 
   /**
@@ -83,9 +86,9 @@ export default class Dolt {
     message?: string
   ): Promise<QueryResult<unknown>> {
     // Build the optional message argument.
-    const messageArg = message ? sql`, '${message}'` : sql``;
+    const messageArg = message ? sql`, ${message}` : sql``;
 
-    return await sql`call dolt_tag('${tag}', '${commit}'${messageArg});`.execute(
+    return await sql`call dolt_tag(${tag}, ${commit}${messageArg});`.execute(
       this.db
     );
   }
