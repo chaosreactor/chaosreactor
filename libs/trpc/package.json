@@ -1,20 +1,20 @@
 {
   "name": "@chaosreactor/trpc",
   "main": "src/trpc.js",
-  "bin": "dist/server.js",
+  "bin": "dist/src/server.js",
   "version": "0.0.1",
   "pkg": {
     "scripts": "dist/**/*.js",
     "outputPath": "../../apps/desktop/src-tauri/binaries/"
   },
   "scripts": {
-    "build": "tsc --outDir dist && pkg package.json --targets macos && node ./scripts/moveTrpcBinary.mjs"
+    "build": "del-cli --force ./dist && tsc --outDir dist && pkg package.json --targets macos && node ./scripts/moveTrpcBinary.mjs"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.16.1",
-    "@trpc/client": "^10.0.0-rc.8",
-    "@trpc/react-query": "^10.0.0-rc.8",
-    "@trpc/server": "^10.0.0-rc.8",
+    "@trpc/client": "^10.5.0",
+    "@trpc/react-query": "^10.5.0",
+    "@trpc/server": "^10.5.0",
     "kysely": "^0.22.0",
     "mysql2": "^2.3.3",
     "superjson": "^1.12.0",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.7.11",
+    "del-cli": "^5.0.0",
     "execa": "^6.1.0",
     "pkg": "^5.8.0",
     "typescript": "^4.7.4"

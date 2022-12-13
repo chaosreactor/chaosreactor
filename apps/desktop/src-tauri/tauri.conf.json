@@ -13,6 +13,9 @@
   "tauri": {
     "allowlist": {
       "all": false,
+      "http": {
+        "scope": ["https://localhost:2022/*"]
+      },
       "shell": {
         "sidecar": true,
         "scope": [

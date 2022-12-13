@@ -1,10 +1,4 @@
-import ReactFlow, {
-  Controls,
-  Background,
-  BackgroundVariant,
-  NodeProps,
-  useReactFlow,
-} from 'reactflow';
+import ReactFlow, { Controls, Background, BackgroundVariant } from 'reactflow';
 import shallow from 'zustand/shallow';
 import 'reactflow/dist/style.css';
 
@@ -53,7 +47,9 @@ export function Playfield(props: PlayfieldProps) {
   }, [reactor]);
 
   // Handle block addition event.
-  const createBlock = trpc.createBlock.useMutation();
+  const { mutate: createBlock } =
+    trpc.createBlock.useMutation();
+
   useBus(events.blocks.add, (payload) => {
     console.log('Playfield: Add block', payload);
 
@@ -61,20 +57,7 @@ export function Playfield(props: PlayfieldProps) {
     const placeholder = nodes.find((node) => node.type === 'placeholder');
 
     if (placeholder) {
-      // Create the block via tRPC.
-
-      /*
-      const newBlock = {
-        id: placeholder.id,
-        type: payload['blockType'],
-        x: placeholder.position.x,
-        y: placeholder.position.y,
-      };
-
-      createBlock.mutate(newBlock as CreateBlockInput);
-      console.log(createBlock);*/
-
-      // Update the placeholder block in the store.
+      // Update the placeholder block in the client-side store.
       const updatedBlock = {
         params: {
           blockId: placeholder.id,
@@ -87,6 +70,16 @@ export function Playfield(props: PlayfieldProps) {
       };
 
       updateNode(updatedBlock as UpdateBlockInput);
+
+      // Create the block via tRPC.
+      const newBlock = {
+        id: placeholder.id,
+        type: payload['blockType'],
+        x: placeholder.position.x,
+        y: placeholder.position.y,
+      };
+
+      createBlock(newBlock as CreateBlockInput);
     }
   });
 

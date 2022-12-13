@@ -34,12 +34,7 @@ export const createBlockController = async ({
     await dolt.commit(`Created block ${block?.id}`);
     await dolt.tag(Dolt.TAGS.BLOCKS.CREATE, 'HEAD');
 
-    return {
-      status: 'success',
-      data: {
-        block,
-      },
-    };
+    return block;
   } catch (error) {
     throw new TRPCError({
       code: 'CONFLICT',
