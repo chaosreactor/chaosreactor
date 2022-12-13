@@ -47,8 +47,7 @@ export function Playfield(props: PlayfieldProps) {
   }, [reactor]);
 
   // Handle block addition event.
-  const { mutate: createBlock } =
-    trpc.createBlock.useMutation();
+  const { mutate: createBlock } = trpc.createBlock.useMutation();
 
   useBus(events.blocks.add, (payload) => {
     console.log('Playfield: Add block', payload);

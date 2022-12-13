@@ -1,11 +1,10 @@
 // @filename: server.ts
 import * as http from 'http';
 import { createHTTPHandler } from '@trpc/server/adapters/standalone';
+import { z } from 'zod';
 
 import migrateToLatest from '../db/migrator';
 import { procedure, publicProcedure, router } from './trpc';
-import { createBlockSchema } from './schemas/block.schema';
-import { createBlockController } from './controllers/block.controller';
 
 console.log('Launching server...');
 
@@ -28,17 +27,12 @@ const appRouter = router({
       if (typeof val === 'string') return val;
       throw new Error(`Invalid input: ${typeof val}`);
     })
-    .query((req): Reactor => {
+    .query((req) => {
       const { input } = req;
 
       const reactor = reactorList.find((r) => r.id === input);
       return reactor;
     }),
-
-  // Create a new block.
-  createBlock: procedure
-    .input(createBlockSchema)
-    .mutation(({ input }) => createBlockController({ input })),
 });
 export type AppRouter = typeof appRouter;
 
@@ -64,7 +58,7 @@ http
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:1420');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader('Access-Control-Request-Method', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
     res.setHeader(
       'Access-Control-Allow-Headers',
       'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
