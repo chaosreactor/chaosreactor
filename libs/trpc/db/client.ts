@@ -1,7 +1,7 @@
 import { Kysely, MysqlDialect, Generated } from 'kysely';
 import { createPool } from 'mysql2';
 
-export interface Block {
+export interface BlockInterface {
   id: Generated<number>;
   type: string;
   x: number;
@@ -10,7 +10,7 @@ export interface Block {
 }
 
 export interface Database {
-  blocks: Block;
+  blocks: BlockInterface;
 }
 
 export const DB_PORT = 3306;

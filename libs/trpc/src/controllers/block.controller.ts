@@ -3,12 +3,13 @@ import { TRPCError } from '@trpc/server';
 import {
   CreateBlockInput,
   FilterQueryInput,
-  ParamsInput,
 } from '../schemas/block.schema';
 
 import db from '../../db/client';
-import type { Block } from '../../db/client';
+import type { BlockInterface } from '../../db/client';
 import Dolt from '../../db/dolt';
+import { ChaosReactorDB } from '../../db/data-source';
+import { Block } from '../../src/entities/block';
 
 // @see https://codevoweb.com/build-a-fullstack-trpc-crud-app-with-nextjs
 export const createBlockController = async ({
@@ -28,7 +29,7 @@ export const createBlockController = async ({
         y: input.y,
         data: input.data,
       })
-      .executeTakeFirstOrThrow()) as unknown as Block;
+      .executeTakeFirstOrThrow()) as unknown as BlockInterface;
 
     // Make a Dolt commit.
     const dolt = new Dolt(db);
@@ -45,5 +46,28 @@ export const createBlockController = async ({
       message: 'Eror creating block',
       cause: error,
     });
+  }
+};
+
+export const findAllBlocksController = async ({
+  filterQuery,
+}: {
+  filterQuery: FilterQueryInput;
+}) => {
+  try {
+    const page = filterQuery.page || 1;
+    const limit = filterQuery.limit || 10;
+    const skip = (page - 1) * limit;
+
+    const blocksRepository = ChaosReactorDB.getRepository(Block);
+    const blocks = await blocksRepository.find();
+
+    return {
+      status: "success",
+      results: blocks.length,
+      blocks,
+    };
+  } catch (error) {
+    throw error;
   }
 };

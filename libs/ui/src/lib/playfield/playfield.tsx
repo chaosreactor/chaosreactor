@@ -40,7 +40,7 @@ export function Playfield(props: PlayfieldProps) {
   const { updateNode, nodes, edges, onNodesChange, onEdgesChange, onConnect } =
     useAppStore(selector, shallow);
 
-  const blocks = trpc.blocksAll.useQuery();
+  const blocks = trpc.blocksAll.useQuery({});
 
   useEffect(() => {
     console.log('Playfield: Reactor data changed', blocks);

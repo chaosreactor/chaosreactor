@@ -7,8 +7,11 @@ import migrateToLatest from '../db/migrator';
 import { ChaosReactorDB } from '../db/data-source';
 import { Block } from '../src/entities/block';
 import { procedure, publicProcedure, router } from './trpc';
-import { createBlockSchema } from './schemas/block.schema';
-import { createBlockController } from './controllers/block.controller';
+import { createBlockSchema, filterQuery } from './schemas/block.schema';
+import {
+  createBlockController,
+  findAllBlocksController,
+} from './controllers/block.controller';
 
 console.log('Launching server...');
 
@@ -38,13 +41,10 @@ const appRouter = router({
       return reactor;
     }),
 
-  // Get all blocks.
-  blocksAll: publicProcedure.query(async () => {
-    const blocksRepository = ChaosReactorDB.getRepository(Block);
-    const allBlocks = await blocksRepository.find();
-
-    return allBlocks;
-  }),
+  // Find all blocks.
+  blocksAll: procedure
+    .input(filterQuery)
+    .query(({ input }) => findAllBlocksController({ filterQuery: input })),
 
   // Create a new block.
   createBlock: procedure
