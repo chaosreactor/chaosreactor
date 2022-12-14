@@ -13,14 +13,18 @@ export interface Database {
   blocks: Block;
 }
 
+export const DB_PORT = 3306;
+export const DB_HOST = '127.0.0.1';
+export const DB_USER = 'root';
+
 const db = new Kysely<Database>({
   dialect: new MysqlDialect({
     pool: async () =>
       createPool({
         database: 'reactor',
-        host: '127.0.0.1',
-        user: 'root',
-        port: 3306,
+        host: DB_HOST,
+        user: DB_USER,
+        port: DB_PORT,
       }),
   }),
 });

@@ -10,7 +10,7 @@ import db from '../../db/client';
 import type { Block } from '../../db/client';
 import Dolt from '../../db/dolt';
 
-// @see https://codevoweb.com/build-a-fullstack-trpc-crud-app-with-nextjs/#comments
+// @see https://codevoweb.com/build-a-fullstack-trpc-crud-app-with-nextjs
 export const createBlockController = async ({
   input,
 }: {

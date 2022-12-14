@@ -40,11 +40,11 @@ export function Playfield(props: PlayfieldProps) {
   const { updateNode, nodes, edges, onNodesChange, onEdgesChange, onConnect } =
     useAppStore(selector, shallow);
 
-  const reactor = trpc.reactorById.useQuery('1');
+  const blocks = trpc.blocksAll.useQuery();
 
   useEffect(() => {
-    console.log('Playfield: Reactor data changed', reactor.data);
-  }, [reactor]);
+    console.log('Playfield: Reactor data changed', blocks);
+  }, [blocks]);
 
   // Handle block addition event.
   const { mutate: createBlock } = trpc.createBlock.useMutation();

@@ -8,7 +8,8 @@
     "outputPath": "../../apps/desktop/src-tauri/binaries/"
   },
   "scripts": {
-    "build": "del-cli --force ./dist && tsc --outDir dist && pkg package.json --targets macos && node ./scripts/moveTrpcBinary.mjs"
+    "build": "del-cli --force ./dist && tsc --outDir dist && pkg package.json --targets macos && node ./scripts/moveTrpcBinary.mjs",
+    "typeorm": "typeorm-ts-node-commonjs"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.16.1",
@@ -16,13 +17,17 @@
     "@trpc/server": "^10.5.0",
     "kysely": "^0.22.0",
     "mysql2": "^2.3.3",
-    "zod": "^3.19.1"
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.3.11",
+    "zod": "^3.19.1",
+    "mysql": "^2.14.1"
   },
   "devDependencies": {
-    "@types/node": "^18.7.11",
+    "@types/node": "^16.11.10",
     "del-cli": "^5.0.0",
     "execa": "^6.1.0",
     "pkg": "^5.8.0",
-    "typescript": "^4.7.4"
+    "typescript": "4.5.2",
+    "ts-node": "10.7.0"
   }
 }
