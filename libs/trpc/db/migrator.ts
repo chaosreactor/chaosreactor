@@ -1,18 +1,13 @@
 import * as path from 'path';
 import { promises as fs } from 'fs';
-import {
-  Migrator,
-  FileMigrationProvider,
-} from 'kysely';
+import { Migrator, FileMigrationProvider } from 'kysely';
 
 import db from './client';
 
-async function migrateToLatest() {
+const migrateToLatest = new Promise(async (resolve, reject) => {
   // Output all files in the current directory to the console.
   const migrationsPath = path.join(__dirname, 'migrations');
   const files = await fs.readdir(migrationsPath);
-
-  console.log(files.join(', '));
 
   const migrator = new Migrator({
     db,
@@ -25,21 +20,30 @@ async function migrateToLatest() {
 
   const { error, results } = await migrator.migrateToLatest();
 
-  results?.forEach((it) => {
-    if (it.status === 'Success') {
-      console.log(`migration "${it.migrationName}" was executed successfully`);
-    } else if (it.status === 'Error') {
-      console.error(`failed to execute migration "${it.migrationName}"`);
-    }
-  });
+  console.error('Error test');
 
   if (error) {
     console.error('failed to migrate');
     console.error(error);
-    process.exit(1);
-  }
 
-  await db.destroy();
-}
+    reject(error);
+  } else {
+    console.log('Migration results', results);
+
+    results?.forEach((it) => {
+      console.log('Migration result', it);
+
+      if (it.status === 'Success') {
+        console.log(
+          `migration "${it.migrationName}" was executed successfully`
+        );
+      } else if (it.status === 'Error') {
+        console.error(`failed to execute migration "${it.migrationName}"`);
+      }
+    });
+
+    resolve(results);
+  }
+});
 
 export default migrateToLatest;

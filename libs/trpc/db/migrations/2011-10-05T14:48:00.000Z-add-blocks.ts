@@ -7,7 +7,9 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn('type', 'varchar(255)', (col) => col.notNull())
     .addColumn('x', 'integer', (col) => col.notNull())
     .addColumn('y', 'integer', (col) => col.notNull())
-    .addColumn('data', 'json', (col) => col.notNull())
+    .addColumn('data', 'json', (col) =>
+      col.notNull().defaultTo(sql`( JSON_OBJECT() )`)
+    )
     .execute();
 }
 

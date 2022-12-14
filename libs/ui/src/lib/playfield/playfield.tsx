@@ -49,8 +49,8 @@ export function Playfield(props: PlayfieldProps) {
   // Handle block addition event.
   const { mutate: createBlock } = trpc.createBlock.useMutation();
 
-  useBus(events.blocks.add, (payload) => {
-    console.log('Playfield: Add block', payload);
+  useBus(events.blocks.add, (input) => {
+    console.log('Playfield: Add block', input);
 
     // If there is a placeholder block present, replace it.
     const placeholder = nodes.find((node) => node.type === 'placeholder');
@@ -73,12 +73,13 @@ export function Playfield(props: PlayfieldProps) {
       // Create the block via tRPC.
       const newBlock = {
         id: placeholder.id,
-        type: payload['blockType'],
+        type: input.payload.blockType,
         x: placeholder.position.x,
         y: placeholder.position.y,
       };
 
-      createBlock(newBlock as CreateBlockInput);
+      const createBlockResult = createBlock(newBlock as CreateBlockInput);
+      console.log(createBlockResult);
     }
   });
 

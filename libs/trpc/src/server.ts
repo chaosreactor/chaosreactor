@@ -5,6 +5,8 @@ import { z } from 'zod';
 
 import migrateToLatest from '../db/migrator';
 import { procedure, publicProcedure, router } from './trpc';
+import { createBlockSchema } from './schemas/block.schema';
+import { createBlockController } from './controllers/block.controller';
 
 console.log('Launching server...');
 
@@ -33,6 +35,11 @@ const appRouter = router({
       const reactor = reactorList.find((r) => r.id === input);
       return reactor;
     }),
+
+  // Create a new block.
+  createBlock: procedure
+    .input(createBlockSchema)
+    .mutation(({ input }) => createBlockController({ input })),
 });
 export type AppRouter = typeof appRouter;
 
@@ -45,32 +52,33 @@ const trpcHandler = createHTTPHandler({
 
 // Run database migrations
 console.log('Running migrations...');
-migrateToLatest();
 
-// Create and listen to the server handler
-console.log('Booting trpc server...');
+migrateToLatest.then(() => {
+  // Create and listen to the server handler
+  console.log('Booting trpc server...');
 
-http
-  .createServer((req, res) => {
-    // act on the req/res objects
+  http
+    .createServer((req, res) => {
+      // act on the req/res objects
 
-    // enable CORS
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:1420');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Request-Method', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-    );
+      // enable CORS
+      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:1420');
+      res.setHeader('Access-Control-Allow-Credentials', 'true');
+      res.setHeader('Access-Control-Request-Method', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+      res.setHeader(
+        'Access-Control-Allow-Headers',
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+      );
 
-    // accepts OPTIONS
-    if (req.method === 'OPTIONS') {
-      res.writeHead(200);
-      return res.end();
-    }
+      // accepts OPTIONS
+      if (req.method === 'OPTIONS') {
+        res.writeHead(200);
+        return res.end();
+      }
 
-    // then we can pass the req/res to the tRPC handler
-    trpcHandler(req, res);
-  })
-  .listen(2022);
+      // then we can pass the req/res to the tRPC handler
+      trpcHandler(req, res);
+    })
+    .listen(2022);
+});

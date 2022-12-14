@@ -136,10 +136,15 @@ fn main() {
                             .emit("message", Some(format!("'{}'", line)))
                             .expect("failed to emit event");
                         i += 1;
+
+                        println!("tRPC: {}", line);
+
                         if i == 4 {
                             child.write("message from trpc\n".as_bytes()).unwrap();
                             i = 0;
                         }
+                    } else if let CommandEvent::Stderr(line) = event {
+                        println!("trpc err: {}", line);
                     }
                 }
             });

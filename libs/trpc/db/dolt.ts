@@ -30,7 +30,7 @@ export default class Dolt {
    *   The result of the `dolt add` operation.
    */
   async add(...args: string[]): Promise<QueryResult<unknown>> {
-    return await sql`call dolt_add(${sql.join(args, sql`, `)});`.execute(
+    return sql`call dolt_add(${sql.join(args, sql`, `)});`.execute(
       this.db
     );
   }
@@ -47,7 +47,7 @@ export default class Dolt {
    *  The result of the commit operation.
    */
   async commit(message: string): Promise<QueryResult<unknown>> {
-    return await sql`call dolt_commit('-m', ${message});`.execute(this.db);
+    return sql`call dolt_commit('-m', ${message});`.execute(this.db);
   }
 
   /**
@@ -62,7 +62,7 @@ export default class Dolt {
    *   The result of the revert operation.
    */
   async revert(commit: string): Promise<QueryResult<unknown>> {
-    return await sql`call dolt_revert(${commit});`.execute(this.db);
+    return sql`call dolt_revert(${commit});`.execute(this.db);
   }
 
   /**
@@ -88,7 +88,7 @@ export default class Dolt {
     // Build the optional message argument.
     const messageArg = message ? sql`, ${message}` : sql``;
 
-    return await sql`call dolt_tag(${tag}, ${commit}${messageArg});`.execute(
+    return sql`call dolt_tag(${tag}, ${commit}${messageArg});`.execute(
       this.db
     );
   }

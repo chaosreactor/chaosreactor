@@ -7,6 +7,7 @@ import {
 } from '../schemas/block.schema';
 
 import db from '../../db/client';
+import type { Block } from '../../db/client';
 import Dolt from '../../db/dolt';
 
 // @see https://codevoweb.com/build-a-fullstack-trpc-crud-app-with-nextjs/#comments
@@ -16,8 +17,10 @@ export const createBlockController = async ({
   input: CreateBlockInput;
 }) => {
   try {
+    console.log('Creating block', input);
+
     // Add the new block to the database.
-    const block = await db
+    const block = (await db
       .insertInto('blocks')
       .values({
         type: input.type,
@@ -25,8 +28,7 @@ export const createBlockController = async ({
         y: input.y,
         data: input.data,
       })
-      .returning('id')
-      .executeTakeFirstOrThrow();
+      .executeTakeFirstOrThrow()) as unknown as Block;
 
     // Make a Dolt commit.
     const dolt = new Dolt(db);
@@ -36,10 +38,12 @@ export const createBlockController = async ({
 
     return block;
   } catch (error) {
+    console.log('Error creating block', error);
+
     throw new TRPCError({
       code: 'CONFLICT',
       message: 'Eror creating block',
+      cause: error,
     });
-    throw error;
   }
 };
