@@ -19,6 +19,7 @@ export interface AppState {
   commandBarOpen: boolean;
   setCommandBarOpen: (open: boolean) => void;
   nodes: Node[];
+  setNodes: (nodes: Node[]) => Node[];
   edges: Edge[];
   onNodesChange: OnNodesChange;
   onEdgesChange: OnEdgesChange;
@@ -61,6 +62,20 @@ const useAppStore = create<AppState>((set, get) => ({
     set({
       edges: addEdge(connection, get().edges),
     });
+  },
+
+    /**
+   * Update the nodes with a new set of nodes.
+   *
+   * @param nodes
+   *   The new set of nodes.
+   * @returns
+   *   The updated nodes.
+   */
+  setNodes: (nodes: Node[]) => {
+    set({ nodes });
+
+    return nodes;
   },
 
   /**

@@ -1,6 +1,12 @@
-import ReactFlow, { Controls, Background, BackgroundVariant } from 'reactflow';
+import ReactFlow, {
+  Controls,
+  Background,
+  BackgroundVariant,
+  Node,
+} from 'reactflow';
 import shallow from 'zustand/shallow';
 import 'reactflow/dist/style.css';
+import { useEffect, useState } from 'react';
 
 import { events, useBus } from '../../bus';
 import useAppStore, { AppState } from '../../store';
@@ -8,7 +14,6 @@ import blockTypes from './blocks';
 import styles from './playfield.module.css';
 import { trpc } from '../../utils/trpc';
 import { CreateBlockInput, UpdateBlockInput } from '@chaosreactor/trpc';
-import { useEffect } from 'react';
 
 /* eslint-disable-next-line */
 export interface PlayfieldProps {
@@ -24,6 +29,7 @@ const selector = (state: AppState) => ({
   addNode: state.addNode,
   getNode: state.getNode,
   updateNode: state.updateNode,
+  setNodes: state.setNodes,
   nodes: state.nodes,
   edges: state.edges,
   onNodesChange: state.onNodesChange,
@@ -37,14 +43,50 @@ export function Playfield(props: PlayfieldProps) {
     hideAttribution: true,
   };
 
-  const { updateNode, nodes, edges, onNodesChange, onEdgesChange, onConnect } =
-    useAppStore(selector, shallow);
+  const {
+    updateNode,
+    nodes,
+    edges,
+    onNodesChange,
+    onEdgesChange,
+    onConnect,
+    setNodes,
+  } = useAppStore(selector, shallow);
 
-  const blocks = trpc.blocksAll.useQuery({});
+  const { isLoading, isError, data, error } = trpc.blocksAll.useQuery(
+    {},
+    {
+      refetchInterval: false,
+      refetchOnMount: true,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    }
+  );
+
+  const [isInitialRender, setIsInitialRender] = useState(true);
 
   useEffect(() => {
-    console.log('Playfield: Reactor data changed', blocks);
-  }, [blocks]);
+    if (data && isInitialRender) {
+      setIsInitialRender(false);
+      console.log('Playfield: Reactor data changed', data.blocks);
+
+      // Collect the blocks into an array of Nodes.
+      const newNodes = data.blocks.map((block) => {
+        const node: Node = {
+          id: block.id.toString(),
+          type: block.type,
+          position: { x: block.x, y: block.y },
+          data: block.data,
+        };
+
+        return node;
+      });
+
+      console.log('new nodes', newNodes);
+
+      setNodes(newNodes || []);
+    }
+  }, [data, isInitialRender, setNodes]);
 
   // Handle block addition event.
   const { mutate: createBlock } = trpc.createBlock.useMutation();
@@ -73,7 +115,7 @@ export function Playfield(props: PlayfieldProps) {
       // Create the block via tRPC.
       const newBlock = {
         id: placeholder.id,
-        type: input.payload.blockType,
+        type: input['payload'].blockType,
         x: placeholder.position.x,
         y: placeholder.position.y,
       };
