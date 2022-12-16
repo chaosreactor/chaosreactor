@@ -65,6 +65,7 @@ export function Playfield(props: PlayfieldProps) {
 
   const [isInitialRender, setIsInitialRender] = useState(true);
 
+  // Load this reactor's blocks from the database.
   useEffect(() => {
     if (data && isInitialRender) {
       setIsInitialRender(false);
@@ -84,13 +85,14 @@ export function Playfield(props: PlayfieldProps) {
 
       console.log('new nodes', newNodes);
 
+      // Update the nodes in the store.
       setNodes(newNodes || []);
     }
   }, [data, isInitialRender, setNodes]);
 
-  // Handle block addition event.
   const { mutate: createBlock } = trpc.createBlock.useMutation();
 
+  // Handle block addition event.
   useBus(events.blocks.add, (input) => {
     console.log('Playfield: Add block', input);
 
@@ -110,6 +112,7 @@ export function Playfield(props: PlayfieldProps) {
         },
       };
 
+      // Update the placeholder block in the playfield store.
       updateNode(updatedBlock as UpdateBlockInput);
 
       // Create the block via tRPC.

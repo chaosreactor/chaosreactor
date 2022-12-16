@@ -16,8 +16,8 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@chaosreactor/ui": ["libs/ui/src/index.ts"],
       "@chaosreactor/trpc": ["libs/trpc/src/trpc.ts"],
+      "@chaosreactor/ui": ["libs/ui/src/index.ts"],
       "@chaosreactor/web": ["apps/chaosreactor/pages/index.tsx"]
     }
   },

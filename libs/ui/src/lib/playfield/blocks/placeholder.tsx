@@ -16,13 +16,13 @@ const PlaceholderNode = ({ id, data }: NodeProps) => {
       <Handle
         className={styles['handle']}
         type="target"
-        position={Position.Top}
+        position={Position.Left}
         isConnectable={false}
       />
       <Handle
         className={styles['handle']}
         type="source"
-        position={Position.Bottom}
+        position={Position.Right}
         isConnectable={false}
       />
     </div>

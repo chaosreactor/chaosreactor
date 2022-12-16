@@ -16,6 +16,7 @@ import { Icon } from '@iconify/react';
 
 import { Logo } from './Logo';
 import { SettingsDrawer } from '../settings-drawer/settings-drawer';
+import { BlockInspector } from '../block-inspector/block-inspector';
 import { ChakraProvider } from '@chakra-ui/react';
 import chaosTheme from '../../theme';
 import '@fontsource/work-sans';
@@ -78,6 +79,7 @@ export function Nav(props: NavProps) {
           </Container>
 
           <SettingsDrawer isOpen={isOpen} onClose={onClose} />
+          <BlockInspector />
         </Box>
       </DarkMode>
     </ChakraProvider>

@@ -16,8 +16,16 @@ import {
 import { CreateBlockInput, UpdateBlockInput } from '@chaosreactor/trpc';
 
 export interface AppState {
+  // Controls
+  // -- Command bar
   commandBarOpen: boolean;
   setCommandBarOpen: (open: boolean) => void;
+  // -- Block inspector
+  selectedBlock?: Node;
+  setSelectedBlock: (block: Node) => void;
+  blockInspectorOpen: boolean;
+  setBlockInspectorOpen: (open: boolean) => void;
+
   nodes: Node[];
   setNodes: (nodes: Node[]) => Node[];
   edges: Edge[];
@@ -43,9 +51,12 @@ const defaultNodes: Node[] = [
 
 const useAppStore = create<AppState>((set, get) => ({
   commandBarOpen: false,
-  // The block that is currently selected in the command bar.
-  selectedBlock: null,
   setCommandBarOpen: (open: boolean) => set({ commandBarOpen: open }),
+  selectedBlock: undefined,
+  setSelectedBlock: (block: Node) => set({ selectedBlock: block }),
+  blockInspectorOpen: false,
+  setBlockInspectorOpen: (open: boolean) => set({ blockInspectorOpen: open }),
+
   nodes: defaultNodes,
   edges: [],
   onNodesChange: (changes: NodeChange[]) => {
@@ -64,7 +75,7 @@ const useAppStore = create<AppState>((set, get) => ({
     });
   },
 
-    /**
+  /**
    * Update the nodes with a new set of nodes.
    *
    * @param nodes

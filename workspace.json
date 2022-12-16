@@ -4,9 +4,9 @@
   "projects": {
     "desktop": "apps/desktop",
     "docs": "apps/docs",
+    "trpc": "libs/trpc",
     "ui": "libs/ui",
     "ui-e2e": "apps/ui-e2e",
-    "trpc": "libs/trpc",
     "web": "apps/web"
   }
 }
