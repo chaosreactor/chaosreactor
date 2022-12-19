@@ -2,7 +2,6 @@ import { useState, createRef } from 'react';
 import { invoke } from '@tauri-apps/api/tauri';
 
 import { Nav, Playfield, CommandBar } from '../../../../libs/ui/src/index';
-import { trpc } from '../utils/trpc';
 
 function App() {
   const [greetMsg, setGreetMsg] = useState('');
@@ -15,13 +14,11 @@ function App() {
 
   const wrapper = createRef<HTMLDivElement>();
 
-  const reactor = trpc.reactorById.useQuery('1');
-
   return (
     <div id="wrapper" ref={wrapper}>
       <CommandBar />
       <Nav />
-      <Playfield height="100%" width="100%" trpc={trpc}/>
+      <Playfield height="100%" width="100%" />
     </div>
   );
 }
