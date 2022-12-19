@@ -69,7 +69,6 @@ export function Playfield(props: PlayfieldProps) {
   useEffect(() => {
     if (data && isInitialRender) {
       setIsInitialRender(false);
-      console.log('Playfield: Reactor data changed', data.blocks);
 
       // Collect the blocks into an array of Nodes.
       const newNodes = data.blocks.map((block) => {
@@ -83,8 +82,6 @@ export function Playfield(props: PlayfieldProps) {
         return node;
       });
 
-      console.log('new nodes', newNodes);
-
       // Update the nodes in the store.
       setNodes(newNodes || []);
     }
@@ -94,8 +91,6 @@ export function Playfield(props: PlayfieldProps) {
 
   // Handle block addition event.
   useBus(events.blocks.add, (input) => {
-    console.log('Playfield: Add block', input);
-
     // If there is a placeholder block present, replace it.
     const placeholder = nodes.find((node) => node.type === 'placeholder');
 

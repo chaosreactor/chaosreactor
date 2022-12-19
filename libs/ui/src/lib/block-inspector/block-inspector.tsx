@@ -20,9 +20,20 @@ import useAppStore, { AppState } from '../../store';
 
 /* eslint-disable-next-line */
 export interface BlockInspectorProps {
+  // The name of the block to display.
   blockTypeLabel?: string;
 }
 
+/**
+ * The block inspector is a drawer that appears on the right side of the screen
+ * when a block is selected. It allows the user to edit the properties of the
+ * block.
+ *
+ * This drawer is a bit different than the normal Chakra UI drawer, in that it
+ * is not a modal.
+ *
+ * @see https://github.com/chakra-ui/chakra-ui/issues/2893
+ */
 export function BlockInspector(props: BlockInspectorProps) {
   const selector = (state: AppState) => ({
     blockInspectorOpen: state.blockInspectorOpen,
@@ -32,8 +43,6 @@ export function BlockInspector(props: BlockInspectorProps) {
     selector,
     shallow
   );
-
-  console.log('blockInspectorOpen from inspector', blockInspectorOpen);
 
   const closeDrawer = () => {
     setBlockInspectorOpen(false);
@@ -48,8 +57,11 @@ export function BlockInspector(props: BlockInspectorProps) {
             onClose={closeDrawer}
             isOpen={blockInspectorOpen}
             size="md"
+            trapFocus={false}
+            blockScrollOnMount={false}
+            closeOnOverlayClick={false}
+            variant="inspector"
           >
-            <DrawerOverlay />
             <form noValidate>
               <DrawerContent>
                 <DrawerCloseButton />

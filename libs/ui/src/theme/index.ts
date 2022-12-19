@@ -20,6 +20,21 @@ const chaosTheme: ThemeConfig = extendTheme(theme, {
   },
   initialColorMode: 'dark',
   useSystemColorMode: true,
+  components: {
+    Drawer: {
+      variants: {
+        inspector: {
+          parts: ['dialog, dialogContainer'],
+          dialog: {
+            pointerEvents: 'auto',
+          },
+          dialogContainer: {
+            pointerEvents: 'none',
+          },
+        },
+      },
+    },
+  },
 });
 
 export default chaosTheme;
