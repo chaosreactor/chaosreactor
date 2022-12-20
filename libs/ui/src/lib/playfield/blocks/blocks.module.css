@@ -1,10 +1,9 @@
 .node {
-  border: 1px solid #0984e3;
-  border-radius: 4px;
-  background-color: #fff;
+  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-  padding: 12px;
-  width: 160px;
+  padding: 0;
+  border: 2px solid transparent;
+  min-width: 160px;
   text-align: center;
   font-weight: bold;
   color: #0984e3;
@@ -13,11 +12,7 @@
 }
 
 .node:hover {
-  background: radial-gradient(
-    circle at 18.7% 37.8%,
-    rgb(90, 152, 129) 100%,
-    rgb(6, 51, 35) 40%
-  );
+  border: 2px solid #0984e3;
 }
 
 .content {
@@ -39,4 +34,19 @@
   border-radius: 20px;
   color: #bbb;
   box-shadow: none;
+}
+
+.placeholder:hover {
+  background: radial-gradient(
+    circle at 18.7% 37.8%,
+    rgb(90, 152, 129) 100%,
+    rgb(6, 51, 35) 40%
+  );
+}
+
+.imageGenerator svg {
+  display: inline-block;
+  border-radius: 4px;
+  margin-right: 10px;
+  margin-bottom: -5px;
 }

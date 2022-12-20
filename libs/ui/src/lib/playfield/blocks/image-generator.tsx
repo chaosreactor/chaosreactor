@@ -9,11 +9,14 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { Node } from 'reactflow';
+import cx from 'classnames';
 import { Icon } from '@iconify/react';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import chaosTheme from '../../../theme';
 import useBlockClick from '../hooks/useBlockClick';
+import styles from './blocks.module.css';
+import './blocks.module.css';
 
 /* eslint-disable-next-line */
 export interface ImageGeneratorBlockProps {
@@ -24,13 +27,15 @@ export interface ImageGeneratorBlockProps {
 export const IMAGE_GENERATOR_DATA = {
   type: 'imageGenerator',
   label: 'Generate image',
-}
+};
 
 export function ImageGeneratorBlock(props: ImageGeneratorBlockProps) {
   const onClick = useBlockClick(props.id);
 
+  const nodeClasses = cx(styles['node'], styles['imageGenerator']);
+
   return (
-    <div onClick={onClick}>
+    <div onClick={onClick} className={nodeClasses}>
       <ChakraProvider theme={chaosTheme}>
         <DarkMode>
           <Card bg="#2D3648" borderRadius="md" w={382} p={4}>
