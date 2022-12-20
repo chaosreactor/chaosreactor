@@ -7,16 +7,16 @@ import {
   Stack,
   StackDivider,
   Text,
+  Textarea,
 } from '@chakra-ui/react';
-import { Node } from 'reactflow';
 import cx from 'classnames';
 import { Icon } from '@iconify/react';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import chaosTheme from '../../../theme';
 import useBlockClick from '../hooks/useBlockClick';
+import { BlockData, BlockType } from './index';
 import styles from './blocks.module.css';
-import './blocks.module.css';
 
 /* eslint-disable-next-line */
 export interface ImageGeneratorBlockProps {
@@ -24,9 +24,22 @@ export interface ImageGeneratorBlockProps {
   prompt?: string;
 }
 
-export const IMAGE_GENERATOR_DATA = {
-  type: 'imageGenerator',
-  label: 'Generate image',
+export const ImageGeneratorForm: React.FunctionComponent<unknown> = () => {
+  return (
+    <ChakraProvider theme={chaosTheme}>
+      <DarkMode>
+        <form
+          id="block-inspector-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            console.log('submitted');
+          }}
+        >
+          <Textarea name="prompt" placeholder="Elmo holding a lightsaber" />
+        </form>
+      </DarkMode>
+    </ChakraProvider>
+  );
 };
 
 export function ImageGeneratorBlock(props: ImageGeneratorBlockProps) {
@@ -62,3 +75,9 @@ export function ImageGeneratorBlock(props: ImageGeneratorBlockProps) {
     </div>
   );
 }
+
+export const IMAGE_GENERATOR_DATA: BlockData = {
+  type: 'imageGenerator' as BlockType,
+  label: 'Generate image',
+  form: ImageGeneratorForm,
+};

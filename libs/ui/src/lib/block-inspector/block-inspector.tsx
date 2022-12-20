@@ -1,5 +1,6 @@
 import {
   Button,
+  Card,
   Drawer,
   DrawerBody,
   DrawerHeader,
@@ -9,6 +10,7 @@ import {
   DarkMode,
   Stack,
 } from '@chakra-ui/react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import shallow from 'zustand/shallow';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -21,6 +23,20 @@ import useAppStore, { AppState } from '../../store';
 
 /* eslint-disable-next-line */
 export interface BlockInspectorProps {}
+
+interface FormProps {
+  form: React.ElementType<unknown>; // 👈️ type it as React.ElementType
+}
+
+const FormWrapper: React.FunctionComponent<FormProps> = (props) => {
+  // 👇️ component names must start with capital letter
+  const { form: FunctionComponent } = props;
+  return (
+    <div>
+      <FunctionComponent />
+    </div>
+  );
+};
 
 /**
  * The block inspector is a drawer that appears on the right side of the screen
@@ -51,6 +67,8 @@ export function BlockInspector(props: BlockInspectorProps) {
     setBlockInspectorOpen(false);
   };
 
+  const blockForm = selectedBlockData?.form || <Card />;
+
   return (
     <ChakraProvider theme={chaosTheme}>
       <DarkMode>
@@ -65,30 +83,30 @@ export function BlockInspector(props: BlockInspectorProps) {
             closeOnOverlayClick={false}
             variant="inspector"
           >
-            <form noValidate>
-              <DrawerContent>
-                <DrawerCloseButton />
-                <DrawerHeader>
-                  {selectedBlockData?.label ?? 'Block Inspector'}
-                </DrawerHeader>
-                <DrawerBody>
-                  <Stack
-                    spacing="5"
-                    px={{ base: '4', md: '6' }}
-                    py={{ base: '5', md: '6' }}
-                  ></Stack>
-                </DrawerBody>
+            <DrawerContent>
+              <DrawerCloseButton />
+              <DrawerHeader>
+                {selectedBlockData?.label ?? 'Block Inspector'}
+              </DrawerHeader>
+              <DrawerBody>
+                <Stack
+                  spacing="5"
+                  px={{ base: '4', md: '6' }}
+                  py={{ base: '5', md: '6' }}
+                >
+                  <FormWrapper form={blockForm as React.ElementType<unknown>} />
+                </Stack>
+              </DrawerBody>
 
-                <DrawerFooter>
-                  <Button variant="outline" mr={3} onClick={closeDrawer}>
-                    Cancel
-                  </Button>
-                  <Button colorScheme="blue" type="submit">
-                    Save
-                  </Button>
-                </DrawerFooter>
-              </DrawerContent>
-            </form>
+              <DrawerFooter>
+                <Button variant="outline" mr={3} onClick={closeDrawer}>
+                  Cancel
+                </Button>
+                <Button colorScheme="blue" type="submit">
+                  Save
+                </Button>
+              </DrawerFooter>
+            </DrawerContent>
           </Drawer>
         </div>
       </DarkMode>
