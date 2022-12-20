@@ -9,22 +9,54 @@ import {
   Text,
   Textarea,
 } from '@chakra-ui/react';
+import { Node } from 'reactflow';
+import { useCallback } from 'react';
 import cx from 'classnames';
+import debounce from 'lodash.debounce';
+import shallow from 'zustand/shallow';
 import { Icon } from '@iconify/react';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import chaosTheme from '../../../theme';
 import useBlockClick from '../hooks/useBlockClick';
 import { BlockData, BlockType } from './index';
+import useAppStore, { AppState } from '../../../store';
 import styles from './blocks.module.css';
 
 /* eslint-disable-next-line */
 export interface ImageGeneratorBlockProps {
-  id: string;
-  prompt?: string;
+  id?: string;
 }
 
-export const ImageGeneratorForm: React.FunctionComponent<unknown> = () => {
+const selector = (state: AppState) => ({
+  getNode: state.getNode,
+  selectedBlock: state.selectedBlock,
+  updateNode: state.updateNode,
+});
+
+export const ImageGeneratorForm: React.FunctionComponent<unknown> = (props) => {
+  const { selectedBlock, updateNode } = useAppStore(selector, shallow);
+
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (!selectedBlock) return;
+
+    updateNode({
+      params: {
+        blockId: selectedBlock.id,
+      },
+      body: {
+        ...selectedBlock,
+        data: {
+          ...selectedBlock.data,
+          prompt: e.target.value,
+        },
+      },
+    });
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedOnChange = useCallback(debounce(onChange, 300), []);
+
   return (
     <ChakraProvider theme={chaosTheme}>
       <DarkMode>
@@ -35,7 +67,11 @@ export const ImageGeneratorForm: React.FunctionComponent<unknown> = () => {
             console.log('submitted');
           }}
         >
-          <Textarea name="prompt" placeholder="Elmo holding a lightsaber" />
+          <Textarea
+            name="prompt"
+            placeholder="Elmo holding a lightsaber"
+            onChange={debouncedOnChange}
+          />
         </form>
       </DarkMode>
     </ChakraProvider>
@@ -44,6 +80,9 @@ export const ImageGeneratorForm: React.FunctionComponent<unknown> = () => {
 
 export function ImageGeneratorBlock(props: ImageGeneratorBlockProps) {
   const onClick = useBlockClick(props.id);
+
+  const { getNode } = useAppStore(selector, shallow);
+  const node = getNode(props.id as string) as Node;
 
   const nodeClasses = cx(styles['node'], styles['imageGenerator']);
 
@@ -65,7 +104,7 @@ export function ImageGeneratorBlock(props: ImageGeneratorBlockProps) {
                 </Text>
 
                 <Text textAlign="left" w="100%" fontSize="md" as="i">
-                  {props.prompt || 'Elmo holding a lightsaber'}
+                  {node?.data?.prompt || 'Elmo holding a lightsaber'}
                 </Text>
               </Stack>
             </CardBody>

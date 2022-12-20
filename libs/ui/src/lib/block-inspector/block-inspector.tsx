@@ -38,6 +38,12 @@ const FormWrapper: React.FunctionComponent<FormProps> = (props) => {
   );
 };
 
+const selector = (state: AppState) => ({
+  blockInspectorOpen: state.blockInspectorOpen,
+  setBlockInspectorOpen: state.setBlockInspectorOpen,
+  selectedBlock: state.selectedBlock,
+});
+
 /**
  * The block inspector is a drawer that appears on the right side of the screen
  * when a block is selected. It allows the user to edit the properties of the
@@ -49,11 +55,6 @@ const FormWrapper: React.FunctionComponent<FormProps> = (props) => {
  * @see https://github.com/chakra-ui/chakra-ui/issues/2893
  */
 export function BlockInspector(props: BlockInspectorProps) {
-  const selector = (state: AppState) => ({
-    blockInspectorOpen: state.blockInspectorOpen,
-    setBlockInspectorOpen: state.setBlockInspectorOpen,
-    selectedBlock: state.selectedBlock,
-  });
   const { blockInspectorOpen, setBlockInspectorOpen, selectedBlock } =
     useAppStore(selector, shallow);
 
@@ -61,7 +62,6 @@ export function BlockInspector(props: BlockInspectorProps) {
   const selectedBlockData = selectedBlock
     ? blockData[selectedBlock.type || '']
     : null;
-  console.log('selectedBlockData', selectedBlockData);
 
   const closeDrawer = () => {
     setBlockInspectorOpen(false);

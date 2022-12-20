@@ -3,7 +3,7 @@ import shallow from 'zustand/shallow';
 
 import useAppStore, { AppState } from '../../../store';
 
-export function useBlockClick(id: NodeProps['id']) {
+export function useBlockClick(id?: NodeProps['id']) {
   const selector = (state: AppState) => ({
     getNode: state.getNode,
     setBlockInspectorOpen: state.setBlockInspectorOpen,
@@ -14,9 +14,12 @@ export function useBlockClick(id: NodeProps['id']) {
     shallow
   );
 
+  // No id, no click.
+  if (!id)
+    return () => {
+      return;
+    };
   const node = getNode(id);
-
-  console.log('Node clicked', node);
 
   const onClick = () => {
     // Set the selected block.

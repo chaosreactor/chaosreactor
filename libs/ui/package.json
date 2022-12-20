@@ -6,6 +6,10 @@
     "generate-stories": "nx g @nrwl/react:stories --project ui --generateCypressSpecs --cypressProject chaosreactor-e2e"
   },
   "dependencies": {
-    "@chaosreactor/trpc": "*"
+    "@chaosreactor/trpc": "*",
+    "lodash.debounce": "^4.0.8"
+  },
+  "devDependencies": {
+    "@types/lodash.debounce": "^4.0.7"
   }
 }
