@@ -9,7 +9,6 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { Node } from 'reactflow';
-
 import { Icon } from '@iconify/react';
 import { ChakraProvider } from '@chakra-ui/react';
 
@@ -22,8 +21,13 @@ export interface ImageGeneratorBlockProps {
   prompt?: string;
 }
 
+export const IMAGE_GENERATOR_DATA = {
+  type: 'imageGenerator',
+  label: 'Generate image',
+}
+
 export function ImageGeneratorBlock(props: ImageGeneratorBlockProps) {
-  const onClick = useBlockClick();
+  const onClick = useBlockClick(props.id);
 
   return (
     <div onClick={onClick}>
@@ -33,7 +37,7 @@ export function ImageGeneratorBlock(props: ImageGeneratorBlockProps) {
             <CardHeader>
               <Heading size="xs">
                 <Icon icon="noto:framed-picture" />
-                Generate image
+                {IMAGE_GENERATOR_DATA.label}
               </Heading>
             </CardHeader>
             <CardBody>

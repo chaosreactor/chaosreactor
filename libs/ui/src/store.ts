@@ -52,6 +52,7 @@ const defaultNodes: Node[] = [
 const useAppStore = create<AppState>((set, get) => ({
   commandBarOpen: false,
   setCommandBarOpen: (open: boolean) => set({ commandBarOpen: open }),
+  
   selectedBlock: undefined,
   setSelectedBlock: (block: Node) => set({ selectedBlock: block }),
   blockInspectorOpen: false,

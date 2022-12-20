@@ -4,7 +4,6 @@ import {
   Drawer,
   DrawerBody,
   DrawerHeader,
-  DrawerOverlay,
   DrawerCloseButton,
   DrawerContent,
   DrawerFooter,
@@ -15,14 +14,12 @@ import shallow from 'zustand/shallow';
 import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/work-sans';
 
+import { blockData } from '../playfield/blocks';
 import chaosTheme from '../../theme';
 import useAppStore, { AppState } from '../../store';
 
 /* eslint-disable-next-line */
-export interface BlockInspectorProps {
-  // The name of the block to display.
-  blockTypeLabel?: string;
-}
+export interface BlockInspectorProps {}
 
 /**
  * The block inspector is a drawer that appears on the right side of the screen
@@ -38,11 +35,14 @@ export function BlockInspector(props: BlockInspectorProps) {
   const selector = (state: AppState) => ({
     blockInspectorOpen: state.blockInspectorOpen,
     setBlockInspectorOpen: state.setBlockInspectorOpen,
+    selectedBlock: state.selectedBlock,
   });
-  const { blockInspectorOpen, setBlockInspectorOpen } = useAppStore(
-    selector,
-    shallow
-  );
+  const { blockInspectorOpen, setBlockInspectorOpen, selectedBlock } =
+    useAppStore(selector, shallow);
+
+  // Determine the label for the selected block.
+  const selectedBlockData = blockData[selectedBlock?.type ?? ''];
+  console.log('selectedBlockData', selectedBlockData);
 
   const closeDrawer = () => {
     setBlockInspectorOpen(false);
@@ -65,7 +65,9 @@ export function BlockInspector(props: BlockInspectorProps) {
             <form noValidate>
               <DrawerContent>
                 <DrawerCloseButton />
-                <DrawerHeader>{props.blockTypeLabel}</DrawerHeader>
+                <DrawerHeader>
+                  {selectedBlockData?.label ?? 'Block Inspector'}
+                </DrawerHeader>
                 <DrawerBody>
                   <Stack
                     spacing="5"

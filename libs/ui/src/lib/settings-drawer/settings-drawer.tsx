@@ -1,4 +1,4 @@
-import { useForm, SubmitHandler, Control } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import {
   Button,
   Drawer,
