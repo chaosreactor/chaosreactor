@@ -1,4 +1,3 @@
-import styles from './block-inspector.module.css';
 import {
   Button,
   Drawer,
@@ -10,10 +9,12 @@ import {
   DarkMode,
   Stack,
 } from '@chakra-ui/react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import shallow from 'zustand/shallow';
 import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/work-sans';
 
+import styles from './block-inspector.module.css';
 import { blockData } from '../playfield/blocks';
 import chaosTheme from '../../theme';
 import useAppStore, { AppState } from '../../store';
@@ -41,7 +42,9 @@ export function BlockInspector(props: BlockInspectorProps) {
     useAppStore(selector, shallow);
 
   // Determine the label for the selected block.
-  const selectedBlockData = blockData[selectedBlock?.type ?? ''];
+  const selectedBlockData = selectedBlock
+    ? blockData[selectedBlock.type || '']
+    : null;
   console.log('selectedBlockData', selectedBlockData);
 
   const closeDrawer = () => {
