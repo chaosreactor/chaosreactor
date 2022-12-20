@@ -6,7 +6,7 @@ import ReactFlow, {
 } from 'reactflow';
 import shallow from 'zustand/shallow';
 import 'reactflow/dist/style.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { events, useBus } from '../../bus';
 import useAppStore, { AppState } from '../../store';
@@ -38,6 +38,10 @@ const selector = (state: AppState) => ({
 });
 
 export function Playfield(props: PlayfieldProps) {
+  // Memoize block types.
+  // @see https://reactflow.dev/docs/guides/troubleshooting/#it-looks-like-you-have-created-a-new-nodetypes-or-edgetypes-object-if-this-wasnt-on-purpose-please-define-the-nodetypesedgetypes-outside-of-the-component-or-memoize-them
+  const nodeTypes = useMemo(() => blockTypes, []);
+
   const proOptions = {
     account: 'paid-pro',
     hideAttribution: true,
@@ -138,7 +142,7 @@ export function Playfield(props: PlayfieldProps) {
         fitView
         fitViewOptions={fitViewOptions}
         minZoom={0.8}
-        nodeTypes={blockTypes}
+        nodeTypes={nodeTypes}
         proOptions={proOptions}
       >
         <Background color="#5c6169" variant={BackgroundVariant.Dots} />
