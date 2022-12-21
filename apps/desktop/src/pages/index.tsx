@@ -1,8 +1,10 @@
 import { useState, createRef, useEffect, useRef } from 'react';
 import { invoke } from '@tauri-apps/api/tauri';
 
+import DoltStorage from '../components/dolt-storage/dolt-storage';
 import { Nav, Playfield, CommandBar } from '../../../../libs/ui/src/index';
 import useAppStore, { AppState } from '../../../../libs/ui/src/store';
+import Dolt from '@chaosreactor/trpc/db/dolt';
 
 function App() {
   const [greetMsg, setGreetMsg] = useState('');
@@ -35,6 +37,7 @@ function App() {
 
   return (
     <div id="wrapper" ref={wrapper}>
+      <DoltStorage />
       <CommandBar />
       <Nav />
       <Playfield height="100%" width="100%" />

@@ -2,18 +2,14 @@ import ReactFlow, {
   Controls,
   Background,
   BackgroundVariant,
-  Node,
 } from 'reactflow';
 import shallow from 'zustand/shallow';
 import 'reactflow/dist/style.css';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
-import { events, useBus } from '../../bus';
 import useAppStore, { AppState } from '../../store';
 import blockTypes from './blocks';
 import styles from './playfield.module.css';
-import { trpc } from '../../utils/trpc';
-import { CreateBlockInput, UpdateBlockInput } from '@chaosreactor/trpc';
 
 /* eslint-disable-next-line */
 export interface PlayfieldProps {
@@ -48,84 +44,12 @@ export function Playfield(props: PlayfieldProps) {
   };
 
   const {
-    updateNode,
     nodes,
     edges,
     onNodesChange,
     onEdgesChange,
     onConnect,
-    setNodes,
   } = useAppStore(selector, shallow);
-
-  const { isLoading, isError, data, error } = trpc.blocksAll.useQuery(
-    {},
-    {
-      refetchInterval: false,
-      refetchOnMount: true,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    }
-  );
-
-  const [isInitialRender, setIsInitialRender] = useState(true);
-
-  // Load this reactor's blocks from the database.
-  useEffect(() => {
-    if (data && isInitialRender) {
-      setIsInitialRender(false);
-
-      // Collect the blocks into an array of Nodes.
-      const newNodes = data.blocks.map((block) => {
-        const node: Node = {
-          id: block.id.toString(),
-          type: block.type,
-          position: { x: block.x, y: block.y },
-          data: block.data,
-        };
-
-        return node;
-      });
-
-      // Update the nodes in the store (if there are any).
-      if (newNodes.length) setNodes(newNodes);
-    }
-  }, [data, isInitialRender, setNodes]);
-
-  const { mutate: createBlock } = trpc.createBlock.useMutation();
-
-  // Handle block addition event.
-  useBus(events.blocks.add, (input) => {
-    // If there is a placeholder block present, replace it.
-    const placeholder = nodes.find((node) => node.type === 'placeholder');
-
-    if (placeholder) {
-      // Update the placeholder block in the client-side store.
-      const updatedBlock = {
-        params: {
-          blockId: placeholder.id,
-        },
-        body: {
-          type: 'imageGenerator',
-          x: placeholder.position.x,
-          y: placeholder.position.y,
-        },
-      };
-
-      // Update the placeholder block in the playfield store.
-      updateNode(updatedBlock as UpdateBlockInput);
-
-      // Create the block via tRPC.
-      const newBlock = {
-        id: placeholder.id,
-        type: input['payload'].blockType,
-        x: placeholder.position.x,
-        y: placeholder.position.y,
-      };
-
-      const createBlockResult = createBlock(newBlock as CreateBlockInput);
-      console.log(createBlockResult);
-    }
-  });
 
   return (
     <div
