@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import chaosTheme from '../theme';
+import chaosTheme from '../../../libs/ui/src/theme';
 import {
   Box,
   Button,
