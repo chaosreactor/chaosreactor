@@ -1,14 +1,14 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const createBlockSchema = z.object({
   type: z.string({
-    required_error: "type is required",
+    required_error: 'type is required',
   }),
   x: z.number({
-    required_error: "x coordinate is required",
+    required_error: 'x coordinate is required',
   }),
   y: z.number({
-    required_error: "y coordinate is required",
+    required_error: 'y coordinate is required',
   }),
   data: z.object({}).optional(),
 });
@@ -24,7 +24,11 @@ export const updateBlockSchema = z.object({
       type: z.string(),
       x: z.number(),
       y: z.number(),
-      data: z.object({}),
+      data: z
+        .object({
+          prompt: z.string().optional(),
+        })
+        .default({}),
       commit: z.boolean().default(false),
     })
     .partial(),

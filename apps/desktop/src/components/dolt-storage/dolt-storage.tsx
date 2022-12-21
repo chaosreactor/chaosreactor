@@ -101,10 +101,23 @@ export function DoltStorage(props: DoltStorageProps) {
 
   // Handle block update.
   useBus(events.blocks.update, (input) => {
-    const data: UpdateBlockInput = input['payload'];
+    const data = input['payload'];
+    const { type, position, data: blockData } = data.body;
+
+    const updatedBlock: UpdateBlockInput = {
+      params: {
+        blockId: data.params.blockId,
+      },
+      body: {
+        type: type,
+        x: position.x,
+        y: position.y,
+        data: blockData,
+      },
+    };
 
     // Update the block in Dolt via tRPC.
-    const updateBlockResult = updateBlock(data);
+    const updateBlockResult = updateBlock(updatedBlock);
     console.log(updateBlockResult);
   });
 
