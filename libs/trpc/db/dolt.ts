@@ -11,6 +11,7 @@ export default class Dolt {
     MIGRATION: 'migration',
     BLOCKS: {
       CREATE: 'blocks.create',
+      UPDATE: 'blocks.update'
     },
   };
 

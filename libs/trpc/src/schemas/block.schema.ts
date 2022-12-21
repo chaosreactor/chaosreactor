@@ -25,6 +25,7 @@ export const updateBlockSchema = z.object({
       x: z.number(),
       y: z.number(),
       data: z.object({}),
+      commit: z.boolean().default(false),
     })
     .partial(),
 });

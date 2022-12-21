@@ -40,7 +40,7 @@ export const ImageGeneratorForm: React.FunctionComponent<unknown> = (props) => {
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (!selectedBlock) return;
 
-    updateNode({
+    const updatedNode = {
       params: {
         blockId: selectedBlock.id,
       },
@@ -51,7 +51,11 @@ export const ImageGeneratorForm: React.FunctionComponent<unknown> = (props) => {
           prompt: e.target.value,
         },
       },
-    });
+    };
+
+    console.log('updatedNode', updatedNode);
+
+    updateNode(updatedNode);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps

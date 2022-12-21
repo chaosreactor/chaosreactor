@@ -7,9 +7,14 @@ import migrateToLatest from '../db/migrator';
 import { ChaosReactorDB } from '../db/data-source';
 import { Block } from '../src/entities/block';
 import { procedure, publicProcedure, router } from './trpc';
-import { createBlockSchema, filterQuery } from './schemas/block.schema';
+import {
+  createBlockSchema,
+  updateBlockSchema,
+  filterQuery,
+} from './schemas/block.schema';
 import {
   createBlockController,
+  updateBlockController,
   findAllBlocksController,
 } from './controllers/block.controller';
 
@@ -50,6 +55,11 @@ const appRouter = router({
   createBlock: procedure
     .input(createBlockSchema)
     .mutation(({ input }) => createBlockController({ input })),
+
+  // Update a block.
+  updateBlock: procedure
+    .input(updateBlockSchema)
+    .mutation(({ input }) => updateBlockController({ input })),
 });
 export type AppRouter = typeof appRouter;
 

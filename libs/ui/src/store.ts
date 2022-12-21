@@ -14,6 +14,7 @@ import {
   applyEdgeChanges,
 } from 'reactflow';
 
+import { events, dispatch } from './bus';
 import { CreateBlockInput, UpdateBlockInput } from '@chaosreactor/trpc';
 
 export interface AppState {
@@ -63,6 +64,7 @@ const useAppStore = create<AppState>()(
     nodes: defaultNodes,
     edges: [],
     onNodesChange: (changes: NodeChange[]) => {
+      console.log('changes', changes);
       set({
         nodes: applyNodeChanges(changes, get().nodes),
       });
@@ -163,6 +165,9 @@ const useAppStore = create<AppState>()(
       const id = attributes.params.blockId;
       const node = get().getNode(id);
       if (!node) return;
+
+      // Dispatch an event to update the block in the database.
+      dispatch({ type: events.blocks.update, payload: attributes });
 
       set({
         nodes: get().nodes.map((node) => {

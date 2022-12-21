@@ -2,6 +2,7 @@ import { sql, QueryResult } from 'kysely';
 import { TRPCError } from '@trpc/server';
 import {
   CreateBlockInput,
+  UpdateBlockInput,
   FilterQueryInput,
 } from '../schemas/block.schema';
 
@@ -49,6 +50,47 @@ export const createBlockController = async ({
   }
 };
 
+export const updateBlockController = async ({
+  input,
+}: {
+  input: UpdateBlockInput;
+}) => {
+  try {
+    console.log('Updating block', input);
+
+    // Update the block in the database.
+    const { type, x, y, data } = input.body;
+    const block = (await db
+      .updateTable('blocks')
+      .set({
+        type,
+        x,
+        y,
+        data: JSON.stringify(data),
+      })
+      .where('id', '=', Number(input.params.blockId))
+      .executeTakeFirstOrThrow()) as unknown as BlockInterface;
+
+    // (Optionally) make a Dolt commit.
+    if (input.body.commit) {
+      const dolt = new Dolt(db);
+      await dolt.add('blocks');
+      await dolt.commit(`Updated block ${block?.id}`);
+      await dolt.tag(Dolt.TAGS.BLOCKS.UPDATE, 'HEAD');
+    }
+
+    return block;
+  } catch (error) {
+    console.log('Error updating block', error);
+
+    throw new TRPCError({
+      code: 'CONFLICT',
+      message: 'Eror updating block',
+      cause: error,
+    });
+  }
+};
+
 export const findAllBlocksController = async ({
   filterQuery,
 }: {
@@ -63,7 +105,7 @@ export const findAllBlocksController = async ({
     const blocks = await blocksRepository.find();
 
     return {
-      status: "success",
+      status: 'success',
       results: blocks.length,
       blocks,
     };

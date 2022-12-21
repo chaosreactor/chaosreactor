@@ -26,17 +26,9 @@ const selector = (state: AppState) => ({
  * Listens to changes to the store and updates the database as necessary.
  */
 export function DoltStorage(props: DoltStorageProps) {
-  const {
-    updateNode,
-    nodes,
-    edges,
-    onNodesChange,
-    onEdgesChange,
-    onConnect,
-    setNodes,
-  } = useAppStore(selector, shallow);
+  const { updateNode, nodes, setNodes } = useAppStore(selector, shallow);
 
-  const { isLoading, isError, data, error } = trpc.blocksAll.useQuery(
+  const { data } = trpc.blocksAll.useQuery(
     {},
     {
       refetchInterval: false,
@@ -48,7 +40,7 @@ export function DoltStorage(props: DoltStorageProps) {
 
   const [isInitialRender, setIsInitialRender] = useState(true);
 
-  // Load this reactor's blocks from the database.
+  // Load this reactor's blocks from the database on initial render.
   useEffect(() => {
     if (data && isInitialRender) {
       setIsInitialRender(false);
@@ -71,8 +63,9 @@ export function DoltStorage(props: DoltStorageProps) {
   }, [data, isInitialRender, setNodes]);
 
   const { mutate: createBlock } = trpc.createBlock.useMutation();
+  const { mutate: updateBlock } = trpc.updateBlock.useMutation();
 
-  // Handle block addition event.
+  // Handle block addition.
   useBus(events.blocks.add, (input) => {
     // If there is a placeholder block present, replace it.
     const placeholder = nodes.find((node) => node.type === 'placeholder');
@@ -104,6 +97,15 @@ export function DoltStorage(props: DoltStorageProps) {
       const createBlockResult = createBlock(newBlock as CreateBlockInput);
       console.log(createBlockResult);
     }
+  });
+
+  // Handle block update.
+  useBus(events.blocks.update, (input) => {
+    const data: UpdateBlockInput = input['payload'];
+
+    // Update the block in Dolt via tRPC.
+    const updateBlockResult = updateBlock(data);
+    console.log(updateBlockResult);
   });
 
   return null;
