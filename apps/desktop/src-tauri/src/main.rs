@@ -101,7 +101,7 @@ fn init_reactor_db() -> Result<(), String> {
     }
 
     // Create the initial SQL database via `dolt sql`
-    // If dolt is not installed globally, does this still work?0
+    println!("Creating reactor database");
     Command::new_sidecar("dolt")
         .or(Err(String::from("Can't find dolt binary")))?
         .current_dir(db_path.clone())

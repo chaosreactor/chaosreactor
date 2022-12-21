@@ -10,13 +10,15 @@ function App() {
 
   const nodesRef = useRef(useAppStore.getState().nodes);
 
-  // Connect to the store on mount, disconnect on unmount, catch state-changes in a reference
+  // Connect to the store on mount, disconnect on unmount, catch state-changes in a reference.
   useEffect(
     () =>
       // Update any changed nodes in the database.
-      useAppStore.subscribe((state) => {
+      useAppStore.subscribe((state, prevState) => {
         console.log('new state', state);
+        console.log('prev state', prevState);
         nodesRef.current = state.nodes;
+        return state.nodes;
       }),
     []
   );
