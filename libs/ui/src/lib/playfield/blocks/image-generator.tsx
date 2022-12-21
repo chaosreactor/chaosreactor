@@ -2,6 +2,8 @@ import {
   Card,
   CardBody,
   CardHeader,
+  FormLabel,
+  FormControl,
   Heading,
   DarkMode,
   Stack,
@@ -16,6 +18,7 @@ import debounce from 'lodash.debounce';
 import shallow from 'zustand/shallow';
 import { Icon } from '@iconify/react';
 import { ChakraProvider } from '@chakra-ui/react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 import chaosTheme from '../../../theme';
 import useBlockClick from '../hooks/useBlockClick';
@@ -37,6 +40,16 @@ const selector = (state: AppState) => ({
 export const ImageGeneratorForm: React.FunctionComponent<unknown> = (props) => {
   const { selectedBlock, updateNode } = useAppStore(selector, shallow);
 
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultValues: {
+      prompt: selectedBlock?.data?.prompt,
+    },
+  });
+
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (!selectedBlock) return;
 
@@ -52,8 +65,6 @@ export const ImageGeneratorForm: React.FunctionComponent<unknown> = (props) => {
         },
       },
     };
-
-    console.log('updatedNode', updatedNode);
 
     updateNode(updatedNode);
   };
@@ -71,11 +82,13 @@ export const ImageGeneratorForm: React.FunctionComponent<unknown> = (props) => {
             console.log('submitted');
           }}
         >
-          <Textarea
-            name="prompt"
-            placeholder="Elmo holding a lightsaber"
-            onChange={debouncedOnChange}
-          />
+          <FormControl>
+            <FormLabel htmlFor="name">First name</FormLabel>
+            <Textarea
+              placeholder="Elmo holding a lightsaber"
+              {...register('prompt', { onChange: debouncedOnChange })}
+            />
+          </FormControl>
         </form>
       </DarkMode>
     </ChakraProvider>
