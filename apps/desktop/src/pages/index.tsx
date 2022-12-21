@@ -14,12 +14,15 @@ function App() {
   useEffect(
     () =>
       // Update any changed nodes in the database.
-      useAppStore.subscribe((state, prevState) => {
-        console.log('new state', state);
-        console.log('prev state', prevState);
-        nodesRef.current = state.nodes;
-        return state.nodes;
-      }),
+      useAppStore.subscribe(
+        (state) => state.nodes,
+        (state, prevState) => {
+          console.log('new state', state);
+          console.log('prev state', prevState);
+          nodesRef.current = state;
+          return state;
+        }
+      ),
     []
   );
 

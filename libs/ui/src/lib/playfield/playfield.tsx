@@ -86,8 +86,8 @@ export function Playfield(props: PlayfieldProps) {
         return node;
       });
 
-      // Update the nodes in the store.
-      setNodes(newNodes || []);
+      // Update the nodes in the store (if there are any).
+      if (newNodes.length) setNodes(newNodes);
     }
   }, [data, isInitialRender, setNodes]);
 
