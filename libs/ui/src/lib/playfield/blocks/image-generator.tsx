@@ -12,7 +12,7 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 import { Node } from 'reactflow';
-import { useCallback } from 'react';
+import React, { useCallback, MutableRefObject, useEffect } from 'react';
 import cx from 'classnames';
 import debounce from 'lodash.debounce';
 import shallow from 'zustand/shallow';
@@ -37,11 +37,12 @@ const selector = (state: AppState) => ({
   updateNode: state.updateNode,
 });
 
-export const ImageGeneratorForm: React.FunctionComponent<unknown> = (props) => {
+export const ImageGeneratorForm = React.forwardRef((props, ref) => {
   const { selectedBlock, updateNode } = useAppStore(selector, shallow);
 
   const {
     handleSubmit,
+    setFocus,
     register,
     formState: { errors, isSubmitting },
   } = useForm({
@@ -72,6 +73,18 @@ export const ImageGeneratorForm: React.FunctionComponent<unknown> = (props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedOnChange = useCallback(debounce(onChange, 300), []);
 
+  const { ref: internalRef, ...rest } = register('prompt', {
+    onChange: debouncedOnChange,
+  });
+
+  /**
+   * Set the focus on the first field. Though we do a lot of work to forward the ref to Chakra's
+   * `initialFocusRef` option on `BlockInspector`, it doesn't seem to work. So we're doing this instead.
+   */
+  useEffect(() => {
+    if (selectedBlock) setFocus('prompt');
+  });
+
   return (
     <ChakraProvider theme={chaosTheme}>
       <DarkMode>
@@ -83,17 +96,26 @@ export const ImageGeneratorForm: React.FunctionComponent<unknown> = (props) => {
           }}
         >
           <FormControl>
-            <FormLabel htmlFor="name">First name</FormLabel>
+            <FormLabel htmlFor="prompt">Prompt</FormLabel>
             <Textarea
+              {...rest}
               placeholder="Elmo holding a lightsaber"
-              {...register('prompt', { onChange: debouncedOnChange })}
+              tabIndex={0}
+              ref={(e) => {
+                internalRef(e);
+                if (ref) {
+                  (
+                    ref as MutableRefObject<HTMLTextAreaElement | null>
+                  ).current = e;
+                }
+              }}
             />
           </FormControl>
         </form>
       </DarkMode>
     </ChakraProvider>
   );
-};
+});
 
 export function ImageGeneratorBlock(props: ImageGeneratorBlockProps) {
   const onClick = useBlockClick(props.id);

@@ -10,8 +10,14 @@ import {
   DarkMode,
   Stack,
 } from '@chakra-ui/react';
-import React, { FunctionComponent, PropsWithChildren } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { FocusableElement } from '@chakra-ui/utils';
+import React, {
+  useRef,
+  ForwardRefExoticComponent,
+  PropsWithoutRef,
+  RefAttributes,
+  useEffect,
+} from 'react';
 import shallow from 'zustand/shallow';
 import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/work-sans';
@@ -28,15 +34,24 @@ interface FormProps {
   form: React.ElementType<unknown>; // 👈️ type it as React.ElementType
 }
 
-const FormWrapper: React.FunctionComponent<FormProps> = (props) => {
+const FormWrapper = React.forwardRef((props: FormProps, ref) => {
   // 👇️ component names must start with capital letter
-  const { form: FunctionComponent } = props;
+  const { form: FormComponent } = props;
+  const TypedFormComponent = FormComponent as ForwardRefExoticComponent<
+    PropsWithoutRef<RefAttributes<unknown>> & RefAttributes<unknown>
+  >;
+  const FormComponentWithRef = React.forwardRef(
+    (forwardedProps, forwardedRef) => (
+      <TypedFormComponent {...forwardedProps} ref={forwardedRef} />
+    )
+  );
+
   return (
     <div>
-      <FunctionComponent />
+      <FormComponentWithRef ref={ref} />
     </div>
   );
-};
+});
 
 const selector = (state: AppState) => ({
   blockInspectorOpen: state.blockInspectorOpen,
@@ -57,6 +72,12 @@ const selector = (state: AppState) => ({
 export function BlockInspector(props: BlockInspectorProps) {
   const { blockInspectorOpen, setBlockInspectorOpen, selectedBlock } =
     useAppStore(selector, shallow);
+
+  const focusField = useRef() as React.MutableRefObject<FocusableElement>;
+
+  useEffect(() => {
+    console.log('focusField', focusField);
+  }, [focusField]);
 
   // Determine the label for the selected block.
   const selectedBlockData = selectedBlock
@@ -81,6 +102,7 @@ export function BlockInspector(props: BlockInspectorProps) {
             trapFocus={false}
             blockScrollOnMount={false}
             closeOnOverlayClick={false}
+            initialFocusRef={focusField}
             variant="inspector"
           >
             <DrawerContent>
@@ -94,7 +116,10 @@ export function BlockInspector(props: BlockInspectorProps) {
                   px={{ base: '4', md: '6' }}
                   py={{ base: '5', md: '6' }}
                 >
-                  <FormWrapper form={blockForm as React.ElementType<unknown>} />
+                  <FormWrapper
+                    form={blockForm as React.ElementType<unknown>}
+                    ref={focusField}
+                  />
                 </Stack>
               </DrawerBody>
 
