@@ -12,4 +12,4 @@ We use [Noto Emoji](https://github.com/googlefonts/noto-emoji), an open source e
 ## Logo
 Logo images used to represent the Chaos Reactor brand as well as other brands we integrate with or link to. We leverage the [Simple Icons project](https://simpleicons.org/) for other company logos.
 ## Loader
-Created an inital loader with the LottieFiles plugin which has a lot of Lottie supported loaders that can be customized. I grabbed [one I thought would work well](https://lottiefiles.com/99084-circle-loader) until we have more time to tie in animation to the branding. 
+Created an initial loader with the LottieFiles plugin which has a lot of Lottie supported loaders that can be customized. I grabbed [one I thought would work well](https://lottiefiles.com/99084-circle-loader) until we have more time to tie in animation to the branding. 
