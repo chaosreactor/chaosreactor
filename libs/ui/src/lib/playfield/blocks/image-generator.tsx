@@ -92,7 +92,7 @@ export const ImageGeneratorForm = React.forwardRef((props, ref) => {
           id="block-inspector-form"
           onSubmit={(e) => {
             e.preventDefault();
-            console.log('submitted');
+            console.log('image generator submitted');
           }}
         >
           <FormControl>

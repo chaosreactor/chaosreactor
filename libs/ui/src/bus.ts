@@ -4,6 +4,7 @@ const events = {
   blocks: {
     add: 'blocks.add',
     update: 'blocks.update',
+    run: 'blocks.run',
   }
 }
 

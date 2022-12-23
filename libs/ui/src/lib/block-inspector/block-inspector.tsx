@@ -16,7 +16,6 @@ import React, {
   ForwardRefExoticComponent,
   PropsWithoutRef,
   RefAttributes,
-  useEffect,
 } from 'react';
 import shallow from 'zustand/shallow';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -26,6 +25,7 @@ import styles from './block-inspector.module.css';
 import { blockData } from '../playfield/blocks';
 import chaosTheme from '../../theme';
 import useAppStore, { AppState } from '../../store';
+import { dispatch, events } from '../../bus';
 
 /* eslint-disable-next-line */
 export interface BlockInspectorProps {}
@@ -75,10 +75,6 @@ export function BlockInspector(props: BlockInspectorProps) {
 
   const focusField = useRef() as React.MutableRefObject<FocusableElement>;
 
-  useEffect(() => {
-    console.log('focusField', focusField);
-  }, [focusField]);
-
   // Determine the label for the selected block.
   const selectedBlockData = selectedBlock
     ? blockData[selectedBlock.type || '']
@@ -127,7 +123,20 @@ export function BlockInspector(props: BlockInspectorProps) {
                 <Button variant="outline" mr={3} onClick={closeDrawer}>
                   Cancel
                 </Button>
-                <Button colorScheme="blue" type="submit">
+
+                <Button
+                  colorScheme="green"
+                  mr={3}
+                  onClick={() => dispatch(events.blocks.run)}
+                >
+                  Run block ▶
+                </Button>
+
+                <Button
+                  colorScheme="blue"
+                  type="submit"
+                  form="block-inspector-form"
+                >
                   Save
                 </Button>
               </DrawerFooter>
