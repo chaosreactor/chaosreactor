@@ -1,5 +1,6 @@
 import ReactFlow, {
   Controls,
+  ControlButton,
   Background,
   BackgroundVariant,
 } from 'reactflow';
@@ -33,6 +34,10 @@ const selector = (state: AppState) => ({
   onConnect: state.onConnect,
 });
 
+function runGraph() {
+  console.log('Run graph');
+}
+
 export function Playfield(props: PlayfieldProps) {
   // Memoize block types.
   // @see https://reactflow.dev/docs/guides/troubleshooting/#it-looks-like-you-have-created-a-new-nodetypes-or-edgetypes-object-if-this-wasnt-on-purpose-please-define-the-nodetypesedgetypes-outside-of-the-component-or-memoize-them
@@ -43,18 +48,14 @@ export function Playfield(props: PlayfieldProps) {
     hideAttribution: true,
   };
 
-  const {
-    nodes,
-    edges,
-    onNodesChange,
-    onEdgesChange,
-    onConnect,
-  } = useAppStore(selector, shallow);
+  const { nodes, edges, onNodesChange, onEdgesChange, onConnect } = useAppStore(
+    selector,
+    shallow
+  );
 
   return (
     <div
-      id="playfield"
-      className={styles['container']}
+      className={styles['playfield']}
       style={{ height: props.height, width: props.width, maxHeight: '100%' }}
     >
       <ReactFlow
@@ -70,7 +71,14 @@ export function Playfield(props: PlayfieldProps) {
         proOptions={proOptions}
       >
         <Background color="#5c6169" variant={BackgroundVariant.Dots} />
-        <Controls />
+        <Controls>
+          <ControlButton
+            onClick={runGraph}
+            className={styles['control-button']}
+          >
+            <div>▶</div>
+          </ControlButton>
+        </Controls>
       </ReactFlow>
     </div>
   );
