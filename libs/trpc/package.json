@@ -16,18 +16,21 @@
     "@trpc/client": "^10.5.0",
     "@trpc/server": "^10.5.0",
     "kysely": "^0.22.0",
+    "mysql": "^2.14.1",
     "mysql2": "^2.3.3",
+    "noflo": "^1.4.3",
+    "noflo-core": "^0.6.1",
+    "noflo-nodejs": "^0.15.2",
     "reflect-metadata": "^0.1.13",
     "typeorm": "0.3.11",
-    "zod": "^3.19.1",
-    "mysql": "^2.14.1"
+    "zod": "^3.19.1"
   },
   "devDependencies": {
     "@types/node": "^16.11.10",
     "del-cli": "^5.0.0",
     "execa": "^6.1.0",
     "pkg": "^5.8.0",
-    "typescript": "4.5.2",
-    "ts-node": "10.7.0"
+    "ts-node": "10.7.0",
+    "typescript": "4.5.2"
   }
 }

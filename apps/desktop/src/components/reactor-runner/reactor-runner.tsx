@@ -7,24 +7,17 @@ import { useEffect, useState } from 'react';
 
 import { events, useBus } from '../../../../../libs/ui/src/bus';
 
-const selector = (state: AppState) => ({
-  addNode: state.addNode,
-  getNode: state.getNode,
-  updateNode: state.updateNode,
-  setNodes: state.setNodes,
-  nodes: state.nodes,
-  edges: state.edges,
-  onNodesChange: state.onNodesChange,
-  onEdgesChange: state.onEdgesChange,
-  onConnect: state.onConnect,
-});
+/* eslint-disable-next-line */
+export interface ReactorRunnerProps {}
 
-export function ReactorRunner(props: {}) {
-  const { updateNode, nodes, setNodes } = useAppStore(selector, shallow);
-
-  // Handle block run.
-  useBus(events.blocks.run, (input) => {
-    console.log('run block', input);
+/**
+ * Handle communication with the tRPC server by triggering runs and communicating
+ * state changes back to the flow diagram.
+ */
+export function ReactorRunner(props: ReactorRunnerProps) {
+  // Handle reactor runs.
+  useBus(events.reactors.run, (input) => {
+    console.log('reactor run', input);
   });
 
   return null;

@@ -9,6 +9,7 @@ import 'reactflow/dist/style.css';
 import { useMemo } from 'react';
 
 import useAppStore, { AppState } from '../../store';
+import { events, dispatch } from '../../bus';
 import blockTypes from './blocks';
 import styles from './playfield.module.css';
 
@@ -34,8 +35,17 @@ const selector = (state: AppState) => ({
   onConnect: state.onConnect,
 });
 
-function runGraph() {
-  console.log('Run graph');
+/**
+ * Trigger a reactor run.
+ */
+function runReactor() {
+  // Dispatch a reactor run event.
+  dispatch({
+    type: events.reactors.run,
+    payload: {
+      reactorId: '1',
+    },
+  });
 }
 
 export function Playfield(props: PlayfieldProps) {
@@ -73,7 +83,7 @@ export function Playfield(props: PlayfieldProps) {
         <Background color="#5c6169" variant={BackgroundVariant.Dots} />
         <Controls>
           <ControlButton
-            onClick={runGraph}
+            onClick={runReactor}
             className={styles['control-button']}
           >
             <div>▶</div>

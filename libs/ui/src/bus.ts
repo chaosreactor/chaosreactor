@@ -5,6 +5,10 @@ const events = {
     add: 'blocks.add',
     update: 'blocks.update',
     run: 'blocks.run',
+  },
+
+  reactors: {
+    run: 'reactors.run',
   }
 }
 

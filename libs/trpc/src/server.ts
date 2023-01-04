@@ -17,6 +17,9 @@ import {
   updateBlockController,
   findAllBlocksController,
 } from './controllers/block.controller';
+import {
+  runReactorController,
+} from './controllers/reactor.controller';
 
 console.log('Launching server...');
 
@@ -45,6 +48,11 @@ const appRouter = router({
       const reactor = reactorList.find((r) => r.id === input);
       return reactor;
     }),
+
+  // Run the reactor.
+  runReactor: procedure
+    .input(filterQuery)
+    .mutation(({ input }) => runReactorController({ filterQuery: input })),
 
   // Find all blocks.
   blocksAll: procedure
