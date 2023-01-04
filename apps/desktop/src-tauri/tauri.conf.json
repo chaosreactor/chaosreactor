@@ -24,7 +24,7 @@
             "sidecar": true
           },
           {
-            "name": "binaries/trpc",
+            "name": "binaries/trpc-node",
             "sidecar": true
           }
         ]
@@ -37,7 +37,7 @@
       "deb": {
         "depends": []
       },
-      "externalBin": ["binaries/dolt", "binaries/trpc"],
+      "externalBin": ["binaries/dolt", "binaries/trpc-node"],
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",

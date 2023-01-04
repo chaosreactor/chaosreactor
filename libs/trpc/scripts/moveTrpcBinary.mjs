@@ -15,21 +15,24 @@ async function rename() {
     console.error('Error generating platform target triple');
   }
 
-  console.log(`Renaming trpc server binary to trpc-${triple}${ext}`);
+  console.log(`Renaming trpc server binary to trpc-node-${triple}${ext}`);
 
   // Remove the prior binary before renaming.
   try {
     await execa('rm', [
-      `../../apps/desktop/src-tauri/binaries/trpc-${triple}${ext}`,
+      `../../apps/desktop/src-tauri/binaries/trpc-node-${triple}${ext}`,
     ]);
   } catch (e) {
     // Ignore error if file doesn't exist.
   }
 
   // Rename trpc server binaries with target triple.
+  // The binary is named trpc-node. The binary name must contain node in order
+  // for noflo to recognize the process as a node process.
+  // @see https://github.com/noflo/noflo/blob/6187566f761a463af95dd186de55dc488e2f03b8/src/lib/Platform.js#L16
   renameSync(
-    `../../apps/desktop/src-tauri/binaries/trpc${ext}`,
-    `../../apps/desktop/src-tauri/binaries/trpc-${triple}${ext}`
+    `../../apps/desktop/src-tauri/binaries/trpc-node${ext}`,
+    `../../apps/desktop/src-tauri/binaries/trpc-node-${triple}${ext}`
   );
 }
 

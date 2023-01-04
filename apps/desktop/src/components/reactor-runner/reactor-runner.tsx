@@ -15,9 +15,16 @@ export interface ReactorRunnerProps {}
  * state changes back to the flow diagram.
  */
 export function ReactorRunner(props: ReactorRunnerProps) {
-  // Handle reactor runs.
+  const runMutation = trpc.runReactor.useMutation();
+
+  // Handle reactor runs request events.
   useBus(events.reactors.run, (input) => {
     console.log('reactor run', input);
+
+    // Trigger a reactor run.
+    runMutation.mutateAsync({}).then((result) => {
+      console.log('reactor run result', result);
+    });
   });
 
   return null;

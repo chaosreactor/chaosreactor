@@ -124,8 +124,8 @@ fn main() {
             println!("Booting trpc server...");
 
             tauri::async_runtime::spawn(async move {
-                let (mut rx, mut child) = Command::new_sidecar("trpc")
-                    .expect("failed to setup `trpc` sidecar")
+                let (mut rx, mut child) = Command::new_sidecar("trpc-node")
+                    .expect("failed to setup `trpc-node` sidecar")
                     .spawn()
                     .expect("Failed to spawn packaged trpc server");
 

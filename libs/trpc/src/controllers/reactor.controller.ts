@@ -1,6 +1,5 @@
-import { sql, QueryResult } from 'kysely';
 import { TRPCError } from '@trpc/server';
-// import noflo from 'noflo';
+import { Graph, isBrowser } from 'noflo';
 
 import { FilterQueryInput } from '../schemas/block.schema';
 import db from '../../db/client';
@@ -22,10 +21,10 @@ export const runReactorController = async ({
     const blocks = await blocksRepository.find();
 
     // Create a new NoFlo graph. This will be used to run the reactor.
-    // const graph = new noflo.Graph('reactor');
-    // console.log(noflo.isBrowser());
-    console.log(typeof process);
-    if (process.execPath) console.log(process.execPath.match(/node|iojs/));
+    const graph = new Graph('reactor');
+    console.log('graph', graph);
+    console.log('isBrowser', isBrowser());
+    if (process.execPath) console.log('execPath', process.execPath);
 
     // Add a node for each block.
     blocks.forEach((block) => {
