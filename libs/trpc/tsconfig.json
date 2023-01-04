@@ -19,6 +19,6 @@
     "module": "commonjs",
     "strictPropertyInitialization": false
   },
-  "include": ["./src/**/*.ts", "./db/**/*.ts", "**/*.tsx"],
+  "include": ["./src/**/*.ts", "./components/**/*.ts", "./db/**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
