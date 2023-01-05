@@ -16,6 +16,7 @@ import Dolt from '../../db/dolt';
 import { ChaosReactorDB } from '../../db/data-source';
 import { Block } from '../../src/entities/block';
 import { nodeHTTPRequestHandler } from '@trpc/server/dist/adapters/node-http';
+import { InternalSocket } from 'noflo/lib/InternalSocket';
 
 // @see https://codevoweb.com/build-a-fullstack-trpc-crud-app-with-nextjs
 export const runReactorController = async ({
@@ -34,6 +35,28 @@ export const runReactorController = async ({
 
     let prompt: string;
 
+    const baseDir = path.join(__dirname, '../../');
+    // pkg will include this file in assets.
+    const repeatPath = path.join(
+      __dirname,
+      '../../../../../node_modules/noflo-core/components/Repeat.js'
+    );
+    const loader = new ComponentLoader(baseDir);
+    loader.listComponents((err: any, components: any) => {
+      console.log('components', components);
+    });
+    console.log('repeatPath', repeatPath);
+    loader.registerComponent('core', 'Repeat', repeatPath, (err: any) => {
+      if (err) {
+        console.log('Error loading Repeat component', err);
+      }
+    });
+
+    // Add a core/Repeat component to the graph.
+    // @see https://docs.flowhub.io/getting-started-browser/
+    graph.addNode('START', 'Repeat');
+    graph.addInport('in', 'START', 'in');
+
     // Add a node for each block.
     blocks.forEach((block) => {
       const { id, type } = block as unknown as BlockInterface;
@@ -41,6 +64,8 @@ export const runReactorController = async ({
 
       // Add the block to the graph.
       graph.addNode(id.toString(), 'dist/' + type);
+      graph.addEdge('START', 'out', id.toString(), 'in');
+      graph.addOutport('out', id.toString(), 'out');
 
       // Capture any prompts.
       if (data?.prompt) {
@@ -50,15 +75,14 @@ export const runReactorController = async ({
       console.log('block', block);
     });
 
-    const baseDir = path.join(__dirname, '../../');
-    const loader = new ComponentLoader(baseDir);
-    loader.listComponents((err: any, components: any) => {
-      console.log('components', components);
-    });
     loader.registerGraph('trpc', 'reactor', graph, (err) => {
       if (err) {
         console.log('Error loading reactor graph', err);
       }
+
+      type InPorts = {
+        in: InternalSocket;
+      };
 
       // Load the reactor graph.
       loader
@@ -72,15 +96,19 @@ export const runReactorController = async ({
             const out = internalSocket.createSocket();
             const ins = internalSocket.createSocket();
 
+            // Bind inport to the start node.
+            console.log('inPorts', instance.inPorts);
+            instance.inPorts.ports.in.attach(ins);
+
             // React to results from outport
             out.on('ip', (ip) => {
               // Received an information packet
-              console.log('Received IP', ip);
+              console.log('Received output IP', ip);
             });
 
             ins.on('ip', (ip) => {
               // Received an information packet
-              console.log('Received IP', ip);
+              console.log('Received input IP', ip);
             });
 
             // Send something

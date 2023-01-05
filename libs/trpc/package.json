@@ -6,7 +6,8 @@
   "pkg": {
     "scripts": "dist/**/*.js",
     "assets": [
-      "../../node_modules/noflo/components/**/*"
+      "../../node_modules/noflo/components/**/*",
+      "../../node_modules/noflo-core/components/**/*"
     ]
   },
   "scripts": {
