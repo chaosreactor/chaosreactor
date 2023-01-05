@@ -1,6 +1,13 @@
 import { TRPCError } from '@trpc/server';
-import { Graph, isBrowser, ComponentLoader, internalSocket } from 'noflo';
+import {
+  Graph,
+  isBrowser,
+  ComponentLoader,
+  internalSocket,
+  Component,
+} from 'noflo';
 import path from 'path';
+import fs from 'fs';
 
 import { FilterQueryInput } from '../schemas/block.schema';
 import db from '../../db/client';
@@ -40,13 +47,11 @@ export const runReactorController = async ({
         prompt = data.prompt;
       }
 
-
       console.log('block', block);
     });
 
-    console.log('graph', graph);
-    const loader = new ComponentLoader(path.join(__dirname, '../../'));
-    console.log('loader', loader);
+    const baseDir = path.join(__dirname, '../../');
+    const loader = new ComponentLoader(baseDir);
     loader.listComponents((err: any, components: any) => {
       console.log('components', components);
     });
@@ -54,30 +59,39 @@ export const runReactorController = async ({
       if (err) {
         console.log('Error loading reactor graph', err);
       }
-    });
-    console.log('loader', loader);
 
-    // Load the reactor graph.
-    loader.load(
-      'trpc/reactor',
-      (err: any, instance: { start: (arg0: (err: any) => void) => void }) => {
-        console.log('instance', instance)
-        instance.start((err) => {
-          // Here you can bind to ports. Using just in/out as example, but can be more
-          const out = internalSocket.createSocket();
-          const ins = internalSocket.createSocket();
+      // Load the reactor graph.
+      loader
+        .load('trpc/reactor', {})
+        .then((instance: Component) => {
+          console.log('instance', instance);
+          console.log('Running reactor graph...');
 
-          // React to results from outport
-          out.on('ip', (ip) => {
-            // Received an information packet
-            console.log('Received IP', ip);
+          instance.start((err) => {
+            // Here you can bind to ports. Using just in/out as example, but can be more
+            const out = internalSocket.createSocket();
+            const ins = internalSocket.createSocket();
+
+            // React to results from outport
+            out.on('ip', (ip) => {
+              // Received an information packet
+              console.log('Received IP', ip);
+            });
+
+            ins.on('ip', (ip) => {
+              // Received an information packet
+              console.log('Received IP', ip);
+            });
+
+            // Send something
+            ins.send(prompt);
           });
-
-          // Send something
-          ins.send('do something');
+        })
+        .catch((err) => {
+          console.error('Error loading reactor graph:', err);
         });
-      }
-    );
+    });
+    //});
 
     return blocks;
   } catch (error) {

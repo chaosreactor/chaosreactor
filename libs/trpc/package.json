@@ -4,7 +4,10 @@
   "bin": "dist/src/server.js",
   "version": "0.0.1",
   "pkg": {
-    "scripts": "dist/**/*.js"
+    "scripts": "dist/**/*.js",
+    "assets": [
+      "../../node_modules/noflo/components/**/*"
+    ]
   },
   "scripts": {
     "build": "del-cli --force ./dist && tsc --outDir dist && pkg package.json --targets macos -o ../../apps/desktop/src-tauri/binaries/trpc-node && node ./scripts/moveTrpcBinary.mjs",
