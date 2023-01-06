@@ -122,7 +122,6 @@ fn main() {
             let window = app.get_window("main").unwrap();
 
             println!("Booting trpc server...");
-
             tauri::async_runtime::spawn(async move {
                 let (mut rx, mut child) = Command::new_sidecar("trpc-node")
                     .expect("failed to setup `trpc-node` sidecar")
@@ -145,6 +144,35 @@ fn main() {
                         }
                     } else if let CommandEvent::Stderr(line) = event {
                         println!("trpc err: {}", line);
+                    }
+                }
+            });
+
+            let wsWindow = app.get_window("main").unwrap();
+
+            println!("Booting WebSocket server...");
+            tauri::async_runtime::spawn(async move {
+                let (mut rx, mut child) = Command::new_sidecar("ws-node")
+                    .expect("failed to setup `ws-node` sidecar")
+                    .spawn()
+                    .expect("Failed to spawn packaged WebSocket server");
+
+                let mut i = 0;
+                while let Some(event) = rx.recv().await {
+                    if let CommandEvent::Stdout(line) = event {
+                        wsWindow
+                            .emit("message", Some(format!("'{}'", line)))
+                            .expect("failed to emit event");
+                        i += 1;
+
+                        println!("WebSocket: {}", line);
+
+                        if i == 4 {
+                            child.write("message from WebSocket\n".as_bytes()).unwrap();
+                            i = 0;
+                        }
+                    } else if let CommandEvent::Stderr(line) = event {
+                        println!("WebSocket err: {}", line);
                     }
                 }
             });

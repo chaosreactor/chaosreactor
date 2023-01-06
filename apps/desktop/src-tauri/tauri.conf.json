@@ -14,7 +14,7 @@
     "allowlist": {
       "all": false,
       "http": {
-        "scope": ["https://localhost:2022/*"]
+        "scope": ["https://localhost:2022/*", "https://localhost:5002/*"]
       },
       "shell": {
         "sidecar": true,
@@ -25,6 +25,10 @@
           },
           {
             "name": "binaries/trpc-node",
+            "sidecar": true
+          },
+          {
+            "name": "binaries/ws-node",
             "sidecar": true
           }
         ]
