@@ -25,6 +25,7 @@ exports.getComponent = () => {
 
     // Log the input.
     console.log('imageGenerator input', input);
+    // c.emit('inputEvent', input);
 
     // Send the contents to output port
     output.send({

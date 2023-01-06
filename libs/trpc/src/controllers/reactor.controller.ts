@@ -1,12 +1,38 @@
 import { TRPCError } from '@trpc/server';
+import { observable } from '@trpc/server/observable';
 import { Graph, ComponentLoader, internalSocket, Component } from 'noflo';
 import path from 'path';
 
 import { FilterQueryInput } from '../schemas/block.schema';
 import type { BlockInterface } from '../../db/client';
+import type { BlockStartedEvent } from '../bus';
+import { bus, blockStarted } from '../bus';
 import { ChaosReactorDB } from '../../db/data-source';
 import { Block } from '../../src/entities/block';
 import { EventEmitter } from 'events';
+
+export const reactorSubscriptionController = () => {
+  return observable<BlockStartedEvent>((emit) => {
+    const onBlockStarted = (data: BlockStartedEvent) => {
+      // emit data to client
+      emit.next(data);
+    };
+
+    const handleBlockStarted = (event: unknown) => {
+      const blockStartedEvent = event as BlockStartedEvent;
+      console.log('blockStartedEvent', blockStartedEvent);
+
+      const { blockId } = blockStartedEvent;
+    };
+
+    blockStarted.addListener(handleBlockStarted);
+
+    // Unsubscribe function when client disconnects or stops subscribing
+    return () => {
+      blockStarted.removeListener(handleBlockStarted);
+    };
+  });
+};
 
 // @see https://codevoweb.com/build-a-fullstack-trpc-crud-app-with-nextjs
 export const runReactorController = async ({
@@ -38,7 +64,7 @@ export const runReactorController = async ({
     console.log('repeatPath', repeatPath);
     loader.registerComponent('core', 'Repeat', repeatPath, (err: any) => {
       if (err) {
-        console.log('Error loading Repeat component', err);
+        console.error('Error loading Repeat component', err);
       }
     });
 
@@ -54,7 +80,6 @@ export const runReactorController = async ({
 
       // Add the block to the graph.
       graph.addNode(id.toString(), 'dist/' + type);
-      const node = graph.getNode(id.toString());
       graph.addEdge('START', 'out', id.toString(), 'in');
       graph.addOutport('out', id.toString(), 'out');
 
@@ -70,21 +95,23 @@ export const runReactorController = async ({
 
     // Log all emitted events.
     // @see https://stackoverflow.com/a/53311946/109663
-    const originalEmit = EventEmitter.prototype.emit;
-    EventEmitter.prototype.emit = function (
-      event: string | symbol,
-      ...args: any[]
-    ): boolean {
-      // Do what you want here
-      const id = this.constructor.name + ':' + event.toString();
-      if (!items.has(id)) {
-        items.add(id);
-        console.log('EVENT: ', id);
-      }
+    if (process.env.DEBUG) {
+      const originalEmit = EventEmitter.prototype.emit;
+      EventEmitter.prototype.emit = function (
+        event: string | symbol,
+        ...args: any[]
+      ): boolean {
+        // Do what you want here
+        const id = this.constructor.name + ':' + event.toString();
+        if (!items.has(id)) {
+          items.add(id);
+          console.log('EVENT: ', id);
+        }
 
-      // And then call the original
-      return originalEmit.call(this, event, ...args);
-    };
+        // And then call the original
+        return originalEmit.call(this, event, ...args);
+      };
+    }
 
     loader.registerGraph('trpc', 'reactor', graph, (err) => {
       if (err) {
@@ -99,13 +126,21 @@ export const runReactorController = async ({
       loader
         .load('trpc/reactor', {})
         .then((instance: Component) => {
-          console.log('instance', instance);
           console.log('Running reactor graph...');
 
           // This is the only way to get the network-level events.
           const instanceGraph = instance as unknown as RuntimeGraph;
           instanceGraph.network.on('ip', (ip) => {
             console.log('network-level IP', ip);
+
+            console.log('IP process', ip.socket.to.process);
+
+            const startedBlockId = ip.socket.to.process.id;
+
+            const blockStartedEvent: BlockStartedEvent = {
+              blockId: startedBlockId,
+            };
+            blockStarted.emit(blockStartedEvent);
           });
 
           instance.start((err) => {
@@ -132,7 +167,7 @@ export const runReactorController = async ({
           });
         })
         .catch((err) => {
-          console.error('Error loading reactor graph:', err);
+          console.log('Error loading reactor graph:', err);
         });
     });
     //});

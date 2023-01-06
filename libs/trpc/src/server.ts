@@ -19,6 +19,7 @@ import {
 } from './controllers/block.controller';
 import {
   runReactorController,
+  reactorSubscriptionController,
 } from './controllers/reactor.controller';
 
 console.log('Launching server...');
@@ -53,6 +54,11 @@ const appRouter = router({
   runReactor: procedure
     .input(filterQuery)
     .mutation(({ input }) => runReactorController({ filterQuery: input })),
+
+  // Observe the reactor as it runs.
+  reactorSubscription: procedure.subscription(() =>
+    reactorSubscriptionController()
+  ),
 
   // Find all blocks.
   blocksAll: procedure

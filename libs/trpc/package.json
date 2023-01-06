@@ -18,6 +18,7 @@
     "@tanstack/react-query": "^4.16.1",
     "@trpc/client": "^10.5.0",
     "@trpc/server": "^10.5.0",
+    "estacion": "^1.2.3",
     "kysely": "^0.22.0",
     "mysql": "^2.14.1",
     "mysql2": "^2.3.3",
