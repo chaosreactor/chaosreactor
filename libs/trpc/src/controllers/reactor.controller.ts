@@ -1,22 +1,12 @@
 import { TRPCError } from '@trpc/server';
-import {
-  Graph,
-  isBrowser,
-  ComponentLoader,
-  internalSocket,
-  Component,
-} from 'noflo';
+import { Graph, ComponentLoader, internalSocket, Component } from 'noflo';
 import path from 'path';
-import fs from 'fs';
 
 import { FilterQueryInput } from '../schemas/block.schema';
-import db from '../../db/client';
 import type { BlockInterface } from '../../db/client';
-import Dolt from '../../db/dolt';
 import { ChaosReactorDB } from '../../db/data-source';
 import { Block } from '../../src/entities/block';
-import { nodeHTTPRequestHandler } from '@trpc/server/dist/adapters/node-http';
-import { InternalSocket } from 'noflo/lib/InternalSocket';
+import { EventEmitter } from 'events';
 
 // @see https://codevoweb.com/build-a-fullstack-trpc-crud-app-with-nextjs
 export const runReactorController = async ({
@@ -64,6 +54,7 @@ export const runReactorController = async ({
 
       // Add the block to the graph.
       graph.addNode(id.toString(), 'dist/' + type);
+      const node = graph.getNode(id.toString());
       graph.addEdge('START', 'out', id.toString(), 'in');
       graph.addOutport('out', id.toString(), 'out');
 
@@ -75,14 +66,34 @@ export const runReactorController = async ({
       console.log('block', block);
     });
 
+    const items = new Set();
+
+    // Log all emitted events.
+    // @see https://stackoverflow.com/a/53311946/109663
+    const originalEmit = EventEmitter.prototype.emit;
+    EventEmitter.prototype.emit = function (
+      event: string | symbol,
+      ...args: any[]
+    ): boolean {
+      // Do what you want here
+      const id = this.constructor.name + ':' + event.toString();
+      if (!items.has(id)) {
+        items.add(id);
+        console.log('EVENT: ', id);
+      }
+
+      // And then call the original
+      return originalEmit.call(this, event, ...args);
+    };
+
     loader.registerGraph('trpc', 'reactor', graph, (err) => {
       if (err) {
         console.log('Error loading reactor graph', err);
       }
 
-      type InPorts = {
-        in: InternalSocket;
-      };
+      interface RuntimeGraph extends Graph {
+        network: EventEmitter;
+      }
 
       // Load the reactor graph.
       loader
@@ -91,14 +102,19 @@ export const runReactorController = async ({
           console.log('instance', instance);
           console.log('Running reactor graph...');
 
+          // This is the only way to get the network-level events.
+          const instanceGraph = instance as unknown as RuntimeGraph;
+          instanceGraph.network.on('ip', (ip) => {
+            console.log('network-level IP', ip);
+          });
+
           instance.start((err) => {
-            // Here you can bind to ports. Using just in/out as example, but can be more
             const out = internalSocket.createSocket();
             const ins = internalSocket.createSocket();
 
             // Bind inport to the start node.
-            console.log('inPorts', instance.inPorts);
             instance.inPorts.ports.in.attach(ins);
+            instance.outPorts.ports.out.attach(out);
 
             // React to results from outport
             out.on('ip', (ip) => {
