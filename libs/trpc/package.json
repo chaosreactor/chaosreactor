@@ -11,7 +11,11 @@
     ]
   },
   "scripts": {
-    "build": "del-cli --force ./dist && tsc --outDir dist && pkg package.json --targets macos -o ../../apps/desktop/src-tauri/binaries/trpc-node && node ./scripts/moveTrpcBinary.mjs",
+    "build": "npm run build-prepare && npm run build-trpc && npm run build-ws && npm run build-finish",
+    "build-prepare": "del-cli --force ./dist && tsc --outDir dist",
+    "build-trpc": "pkg --targets macos -o ../../apps/desktop/src-tauri/binaries/trpc-node package.json",
+    "build-ws": "node ./scripts/prepareWSServerBuild.mjs && pkg --targets macos -o ../../apps/desktop/src-tauri/binaries/ws-node package.json && node ./scripts/cleanupWSServerBuild.mjs",
+    "build-finish": "node ./scripts/moveTrpcBinaries.mjs && del-cli --force temp-package.json",
     "typeorm": "typeorm-ts-node-commonjs"
   },
   "dependencies": {
@@ -27,6 +31,7 @@
     "noflo-nodejs": "^0.15.2",
     "reflect-metadata": "^0.1.13",
     "typeorm": "0.3.11",
+    "ws": "^8.11.0",
     "zod": "^3.19.1"
   },
   "devDependencies": {
