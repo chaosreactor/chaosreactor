@@ -1,0 +1,31 @@
+[package]
+name = "chaosreactor"
+version = "0.0.0"
+description = "A no-code automation platform for generative AI."
+authors = ["Chaos Reactor, Inc."]
+license = "MIT/Apache 2"
+repository = ""
+edition = "2021"
+rust-version = "1.57"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1.2.0", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+# Waiting to update until escape key is fixed: https://discord.com/channels/616186924390023171/1050770839559229480
+tauri = { version = "=1.2.1", features = ["process-command-api", "shell-sidecar"] }
+tauri-runtime-wry = "=0.12.1"
+keyring = "1.2.0"
+whoami = "1.2.3"
+
+[features]
+# by default Tauri runs in production mode
+# when `tauri dev` runs it is executed with `cargo run --no-default-features` if `devPath` is an URL
+default = [ "custom-protocol" ]
+# this feature is used used for production builds where `devPath` points to the filesystem
+# DO NOT remove this
+custom-protocol = [ "tauri/custom-protocol" ]

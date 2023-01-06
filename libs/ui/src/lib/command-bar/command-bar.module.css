@@ -1,0 +1,272 @@
+.framer [cmdk-root] {
+  --app-bg: var(--gray1);
+  --cmdk-shadow: 0 16px 70px rgb(0 0 0 / 20%);
+
+  --lowContrast: #ffffff;
+  --highContrast: #000000;
+
+  --app-bg: var(--gray1);
+
+  --lowContrast: #000000;
+  --highContrast: #ffffff;
+
+  --gray1: hsl(0, 0%, 8.5%);
+  --gray2: hsl(0, 0%, 11%);
+  --gray3: hsl(0, 0%, 13.6%);
+  --gray4: hsl(0, 0%, 15.8%);
+  --gray5: hsl(0, 0%, 17.9%);
+  --gray6: hsl(0, 0%, 20.5%);
+  --gray7: hsl(0, 0%, 24.3%);
+  --gray8: hsl(0, 0%, 31.2%);
+  --gray9: hsl(0, 0%, 43.9%);
+  --gray10: hsl(0, 0%, 49.4%);
+  --gray11: hsl(0, 0%, 62.8%);
+  --gray12: hsl(0, 0%, 93%);
+
+  --grayA1: hsla(0, 0%, 100%, 0);
+  --grayA2: hsla(0, 0%, 100%, 0.026);
+  --grayA3: hsla(0, 0%, 100%, 0.056);
+  --grayA4: hsla(0, 0%, 100%, 0.077);
+  --grayA5: hsla(0, 0%, 100%, 0.103);
+  --grayA6: hsla(0, 0%, 100%, 0.129);
+  --grayA7: hsla(0, 0%, 100%, 0.172);
+  --grayA8: hsla(0, 0%, 100%, 0.249);
+  --grayA9: hsla(0, 0%, 100%, 0.386);
+  --grayA10: hsla(0, 0%, 100%, 0.446);
+  --grayA11: hsla(0, 0%, 100%, 0.592);
+  --grayA12: hsla(0, 0%, 100%, 0.923);
+
+  --blue1: hsl(212, 35%, 9.2%);
+  --blue2: hsl(216, 50%, 11.8%);
+  --blue3: hsl(214, 59.4%, 15.3%);
+  --blue4: hsl(214, 65.8%, 17.9%);
+  --blue5: hsl(213, 71.2%, 20.2%);
+  --blue6: hsl(212, 77.4%, 23.1%);
+  --blue7: hsl(211, 85.1%, 27.4%);
+  --blue8: hsl(211, 89.7%, 34.1%);
+  --blue9: hsl(206, 100%, 50%);
+  --blue10: hsl(209, 100%, 60.6%);
+  --blue11: hsl(210, 100%, 66.1%);
+  --blue12: hsl(206, 98%, 95.8%);
+
+  width: 700px;
+  padding: 8px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--gray6);
+  box-shadow: var(--cmdk-shadow);
+  background: rgba(28, 28, 28, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(28, 28, 28, 0.3);
+  position: absolute;
+  top: 200px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 10000;
+}
+
+.framer [cmdk-framer-header] {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--gray5);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+}
+.framer [cmdk-framer-header] svg {
+  width: 20px;
+  height: 20px;
+  color: var(--gray9);
+  transform: translateY(1px);
+}
+.framer [cmdk-input] {
+  font-family: var(--font-sans);
+  border: none;
+  width: 100%;
+  font-size: 16px;
+  outline: none;
+  background: var(--bg);
+  color: var(--gray12);
+  box-shadow: none;
+}
+.framer [cmdk-input]::placeholder {
+  color: var(--gray9);
+}
+.framer [cmdk-item] {
+  content-visibility: auto;
+  cursor: pointer;
+  border-radius: 12px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--gray12);
+  padding: 8px 8px;
+  margin-right: 8px;
+  font-weight: 500;
+  transition: all 150ms ease;
+  transition-property: none;
+}
+.framer [cmdk-item][aria-selected='true'] {
+  background: var(--blue9);
+  color: #fff;
+}
+.framer [cmdk-item][aria-selected='true'] [cmdk-framer-item-subtitle] {
+  color: #fff;
+}
+.framer [cmdk-item][aria-disabled='true'] {
+  color: var(--gray8);
+  cursor: not-allowed;
+}
+.framer [cmdk-item] + [cmdk-item] {
+  margin-top: 4px;
+}
+.framer [cmdk-item] svg {
+  width: 16px;
+  height: 16px;
+  color: #fff;
+}
+.framer [cmdk-framer-icon-wrapper] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  background: #171923;
+  border: 1px solid white;
+  border-radius: 8px;
+}
+.framer [cmdk-framer-item-meta] {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 4px;
+}
+.framer [cmdk-framer-item-subtitle] {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--gray11);
+}
+.framer [cmdk-framer-items] {
+  min-height: 308px;
+  display: flex;
+}
+.framer [cmdk-framer-left] {
+  width: 40%;
+}
+.framer [cmdk-framer-right] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin-left: 8px;
+  width: 60%;
+}
+.framer [cmdk-framer-right] button {
+  width: 120px;
+  height: 40px;
+  background: var(--blue9);
+  border-radius: 6px;
+  font-weight: 500;
+  color: white;
+  font-size: 14px;
+}
+.framer [cmdk-framer-right] input[type='text'] {
+  height: 40px;
+  width: 160px;
+  border: 1px solid var(--gray6);
+  background: var(--gray3);
+  border-radius: 6px;
+  padding: 0 8px;
+  font-size: 14px;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.08);
+}
+.framer [cmdk-framer-right] input[type='text']::placeholder {
+  color: var(--gray9);
+}
+.framer [cmdk-framer-right] [cmdk-framer-radio] {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--gray12);
+  font-weight: 500;
+  font-size: 14px;
+  accent-color: var(--blue9);
+}
+.framer [cmdk-framer-right] [cmdk-framer-radio] input {
+  width: 20px;
+  height: 20px;
+}
+.framer [cmdk-framer-right] img {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  border: 1px solid var(--gray6);
+}
+.framer [cmdk-framer-right] [cmdk-framer-container] {
+  width: 100px;
+  height: 100px;
+  background: var(--blue9);
+  border-radius: 16px;
+}
+.framer [cmdk-framer-right] [cmdk-framer-badge] {
+  background: var(--blue3);
+  padding: 0 8px;
+  height: 28px;
+  font-size: 14px;
+  line-height: 28px;
+  color: var(--blue11);
+  border-radius: 9999px;
+  font-weight: 500;
+}
+.framer [cmdk-framer-right] [cmdk-framer-slider] {
+  height: 20px;
+  width: 200px;
+  background: linear-gradient(90deg, var(--blue9) 40%, var(--gray3) 0%);
+  border-radius: 9999px;
+}
+.framer [cmdk-framer-right] [cmdk-framer-slider] div {
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 9999px;
+  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.32);
+  transform: translateX(70px);
+}
+.framer [cmdk-list] {
+  overflow: auto;
+}
+.framer [cmdk-framer-separator] {
+  background: var(--gray5);
+  margin: 4px 0;
+  width: 1px;
+  height: 380px;
+  border: 0;
+  margin-right: 8px;
+}
+.framer [cmdk-group-heading] {
+  user-select: none;
+  font-size: 12px;
+  color: var(--gray11);
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.framer [cmdk-empty] {
+  font-size: 14px;
+  padding: 32px;
+  white-space: pre-wrap;
+  color: var(--gray11);
+}
+@media (max-width: 640px) {
+  .framer [cmdk-framer-item-subtitle] {
+    display: none;
+  }
+}

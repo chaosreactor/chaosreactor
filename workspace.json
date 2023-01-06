@@ -2,7 +2,9 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "desktop": "apps/desktop",
     "docs": "apps/docs",
+    "trpc": "libs/trpc",
     "ui": "libs/ui",
     "ui-e2e": "apps/ui-e2e",
     "web": "apps/web"

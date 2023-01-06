@@ -12,7 +12,7 @@ Call up the command palette with `Ctrl+Shift+P` and type `Terminal Manager: Run`
 
 ### Launching a single command
 
-Launch `Terminal Manager: Run Single` from the command palette to create a new terminal. 
+Launch `Terminal Manager: Run Single` from the command palette to create a new terminal.
 
 :::tip
 
@@ -77,3 +77,48 @@ The default commands are defined in the `.vscode/terminals.json` file. You can e
   ]
 }
 ```
+
+## Debugging
+
+We use the [VSCode Debugger](https://code.visualstudio.com/docs/editor/debugging) to debug the application. The [Debugger for Chrome Extension](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) is used to debug the application in the browser.
+
+### Launching the debugger
+
+Call up the command palette with `Ctrl+Shift+P` and type `Debug: Start Debugging` to launch the debugger.
+
+### Editing the configuration
+
+The default configuration is defined in the `.vscode/launch.json` file. You can edit this file to add or remove configurations. Call up the command palette with `Ctrl+Shift+P` and type `Debug: Open launch.json` to edit the file.
+
+#### Default configuration
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Chrome against localhost",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}
+```
+
+## Linting
+
+We use the [Prettier - Code formatter extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) to lint the application.
+
+### Linting on save
+
+Call up the command palette with `Ctrl+Shift+P` and type `Format Document` to lint the application.
+
+## GitHub Copilot
+
+We use [GitHub Copilot](https://copilot.github.com/) to write code for us. The [GitHub Copilot extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) is used to access GitHub Copilot. Their [getting started instructions](https://docs.github.com/en/copilot/getting-started-with-github-copilot/getting-started-with-github-copilot-in-visual-studio-code) offer more information on how to use the extension.
+
+:::caution
+Be sure to [**block suggestions of public code**](https://docs.github.com/en/copilot/configuring-github-copilot/configuring-github-copilot-settings-on-githubcom#enabling-or-disabling-duplication-detection) to avoid unintentionally plagiarizing code with an incompatible license.
+:::

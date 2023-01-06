@@ -55,6 +55,16 @@ Thumbs.db
 
 # Enivronment variables
 .env
-apps/chaosreactor/.env.local
-apps/voxable/.env.local
+.env.local
 
+# Dolt
+.sqlhistory
+.dolt
+
+# Rust
+target/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+Chaos Reactor desktop.session.sql

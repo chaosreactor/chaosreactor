@@ -1,0 +1,45 @@
+{
+  "name": "@chaosreactor/trpc",
+  "main": "src/trpc.js",
+  "bin": "dist/src/server.js",
+  "version": "0.0.1",
+  "pkg": {
+    "scripts": "dist/**/*.js",
+    "assets": [
+      "../../node_modules/noflo/components/**/*",
+      "../../node_modules/noflo-core/components/**/*"
+    ]
+  },
+  "scripts": {
+    "build": "npm run build-prepare && npm run build-trpc && npm run build-ws && npm run build-finish",
+    "build-prepare": "del-cli --force ./dist && tsc --outDir dist",
+    "build-trpc": "pkg --targets macos -o ../../apps/desktop/src-tauri/binaries/trpc-node package.json",
+    "build-ws": "node ./scripts/prepareWSServerBuild.mjs && pkg --targets macos -o ../../apps/desktop/src-tauri/binaries/ws-node package.json && node ./scripts/cleanupWSServerBuild.mjs",
+    "build-finish": "node ./scripts/moveTrpcBinaries.mjs && del-cli --force temp-package.json",
+    "typeorm": "typeorm-ts-node-commonjs"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^4.16.1",
+    "@trpc/client": "^10.5.0",
+    "@trpc/server": "^10.5.0",
+    "estacion": "^1.2.3",
+    "kysely": "^0.22.0",
+    "mysql": "^2.14.1",
+    "mysql2": "^2.3.3",
+    "noflo": "^1.4.3",
+    "noflo-core": "^0.6.1",
+    "noflo-nodejs": "^0.15.2",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.3.11",
+    "ws": "^8.11.0",
+    "zod": "^3.19.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.10",
+    "del-cli": "^5.0.0",
+    "execa": "^6.1.0",
+    "pkg": "^5.8.0",
+    "ts-node": "10.7.0",
+    "typescript": "4.5.2"
+  }
+}

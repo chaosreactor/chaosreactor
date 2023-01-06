@@ -130,7 +130,7 @@ Dual-licensed under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) an
 
 ## Contact
 
-Your Name - [@chaosreactor](https://twitter.com/chaosreactor) - howdy@chaosreactor.com
+[@chaosreactor](https://twitter.com/chaosreactor) - howdy@chaosreactor.com
 
 Project Link: [https://github.com/chaosreactor/chaosreactor](https://github.com/chaosreactor/chaosreactor)
 
@@ -141,8 +141,6 @@ Project Link: [https://github.com/chaosreactor/chaosreactor](https://github.com/
 ## Acknowledgments
 
 - [README Template](https://github.com/othneildrew/Best-README-Template)
-- [behave-flow](https://github.com/beeglebug/behave-flow)
-- [behave-graph](https://github.com/bhouston/behave-graph)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

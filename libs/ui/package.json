@@ -1,17 +1,15 @@
 {
   "name": "@chaosreactor/ui",
   "version": "0.0.1",
+  "main": "index.js",
   "scripts": {
-    "stories:generate": "nx g @nrwl/react:stories --project ui --generateCypressSpecs --cypressProject chaosreactor-e2e"
+    "generate-stories": "nx g @nrwl/react:stories --project ui --generateCypressSpecs --cypressProject chaosreactor-e2e"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
-    "@mui/material": "^5.10.4",
-    "@mui/system": "^5.10.4",
-    "@mui/x-data-grid": "^5.17.1"
+    "@chaosreactor/trpc": "*",
+    "lodash.debounce": "^4.0.8"
   },
   "devDependencies": {
-    "@mui/icons-material": "^5.10.3"
+    "@types/lodash.debounce": "^4.0.7"
   }
 }

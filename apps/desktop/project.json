@@ -1,0 +1,7 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "implicitDependencies": ["ui"],
+  "projectType": "application",
+  "sourceRoot": "apps/desktop/src",
+  "tags": []
+}

@@ -3,9 +3,9 @@ import Head from 'next/head';
 import './styles.css';
 // pages/_app.js
 import { ChakraProvider } from '@chakra-ui/react';
-import chaosTheme from '../theme';
+import chaosTheme from '../../../libs/ui/src/theme';
 import '@fontsource/work-sans';
-import { Chakra } from '../lib/chakra';
+import { Chakra } from '../../../libs/ui/src/chakra';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (

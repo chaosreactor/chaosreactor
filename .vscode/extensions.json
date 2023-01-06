@@ -8,6 +8,13 @@
     "ijs.reactnextjssnippets",
     "gruntfuggly.todo-tree",
     "johnpapa.vscode-peacock",
-    "GitHub.copilot"
+    "github.copilot",
+    "esbenp.prettier-vscode",
+    "github.vscode-pull-request-github",
+    "mtxr.sqltools",
+    "rust-lang.rust-analyzer",
+    "jscearcy.rust-doc-viewer",
+    "vadimcn.vscode-lldb",
+    "statiolake.vscode-rustfmt"
   ]
 }

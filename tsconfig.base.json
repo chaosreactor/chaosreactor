@@ -13,8 +13,10 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
+      "@chaosreactor/trpc": ["libs/trpc/src/trpc.ts"],
       "@chaosreactor/ui": ["libs/ui/src/index.ts"],
       "@chaosreactor/web": ["apps/chaosreactor/pages/index.tsx"]
     }

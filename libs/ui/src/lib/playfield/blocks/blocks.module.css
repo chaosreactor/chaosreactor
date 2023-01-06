@@ -1,0 +1,52 @@
+.node {
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  padding: 0;
+  border: 2px solid transparent;
+  min-width: 160px;
+  text-align: center;
+  font-weight: bold;
+  color: #0984e3;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.node:hover {
+  border: 2px solid #0984e3;
+}
+
+.content {
+  pointer-events: none;
+}
+
+.handle {
+  visibility: hidden;
+}
+
+.placeholder {
+  width: 183px;
+  height: 118px;
+  line-height: 88px;
+  /* green/900 */
+  background: #1c4536;
+  /* green/600 */
+  border: 3px dashed #258565;
+  border-radius: 20px;
+  color: #bbb;
+  box-shadow: none;
+}
+
+.placeholder:hover {
+  background: radial-gradient(
+    circle at 18.7% 37.8%,
+    rgb(90, 152, 129) 100%,
+    rgb(6, 51, 35) 40%
+  );
+}
+
+.imageGenerator svg {
+  display: inline-block;
+  border-radius: 4px;
+  margin-right: 10px;
+  margin-bottom: -5px;
+}
